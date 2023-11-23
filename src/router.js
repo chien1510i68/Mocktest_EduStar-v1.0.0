@@ -9,6 +9,8 @@ export const router = createBrowserRouter([
   },{
     path : "/mocktest/:examId",
     element : <MocktestPage/>
+  },{
+    
   }
   
 ]);

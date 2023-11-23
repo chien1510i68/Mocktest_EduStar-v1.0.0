@@ -4,9 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../AppContext";
 
 function FormRegister(props) {
-  const navigate = useNavigate()
-  const {data , dispatch} = useContext(AppContext)
-  const {isOpenModalConfirm} = data
+  const navigate = useNavigate();
+  const { data, dispatch } = useContext(AppContext);
+  const { isOpenModalConfirm } = data;
   const validateMessages = {
     // eslint-disable-next-line no-template-curly-in-string
     required: "${label} is required!",
@@ -18,11 +18,12 @@ function FormRegister(props) {
   };
   const onFinish = (values) => {
     // dispatch({type : "openModalConfirm"})
-    console.log(values , isOpenModalConfirm);
-    localStorage.setItem("email" , JSON.stringify(values.email))
-    localStorage.setItem("phoneNumber" , JSON.stringify(values.phoneNumber))
-    localStorage.setItem("username" , JSON.stringify(values.username))
-    notification.success({message : "Your account has been saved"})
+    console.log(values, isOpenModalConfirm);
+    localStorage.setItem("email", JSON.stringify(values.email));
+    localStorage.setItem("phoneNumber", JSON.stringify(values.phoneNumber));
+    localStorage.setItem("username", JSON.stringify(values.username));
+    notification.success({ message: "Your account has been saved" });
+    navigate("/mocktest/26f94768-5b8e-414b-b966-59f37fdf1a16");
   };
   return (
     <Form
@@ -72,8 +73,6 @@ function FormRegister(props) {
           },
         ]}
       >
-       
-
         <Input />
       </Form.Item>
       <Form.Item
@@ -89,8 +88,6 @@ function FormRegister(props) {
           },
         ]}
       >
-        
-
         <Input />
       </Form.Item>
 
@@ -107,7 +104,10 @@ function FormRegister(props) {
         <Link to={""} className="text-cyan-600">
           tại đây{" "}
         </Link>{" "}
-        hoặc <Link to={""} className="text-cyan-600">Quay lại trang chủ tại đây </Link>
+        hoặc{" "}
+        <Link to={""} className="text-cyan-600">
+          Quay lại trang chủ tại đây{" "}
+        </Link>
       </h2>
     </Form>
   );

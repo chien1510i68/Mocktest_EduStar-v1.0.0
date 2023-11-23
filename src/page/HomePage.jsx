@@ -12,7 +12,7 @@ function HomePage(props) {
           <ModalCofirmInfor/>
       
 
-      {/* <Button onClick={() => navigate("/mocktest/12")}>Click me</Button> */}
+      {/* <Button onClick={() => navigate("/mocktest/05b61e04-f55b-4679-95c3-bc7f8b832db5")}>Click me</Button> */}
     </div>
   );
 }
