@@ -38,7 +38,7 @@ function MocktestPage(props) {
       );
     const answerUser = JSON.parse(localStorage.getItem("responseUsers"))
     localStorage.setItem(`response${type}` , JSON.stringify(answerUser))
-    localStorage.setItem("responseUsers" , [] )
+    localStorage.removeItem("responseUsers" )
    
     
     

@@ -1,10 +1,9 @@
 import { Button, Checkbox, Form, Input, Radio, Tabs } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactAudioPlayer from "react-audio-player";
 
 function FormQuestion({ type, time, data }) {
-//   const localStorageData = JSON.parse(localStorage.getItem("responseUsers"));
-  const [userChoices, setUserChoices] = useState([] );
+  const [userChoices, setUserChoices] = useState([]);
   const [formData, setFormData] = useState({});
 
   const isQuestionInType = (questionId) => {
@@ -12,18 +11,15 @@ function FormQuestion({ type, time, data }) {
   };
 
   const handleOptionChange = (questionId, answerKey, text) => {
-    setUserChoices((prevUserChoices) => {
-        const newUserChoices = [
-          ...prevUserChoices.filter((choice) => choice.questionId !== questionId),
-          { questionId, answerKey: [answerKey], value: text },
-        ];
-        localStorage.setItem("responseUsers", JSON.stringify(newUserChoices));
-        return newUserChoices;
-      });
+    const newUserChoices = [
+      ...userChoices.filter((choice) => choice.questionId !== questionId),
+      { questionId, answerKey: [answerKey], value: text }, 
+    ];
+    setUserChoices(newUserChoices);
+    localStorage.setItem("responseUsers", JSON.stringify(newUserChoices));
   };
 
   const handleOptionChangeMultiChoice = (questionId, checkedValues, text) => {
-    // const newUserChoices = { ...userChoices };
     const newUserChoices = [
       ...userChoices?.filter((choice) => choice.questionId !== questionId),
       { questionId, answerKey: checkedValues, value: null },
@@ -169,6 +165,9 @@ function FormQuestion({ type, time, data }) {
       </>
     ),
   }));
+  useEffect(() =>{
+    setUserChoices([])
+  },[type])
 
   return (
     <div>
