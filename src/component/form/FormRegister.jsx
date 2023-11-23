@@ -1,4 +1,4 @@
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, notification } from "antd";
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../AppContext";
@@ -17,11 +17,12 @@ function FormRegister(props) {
     },
   };
   const onFinish = (values) => {
-    dispatch({type : "openModalConfirm"})
+    // dispatch({type : "openModalConfirm"})
     console.log(values , isOpenModalConfirm);
     localStorage.setItem("email" , JSON.stringify(values.email))
     localStorage.setItem("phoneNumber" , JSON.stringify(values.phoneNumber))
     localStorage.setItem("username" , JSON.stringify(values.username))
+    notification.success({message : "Your account has been saved"})
   };
   return (
     <Form
@@ -71,9 +72,7 @@ function FormRegister(props) {
           },
         ]}
       >
-        {/* <h2 className="text-slate-300 font-normal text-left phone:text-xs tablet:text-sm">
-            Username{" "}
-          </h2> */}
+       
 
         <Input />
       </Form.Item>
@@ -90,9 +89,7 @@ function FormRegister(props) {
           },
         ]}
       >
-        {/* <h2 className="text-slate-300 font-normal text-left phone:text-xs tablet:text-sm">
-            Username{" "}
-          </h2> */}
+        
 
         <Input />
       </Form.Item>
