@@ -1,20 +1,20 @@
 import React, { createContext, useReducer } from "react";
 export const AppContext = createContext();
 const initialData = {
-  isOpenModalConfirm: false,
+  isOpenModalNextSection: false,
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "openModalConfirm":
+    case "openModalNextSection":
       return {
         ...state,
-        isOpenModalConfirm: true,
+        isOpenModalNextSection: true,
       };
-    case "closeModalConfirm":
+    case "closeModalNextSection":
       return {
         ...state,
-        isOpenModalConfirm: false,
+        isOpenModalNextSection: false,
       };
     default:
       return state;
