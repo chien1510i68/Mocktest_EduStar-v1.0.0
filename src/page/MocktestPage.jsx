@@ -66,7 +66,7 @@ const [isContinue , setIsContinue] = useState(false)
           className="ml-auto block bg-orange-500 my-5"
           onClick={handleConfirmNextSection}
         >
-          Tiếp theo
+          Next
         </Button>
       )}
       <ModalNextSection handleChangeType={handleChangeType} isContinue={isContinue}/>

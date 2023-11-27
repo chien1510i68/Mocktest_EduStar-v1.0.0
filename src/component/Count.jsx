@@ -6,9 +6,9 @@ function Count({ time }) {
   const { data, dispatch } = useContext(AppContext);
   const renderer = ({ hours, minutes, seconds }) => {
     return (
-      <div>
-        <h1 className="font-medium text-lg text-orange-500">
-          Thời gian còn lại : {hours.toString().padStart(2, "0")}:
+      <div className="bg-orange-400 px-5 py-2 rounded-lg">
+        <h1 className="font-medium text-lg text-yellow-50 ">  
+          {hours.toString().padStart(2, "0")}:
           {minutes.toString().padStart(2, "0")}:
           {seconds.toString().padStart(2, "0")}
         </h1>
@@ -23,7 +23,7 @@ function Count({ time }) {
     <div>
       <Countdown
         className="mr-5"
-        date={Date.now() + 3 * 1000}
+        date={Date.now() + time *60 * 1000}
         renderer={renderer}
         onComplete={handleComplete}
       />

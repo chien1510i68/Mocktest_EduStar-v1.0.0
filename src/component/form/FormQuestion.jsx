@@ -1,16 +1,11 @@
-import {
-  BackTop,
-  Button,
-  Checkbox,
-  Form,
-  Input,
-  Radio,
-  Tabs
-} from "antd";
+import { BackTop, Button, Checkbox, Form, Input, Radio, Tabs } from "antd";
 import React, { useEffect, useState } from "react";
 import ReactAudioPlayer from "react-audio-player";
 import Count from "../Count";
-
+import { FaHeadphones } from "react-icons/fa";
+import { IoBook } from "react-icons/io5";
+import { TfiWrite } from "react-icons/tfi";
+import { PiSpeakerHighFill } from "react-icons/pi";
 function FormQuestion({ type, time, data }) {
   const [userChoices, setUserChoices] = useState([]);
   const [formData, setFormData] = useState({});
@@ -47,9 +42,7 @@ function FormQuestion({ type, time, data }) {
     setUserChoices(newUserChoices);
     console.log(userChoices[type]);
   };
-  const handleCreateUserResponse = () => {
-   
-  };
+  const handleCreateUserResponse = () => {};
   const items = data?.map((section, index) => ({
     key: section?.id,
     label: (
@@ -60,9 +53,32 @@ function FormQuestion({ type, time, data }) {
 
     children: (
       <>
-        <div className="">
-          <Count time={time}  />
-          <div className="flex justify-end gap-5 items-center">
+        <div className="flex justify-between">
+          <div>
+            {type === "listening" ? (
+              <div className="flex gap-3 items-center">
+                <FaHeadphones className="text-orange-500 font-bold text-2xl" />
+                <h2 className="font-bold text-orange-500 ">LISTENING</h2>
+              </div>
+            ) : type === "reading" ? (
+              <div className="flex gap-3 items-center">
+                <IoBook className="text-orange-500 font-bold text-2xl"/>
+                <h2 className="font-bold text-orange-500 ">READING</h2>
+              </div>
+            ) : type === "wiriting" ? (
+              <div className="flex gap-3 items-center">
+                <TfiWrite className="text-orange-500 font-bold text-2xl"/>
+                <h2 className="font-bold text-orange-500 ">WRITING</h2>
+              </div>
+            ) : (
+              <div className="flex gap-3 items-center">
+                <PiSpeakerHighFill className="text-orange-500 font-bold text-2xl"/>
+                <h2 className="font-bold text-orange-500 ">SPEAKING</h2>
+              </div>
+            )}
+          </div>
+          <Count time={time} />
+          <div className="flex items-center gap-5">
             <div>
               {section?.questions?.map((question, questionIndex) => (
                 <span
@@ -76,7 +92,7 @@ function FormQuestion({ type, time, data }) {
               ))}
             </div>
 
-            <Button className="bg-amber-600 font-bold ">Nộp bài </Button>
+            <Button className="bg-amber-600 font-bold "> SUBMIT </Button>
           </div>
         </div>
 
@@ -85,12 +101,11 @@ function FormQuestion({ type, time, data }) {
             {section?.description?.startsWith("https") ? (
               <ReactAudioPlayer
                 muted={true}
-                autoPlay={true}
-                controls
+                // autoPlay={true}
+                disableSeek={true}
                 className="my-5"
-              >
-                <source src={section.description} type="audio/mp3" />
-              </ReactAudioPlayer>
+                src={section.description}
+              ></ReactAudioPlayer>
             ) : (
               <h2
                 className={`font-medium text-lg leading-relaxed overflow-auto px-[5%] ${
@@ -109,9 +124,14 @@ function FormQuestion({ type, time, data }) {
             }
           >
             {section?.file?.startsWith("https") && (
-              <audio controls muted={true} className="my-5">
-                <source src={section.file} type="audio/mp3" />
-              </audio>
+              <ReactAudioPlayer
+                src={section.file}
+                controls
+                disablePlay={true}
+                disablePause={true}
+                disableSeek={true}
+                className="my-5"
+              />
             )}
             <Form layout="vertical">
               {section?.questions.map((question, questionIndex) => (
@@ -208,7 +228,7 @@ function FormQuestion({ type, time, data }) {
     <div>
       {/* <Button onClick={() => console.log(userChoices)}>Click</Button> */}
       <h2>
-        {time} --- {type}
+        {/* {time} --- {type} */}
       </h2>
       <Tabs
         tabPosition="bottom"
@@ -216,6 +236,7 @@ function FormQuestion({ type, time, data }) {
         type="card"
         defaultActiveKey="1"
         items={items}
+        className="mt-5"
         // onChange={onChange}
       />
       <BackTop />
