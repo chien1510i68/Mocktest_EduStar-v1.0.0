@@ -1,0 +1,20 @@
+:root {
+    --primary-color: rgba(0, 0, 0, 0.2); /* Màu chủ đạo trong suốt */
+  }
+  
+  /* Cài đặt màu sắc chủ đạo */
+  .ant-btn-primary,
+  .ant-btn-primary:hover,
+  .ant-btn-primary:focus,
+  .ant-btn-primary:active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff; /* Màu chữ khi hover hoặc focus */
+  }
+  
+  /* Cài đặt màu sắc chủ đạo cho ô input và ô input khi focus */
+  .ant-input,
+  .ant-input:focus {
+    border-color: var(--primary-color);
+  }
+  
