@@ -5,8 +5,6 @@ import { AppContext } from '../AppContext';
 function ModalCofirmInfor() {
     const {data , dispatch} = useContext(AppContext)
     const {isOpenModalConfirm} = data
-    
-  
   const handleOk = () => {
     dispatch({type : "closeModalConfirm"})
   };

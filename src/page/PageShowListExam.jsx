@@ -3,7 +3,7 @@ import { Image, Table } from "antd";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import imageBanner from "../image/toeic_luu_y.png";
 import Column from "antd/es/table/Column";
-function PageShowListExam(props) {
+function PageShowListExam() {
     const location = useLocation();
     const navigate = useNavigate();
 

@@ -12,6 +12,7 @@ import luuYThi from "../image/toeic_luu_y.png";
 import Consultation from "../component/consultation/Consultation";
 import Competition from "../component/competition/Competition";
 import Footer from "../component/footer/Footer";
+import { getExamByType } from "../component/api/exam";
 
 function Toeic() {
 
@@ -22,7 +23,13 @@ function Toeic() {
     const navigate = useNavigate();
 
   const handleSubmitFreeExam = () => {
-    navigate("/exam/all");
+    getExamByType("toeic" , true).then((res) =>{
+        // console.log(res?.data?.body);
+        if(res?.data?.body?.success === true){
+          console.log(res?.data?.body?.data?.items);
+          navigate("/exam/all" , {state : res?.data?.body?.data?.items});
+        }
+      })
   };
     return (
         <div className="w-full">
