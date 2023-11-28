@@ -5,6 +5,7 @@ import { AppContext } from "../component/AppContext";
 import { getSectionByExamIdAndType } from "../component/api/exam";
 import FormQuestion from "../component/form/FormQuestion";
 import ModalNextSection from "../component/modal/ModalNextSection";
+import ModalConfirmSubmit from "../component/modal/ModalConfirmSubmit";
 
 function MocktestPage(props) {
   const [type, setType] = useState("listening");
@@ -70,6 +71,7 @@ const [isContinue , setIsContinue] = useState(false)
         </Button>
       )}
       <ModalNextSection handleChangeType={handleChangeType} isContinue={isContinue}/>
+      <ModalConfirmSubmit/>
     </>
   );
 }

@@ -1,14 +1,16 @@
 import { BackTop, Button, Checkbox, Form, Input, Radio, Tabs } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ReactAudioPlayer from "react-audio-player";
 import Count from "../Count";
 import { FaHeadphones } from "react-icons/fa";
 import { IoBook } from "react-icons/io5";
 import { TfiWrite } from "react-icons/tfi";
 import { PiSpeakerHighFill } from "react-icons/pi";
+import { AppContext } from "../AppContext";
 function FormQuestion({ type, time, data }) {
   const [userChoices, setUserChoices] = useState([]);
   const [formData, setFormData] = useState({});
+  const {data1 , dispatch} = useContext(AppContext)
 
   const isQuestionInType = (questionId) => {
     return userChoices.some((choice) => choice.questionId === questionId);
@@ -42,6 +44,9 @@ function FormQuestion({ type, time, data }) {
     setUserChoices(newUserChoices);
     console.log(userChoices[type]);
   };
+  const handleSubmit = () =>{
+    dispatch({type : "openModalSubmit"})
+  }
   const handleCreateUserResponse = () => {};
   const items = data?.map((section, index) => ({
     key: section?.id,
@@ -92,7 +97,7 @@ function FormQuestion({ type, time, data }) {
               ))}
             </div>
 
-            <Button className="bg-amber-600 font-bold "> SUBMIT </Button>
+            <Button className="bg-amber-600 font-bold " onClick={handleSubmit} > SUBMIT </Button>
           </div>
         </div>
 

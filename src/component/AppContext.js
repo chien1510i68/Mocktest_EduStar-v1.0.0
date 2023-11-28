@@ -2,6 +2,7 @@ import React, { createContext, useReducer } from "react";
 export const AppContext = createContext();
 const initialData = {
   isOpenModalNextSection: false,
+  isOpenModalSubmit : false
 };
 
 const reducer = (state, action) => {
@@ -16,6 +17,14 @@ const reducer = (state, action) => {
         ...state,
         isOpenModalNextSection: false,
       };
+      case "openModalSubmit" :
+        return {
+          ...state , isOpenModalSubmit : true 
+        }
+      case "closeModalSubmit" :
+        return {
+          ...state , isOpenModalSubmit : false  
+        }
     default:
       return state;
   }
