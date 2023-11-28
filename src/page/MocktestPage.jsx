@@ -12,9 +12,9 @@ function MocktestPage(props) {
   const [time, setTime] = useState(0);
   const { examId } = useParams();
   const [data1, setData1] = useState([]);
-  const {data , dispatch} = useContext(AppContext)
-  const {isOpenModalNextSection} = data
-const [isContinue , setIsContinue] = useState(false)
+  const { data, dispatch } = useContext(AppContext);
+  const { isOpenModalNextSection } = data;
+  const [isContinue, setIsContinue] = useState(false);
   const handleTimeSection = () => {
     setTime(
       type === "listening"
@@ -39,24 +39,29 @@ const [isContinue , setIsContinue] = useState(false)
   };
   const handleChangeType = () => {
     setType(
-        type === "listening" ? "reading" : type === "reading" ? "writing" : "speaking"
-      );
-    const answerUser = JSON.parse(localStorage.getItem("responseUsers"))
-    localStorage.setItem(`response${type}` , JSON.stringify(answerUser))
-    localStorage.removeItem("responseUsers" )
-    dispatch({type : "closeModalNextSection"})
-
+      type === "listening" ? "reading" : type === "reading" ? "writing" : ""
+    );
+    const answerUser = JSON.parse(localStorage.getItem("responseUsers"));
+    localStorage.setItem(`response${type}`, JSON.stringify(answerUser));
+    localStorage.removeItem("responseUsers");
+    dispatch({ type: "closeModalNextSection" });
   };
 
-  const handleConfirmNextSection = () =>{
-    setIsContinue(true)
-    dispatch({type : "openModalNextSection"})
-
-  }
+  const handleConfirmNextSection = () => {
+    if (type !== "writing") {
+      setIsContinue(true);
+      dispatch({ type: "openModalNextSection" });
+    }else{
+      const answerUser = JSON.parse(localStorage.getItem("responseUsers"));
+      localStorage.setItem(`responsewriting`, JSON.stringify(answerUser));
+      localStorage.removeItem("responseUsers");
+      dispatch({type : "openModalSubmit"})
+    }
+  };
 
   useEffect(() => {
     handleTimeSection();
-    setIsContinue(false)
+    setIsContinue(false);
     handleGetData();
   }, [type]);
   return (
@@ -67,11 +72,16 @@ const [isContinue , setIsContinue] = useState(false)
           className="ml-auto block bg-orange-500 my-5"
           onClick={handleConfirmNextSection}
         >
-          Next
+          {
+           ( type !== "writing" ) ? "Next": "Save and Submit"
+          }
         </Button>
       )}
-      <ModalNextSection handleChangeType={handleChangeType} isContinue={isContinue}/>
-      <ModalConfirmSubmit/>
+      <ModalNextSection
+        handleChangeType={handleChangeType}
+        isContinue={isContinue}
+      />
+      <ModalConfirmSubmit />
     </>
   );
 }

@@ -18,13 +18,7 @@ function ModalNextSection({ handleChangeType, isContinue }) {
   return (
     <div>
       <Modal footer={null} open={isOpenModalNextSection}>
-        <Button
-          onClick={() => {
-            console.log(isContinue);
-          }}
-        >
-          Click me
-        </Button>
+       
 
         <h2 className="font-medium text-center text-xl text-orange-400">
           Move on to the next test{" "}

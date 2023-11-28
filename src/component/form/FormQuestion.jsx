@@ -35,14 +35,12 @@ function FormQuestion({ type, time, data }) {
   };
   const handleQuestionEssay = (questionId, value) => {
     console.log(questionId, value);
-    setFormData({ ...formData, [questionId]: value });
     const newUserChoices = [
-      userChoices &&
-        userChoices?.filter((choice) => choice.questionId !== questionId),
-      { questionId, answerKey: null, value: value },
+      ...userChoices?.filter((choice) => choice.questionId !== questionId),
+      { questionId , value: value },
     ];
     setUserChoices(newUserChoices);
-    console.log(userChoices[type]);
+    localStorage.setItem("responseUsers", JSON.stringify(newUserChoices));
   };
   const handleSubmit = () =>{
     dispatch({type : "openModalSubmit"})

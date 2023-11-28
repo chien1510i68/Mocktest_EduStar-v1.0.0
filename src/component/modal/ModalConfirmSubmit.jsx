@@ -1,29 +1,37 @@
 import { Button, Modal, notification } from "antd";
 import React, { useContext } from "react";
 import { AppContext } from "../AppContext";
+import { useParams } from "react-router-dom";
 
 function ModalConfirmSubmit() {
   const { data, dispatch } = useContext(AppContext);
   const { isOpenModalSubmit } = data;
+  const { examId } = useParams();
   const handleCancel = () => {
     dispatch({ type: "closeModalSubmit" });
   };
   const handleOk = () => {
     // notification.success({ message: "Thanh cong" });
     dispatch({ type: "closeModalSubmit" });
-    const responselistening = JSON.parse(
+    let responselistening = JSON.parse(
       localStorage.getItem("responselistening")
     );
-    const responsereading = JSON.parse(localStorage.getItem("responsereading"));
-    console.log("responselistening", responselistening);
-    console.log("responsereading", responsereading);
-    if (responselistening === null) {
-      notification.error({
-        message: "You need to complete the listening test",
-      });
-    } else if (responsereading === null) {
-      notification.error({ message: "You need to complete the reading test" });
+    let responsereading = JSON.parse(localStorage.getItem("responsereading"));
+    let responsewriting = JSON.parse(localStorage.getItem("responsewriting"));
+    responselistening = responselistening === null ? [] : responselistening;
+    responsereading = responsereading === null ? [] : responsereading;
+    responsewriting = responsewriting === null ? [] : responsewriting;
+
+    const dataUser = {
+        responselistening : responselistening ,
+        responsereading : responsereading ,
+        email : JSON.parse(localStorage.getItem("email")),
+        responsewriting : responsewriting ,
+        exam_id: examId,
+        
     }
+    console.log(dataUser);
+
   };
   return (
     <div>
