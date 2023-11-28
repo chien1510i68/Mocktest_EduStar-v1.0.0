@@ -14,7 +14,7 @@ export const router = createBrowserRouter([
     element: <HomePage />,
   },
   {
-    path: "/mocktest/:examId",
+    path: "/exam/:examId",
     element: <MocktestPage />,
   },
   {

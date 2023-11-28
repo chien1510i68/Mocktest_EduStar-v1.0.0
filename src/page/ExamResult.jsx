@@ -1,13 +1,19 @@
 import React from "react";
 import { Image, Card, Space, Button, ConfigProvider } from "antd";
 import imgResult from "../image/imgResult.png";
+import { useLocation, useNavigate } from "react-router-dom";
 const ExamResult = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const data = location.state;
+  console.log("Danh sach cac du lieu la : ", data);
   return (
     <>
       <div className="grid tablet:grid-cols-2 mobile:grid-cols-1 max-w-screen-lg mx-auto gap-10 mt-2 sm:mt-5 justify-center">
         <div className="col-span-1 hidden sm:block mx-2 relative">
           <div className="sm:absolute bottom-0">
-            <Image width="200" src={imgResult} />
+            <Image width="200" src={imgResult} preview={false} />
           </div>
         </div>
         <div className="col-span-1 mx-auto">
@@ -21,11 +27,11 @@ const ExamResult = () => {
               </div>
               <div className="flex justify-between border-[#fb9400] border-b font-bold py-4 p-5">
                 <p>Listening</p>
-                <p className="text-[#fb9400] px-2">{0}</p>
+                <p className="text-[#fb9400] px-2">{data?.pointListening}/10</p>
               </div>
               <div className="flex justify-between font-bold border-[#fb9400] border-b py-4 p-5">
                 <p>Reading</p>
-                <p className="text-[#fb9400] px-2">{0}</p>
+                <p className="text-[#fb9400] px-2">{data?.pointReading}/10</p>
               </div>
               <div className="flex justify-between font-bold border-[#fb9400] border-b py-4 p-5">
                 <p>Writing</p>
@@ -37,7 +43,7 @@ const ExamResult = () => {
               </div>
               <div className="flex justify-between font-bold border-[#fb9400] border-b py-4 p-5">
                 <p>Tổng điểm</p>
-                <p className="text-[#fb9400] px-2">{0}</p>
+                <p className="text-[#fb9400] px-2">{data?.totalPoint}</p>
               </div>
               <div className=" grid grid-cols-2 gap-x-4 border-[#fb9400] p-5">
                 <ConfigProvider

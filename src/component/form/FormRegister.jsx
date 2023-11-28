@@ -23,7 +23,7 @@ function FormRegister(props) {
     localStorage.setItem("phoneNumber", JSON.stringify(values.phoneNumber));
     localStorage.setItem("username", JSON.stringify(values.username));
     notification.success({ message: "Your account has been saved" });
-    navigate("/mocktest/26f94768-5b8e-414b-b966-59f37fdf1a16");
+    navigate("/exam/26f94768-5b8e-414b-b966-59f37fdf1a16");
   };
   return (
     <Form

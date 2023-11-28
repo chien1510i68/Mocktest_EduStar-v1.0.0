@@ -1,12 +1,14 @@
 import { Button, Modal, notification } from "antd";
 import React, { useContext } from "react";
 import { AppContext } from "../AppContext";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { createResponseUser } from "../api/exam";
 
 function ModalConfirmSubmit() {
   const { data, dispatch } = useContext(AppContext);
   const { isOpenModalSubmit } = data;
   const { examId } = useParams();
+  const navigate = useNavigate()
   const handleCancel = () => {
     dispatch({ type: "closeModalSubmit" });
   };
@@ -30,7 +32,16 @@ function ModalConfirmSubmit() {
         exam_id: examId,
         
     }
-    console.log(dataUser);
+    // console.log(dataUser);
+    createResponseUser(dataUser).then((res) =>{
+      if(res?.data?.success === true){
+        // notification.success({message : "Thanh cong"})
+        console.log(res?.data?.data);
+        navigate("/result" ,{state : res?.data?.data})
+        
+      }
+      // console.log(res?.data);
+    })
 
   };
   return (

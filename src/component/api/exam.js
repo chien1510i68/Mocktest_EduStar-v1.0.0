@@ -6,6 +6,10 @@ export const getSectionByExamIdAndType = (data) => {
 export const createUserResponse = (data) => {
   return request.post("client/response/add", data);
 };
-export const getExamByType = (type , isFree)=>{
-    return request.get(`client/exam/type/${type}/${isFree}`)
-}
+export const getExamByType = (type, isFree) => {
+  return request.get(`client/exam/type/${type}/${isFree}`);
+};
+
+export const createResponseUser = (data) => {
+  return request.post("client/response/add", data);
+};
