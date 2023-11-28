@@ -1,10 +1,11 @@
 import { Image } from "antd";
-import iiVietNam from "../image/iiVietNam.png";
-import dhHaNoi from "../image/dhHaNoi.png";
-import hneu from "../image/hnue.png";
-import dhVinh from "../image/dhVinh.png";
-import bachKhoa from "../image/bachKhoa.png";
-import neu from "../image/neu.png";
+// import iiVietNam from "../image/iiVietNam.png";
+import iiVietNam from "../../image/iiVietNam.png"
+import dhHaNoi from "../../image/dhHaNoi.png";
+import hneu from "../../image/hnue.png";
+import dhVinh from "../../image/dhVinh.png";
+import bachKhoa from "../../image/bachKhoa.png";
+import neu from "../../image/neu.png";
 
 const Competitions = () => {
     // const path = "/public";

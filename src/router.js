@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import HomePage from "./page/HomePage";
 import MocktestPage from "./page/MocktestPage";
 import ResultsPage from "./page/ResultsPage";
+import PageShowListExam from "./page/PageShowListExam";
 import ExamResult from "./page/ExamResult";
 import Vstep from "./page/Vstep";
 import Toeic from "./page/Toeic";
@@ -29,6 +30,11 @@ export const router = createBrowserRouter([
   {
     path: "/vstep",
     element: <Vstep />,
+  },
+
+  {
+    path: "/exam/all",
+    element: <PageShowListExam />,
   },
 
   {

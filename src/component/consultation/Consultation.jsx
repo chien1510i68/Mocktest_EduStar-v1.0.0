@@ -1,11 +1,12 @@
 import React from "react";
 import { Button, ConfigProvider, Form, Input, Col, Row } from "antd";
-import "../Custom-antd.css";
-// import { useState } from "react";
-import svgAccounFormInput from "../vector/svgAccountForm.svg";
-import svgCallFormInput from "../vector/svgCallForm.svg";
-import svgEmailFormInput from "../vector/svgEmailForm.svg";
-import svgContentFormInput from "../vector/svgContentForm.svg";
+// import "../Custom-antd.css";
+import { useState } from "react";
+import svgAccounFormInput from "../../vector/svgAccountForm.svg"
+// import svgAccounFormInput from "../vector/svgAccountForm.svg";
+import svgCallFormInput from "../../vector/svgCallForm.svg";
+import svgEmailFormInput from "../../vector/svgEmailForm.svg";
+import svgContentFormInput from "../../vector/svgContentForm.svg";
 
 const onFinish = (values) => {
   console.log("Success:", values);
@@ -15,6 +16,34 @@ const onFinishFailed = (errorInfo) => {
 };
 
 const Consultation = () => {
+   const [formData, setFormData] = useState({
+      userName: '',
+      phoneNumber: '',
+      email: '',
+      content: '',
+  });
+
+  const handleSubmit = (e) => {
+        try {
+            fetch('http://localhost:8000/blogs', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                // body: JSON.stringify(formData),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        } catch (error) {
+            console.log("error:: ", error)
+        }
+        e.preventDefault();
+    };
   return (
     <>
       <div className=" flex justify-center">
@@ -26,7 +55,7 @@ const Consultation = () => {
           vấn
         </p>
       </div>
-      <Form
+      <Form onSubmit={handleSubmit}
       className="mx-2"
         name="wrap"
         labelCol={{ flex: "110px" }}
@@ -37,7 +66,7 @@ const Consultation = () => {
         <ConfigProvider
           theme={{
             token: {
-              colorPrimary: "transparent",
+              colorPrimary: "#fb9400",
             },
           }}
         >
@@ -56,7 +85,7 @@ const Consultation = () => {
                 ]}
               >
                 <Input
-                  className="border-[#fb9400]  hover:!border-[#fb9400] hover:shadow-md"
+                  className="border-[#fb9400] hover:border-[#fb9400] hover:shadow-md"
                   prefix={<img src={svgAccounFormInput} />}
                   placeholder="Họ và tên"
                   // style={{
@@ -96,7 +125,7 @@ const Consultation = () => {
                 ]}
               >
                 <Input
-                  className="border-[#fb9400]  hover:!border-[#fb9400] hover:shadow-md"
+                  className="border-[#fb9400]  hover:border-[#fb9400] hover:shadow-md"
                   prefix={<img src={svgEmailFormInput} />}
                   placeholder="Email"
                   // style={{

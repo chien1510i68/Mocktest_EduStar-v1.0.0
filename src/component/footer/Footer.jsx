@@ -1,10 +1,10 @@
 import React from "react";
-import Logo from "../image/Logo.png";
-import svgCall from "../vector/svgCall.svg";
-import svgAddress from "../vector/svgAddress.svg";
-import svgEmail from "../vector/svgEmail.svg";
-import svgFacebook from "../vector/svgFacebook.svg";
-import svgRadioButton from "../vector/radioButton.svg";
+import Logo from "../../image/Logo.png";
+import svgCall from "../../vector/svgCall.svg";
+import svgAddress from "../../vector/svgAddress.svg";
+import svgEmail from "../../vector/svgEmail.svg";
+import svgFacebook from "../../vector/svgFacebook.svg";
+import svgRadioButton from "../../vector/radioButton.svg";
 import { List } from "antd";
 
 const AppFooter = () => {
@@ -32,24 +32,27 @@ const AppFooter = () => {
         {/* end logo */}
         <div className="mx-auto grid tablet:grid-cols-3 mobile:grid-cols-1">
           <div className="col-span-1">
-            <div className="grid grid-cols-8 py-5">
-              <div className="col-span-1">
-                <img src={svgCall} alt="" className="my-4" />
+            <div className="grid grid-row-4 py-5">
+              <div className="row-span-1 flex gap-2">
+                <img src={svgCall} alt="" className="my-2" />
+                <p className="my-2">Liên hệ</p>
+                <p className="my-2">+84 1234567890</p>
+              </div>
+              <div className="row-span-1 flex gap-2">
                 <img src={svgAddress} alt="" className="my-4" />
-                <img src={svgEmail} alt="" className="sm:mt-4 mt-10" />
-                <img src={svgFacebook} alt="" className="my-4" />
+                <p className="my-2">Địa chỉ</p>
+                <p className="my-2 overflow-hidden inline">Trung tâm Anh ngữ - HVNNVN</p>
               </div>
-              <div className="col-span-2 font-bold text-[#515151]">
-                <p className="my-3">Liên hệ</p>
-                <p className="my-3">Địa chỉ</p>
-                <p className="sm:mt-4 mt-10">Email</p>
-                <p className="my-3">Facebook</p>
+              <div className="row-span-1 flex gap-2">
+                <img src={svgEmail} alt="" className="my-2" />
+                <p className="my-2">Email</p>
+                <p className="my-2">edustar1910@gmail.com</p>
               </div>
-              <div className="col-span-5 font-bold text-[#515151] mx-auto justify-center">
-                <p className="my-3">+84 1234567890</p>
-                <p className="my-3 overflow-hidden inline">Trung tâm Anh ngữ - HVNNVN</p>
-                <p className="mt-4">edustar1910@gmail.com</p>
-                <p className="my-3">Edustar</p>
+              
+              <div className="row-span-1  flex gap-2">
+                <img src={svgFacebook} alt="" className="my-2" />
+                <p className="my-2">Facebook</p>
+                <p className="my-2">Edustar</p>
               </div>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import { Image } from "antd";
+import { useNavigate } from "react-router-dom";
 import part1 from "../image/ImagePart1.png";
 import part2 from "../image/ImagePart2.png";
 import part3 from "../image/ImagePart3.png";
@@ -8,21 +9,21 @@ import part6 from "../image/ImagePart6.png";
 import part7 from "../image/ImagePart7.png";
 import banner from "../image/bannerToeic.png";
 import luuYThi from "../image/toeic_luu_y.png";
-import Consultation from "../component/Consultation";
-import Competition from "../component/Competition";
-import Footer from "../component/Footer";
-
-// import MyForm from "../components/input";
-// import { HeaderMenu } from "../components/app.menu";
-// import Speed from "../components/app.speedDial";
-// import { AppMenu } from "../components/menu";
+import Consultation from "../component/consultation/Consultation";
+import Competition from "../component/competition/Competition";
+import Footer from "../component/footer/Footer";
 
 function Toeic() {
 
     // const navigate = useNavigate();
-    const handleSubmit = () => {
-        window.location.href = '/beforeExam';
-    };
+    // const handleSubmit = () => {
+    //     window.location.href = '/beforeExam';
+    // };
+    const navigate = useNavigate();
+
+  const handleSubmitFreeExam = () => {
+    navigate("/exam/all");
+  };
     return (
         <div className="w-full">
             {/* <AppMenu /> */}
@@ -54,7 +55,7 @@ function Toeic() {
 
                             <button
                                 className="my-auto flex bg-[#fb9400] duration-300 font-bold text-white border-[#fca01c] px-3 py-1 rounded-md shadow-lg hover:bg-yellow-500"
-                                onClick={handleSubmit}
+                                onClick={handleSubmitFreeExam}
                             >
                                 Thi thử miễn phí{" "}
                                 <svg className="my-auto ml-2" width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
