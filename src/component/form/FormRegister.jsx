@@ -34,7 +34,7 @@ function FormRegister(props) {
       validateMessages={validateMessages}
       //   className="bg-[#2c7be5]"
     >
-      <h2 className="text-white">{isOpenModalConfirm} aaaa</h2>
+      {/* <h2 className="text-white">{isOpenModalConfirm} aaaa</h2> */}
       <Form.Item>
         <h2 className="text-slate-300 font-medium text-center phone:text-base tablet:text-lg laptop:text-xl">
           Đăng ký thi thử {isOpenModalConfirm}
