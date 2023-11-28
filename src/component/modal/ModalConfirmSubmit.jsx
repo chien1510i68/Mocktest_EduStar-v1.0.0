@@ -9,7 +9,7 @@ function ModalConfirmSubmit() {
     dispatch({ type: "closeModalSubmit" });
   };
   const handleOk = () => {
-    notification.success({ message: "Thanh cong" });
+    // notification.success({ message: "Thanh cong" });
     dispatch({ type: "closeModalSubmit" });
     const responselistening = JSON.parse(
       localStorage.getItem("responselistening")
@@ -17,8 +17,12 @@ function ModalConfirmSubmit() {
     const responsereading = JSON.parse(localStorage.getItem("responsereading"));
     console.log("responselistening", responselistening);
     console.log("responsereading", responsereading);
-    if(responselistening === null ){
-        notification.error({message})
+    if (responselistening === null) {
+      notification.error({
+        message: "You need to complete the listening test",
+      });
+    } else if (responsereading === null) {
+      notification.error({ message: "You need to complete the reading test" });
     }
   };
   return (
