@@ -1,4 +1,4 @@
-import { Button, Form, Input, notification } from "antd";
+import { Button, ConfigProvider, Form, Input, notification } from "antd";
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../AppContext";
@@ -35,24 +35,24 @@ function FormRegister(props) {
     })
   };
   return (
-    <Form
+    {/* <Form
       name="nest-messages"
       onFinish={onFinish}
       layout="vertical"
-      className=" w-[60%] px-[10%] py-[3%] rounded-md absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-[#181a1b] opacity-90"
+      className=" w-[60%] px-[10%] py-[3%] bg-[#fff] rounded-md absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
       validateMessages={validateMessages}
-      //   className="bg-[#2c7be5]"
     >
-      {/* <h2 className="text-white">{isOpenModalConfirm} aaaa</h2> */}
+      {/* <h2 className="text-white">{isOpenModalConfirm} aaaa</h2> 
       <Form.Item>
-        <h2 className="text-slate-300 font-medium text-center phone:text-base tablet:text-lg laptop:text-xl">
+        <h2 className="text-[#fb9600] font-bold text-center phone:text-base tablet:text-lg laptop:text-xl uppercase">
           Đăng ký thi thử {isOpenModalConfirm}
         </h2>
       </Form.Item>
       <Form.Item
+      
         name="email"
         label={
-          <span className="text-slate-300 font-normal text-left phone:text-xs tablet:text-sm">
+          <span className="text-[#808080] font-normal text-left phone:text-xs tablet:text-sm">
             Email
           </span>
         }
@@ -65,14 +65,23 @@ function FormRegister(props) {
       >
         {/* <h2 className="text-slate-300 font-normal text-left phone:text-sm tablet:">
             Email{" "}
-          </h2> */}
+          </h2> 
 
-        <Input />
+         <Input 
+        className="border border-[#fb9400] hover:border-[#fb9400]"/> 
+        <Input
+                  className="border-[#fb9400]  hover:!border-[#fb9400] hover:shadow-md"
+                  // prefix={<img src={svgCallFormInput} />}
+                  placeholder="email"
+                  // style={{
+                  //   width: 486,
+                  // }}
+                />
       </Form.Item>
       <Form.Item
         name="username"
         label={
-          <span className="text-slate-300 font-normal text-left phone:text-xs tablet:text-sm">
+          <span className="text-[#808080] font-normal text-left phone:text-xs tablet:text-sm">
             Username
           </span>
         }
@@ -82,12 +91,12 @@ function FormRegister(props) {
           },
         ]}
       >
-        <Input />
+        <Input className="border border-[#fb9400] hover:border-[#fb9400]" />
       </Form.Item>
       <Form.Item
         name="phoneNumber"
         label={
-          <span className="text-slate-300 font-normal text-left phone:text-xs tablet:text-sm">
+          <span className="text-[#808080] font-normal text-left phone:text-xs tablet:text-sm">
             Phone number
           </span>
         }
@@ -97,28 +106,29 @@ function FormRegister(props) {
           },
         ]}
       >
-        <Input />
+        <Input className="border border-[#fb9400] hover:border-[#fb9400]"/>
       </Form.Item>
 
       <Form.Item>
         <Button
-          className="bg-orange-400 ml-auto block hover:opacity-80"
+          className="bg-[#fb9400] mx-auto block border border-[#fb9400] text-white font-bold  hover:border-[#fb9400] hover:text-red"
           htmlType="submit"
         >
           Đăng ký thi thử miễn phí
         </Button>
       </Form.Item>
-      <h2 className="text-slate-200 text-center">
+      <h2 className="text-[#fb9400] text-center">
         Nếu bạn đã có tài khoản vui lòng đăng nhập{" "}
-        <Link to={""} className="text-cyan-600">
+        <Link to={""} className="text-[#ff735e]">
           tại đây{" "}
         </Link>{" "}
         hoặc{" "}
-        <Link to={""} className="text-cyan-600">
+        <Link to={""} className="text-[#ff735e]">
           Quay lại trang chủ tại đây{" "}
         </Link>
       </h2>
-    </Form>
+    </Form> */}
+
   );
 }
 
