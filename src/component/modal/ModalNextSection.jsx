@@ -30,7 +30,7 @@ function ModalNextSection({ handleChangeType, isContinue }) {
         <div className="flex justify-end gap-5">
           {isContinue === true && (
             <Button
-              className="bg-[#d95c5c] text-slate-950"
+              className="bg-[#eca52b] text-white"
               onClick={handleCancel}
             >
               Cancel

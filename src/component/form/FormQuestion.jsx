@@ -60,8 +60,8 @@ function FormQuestion({ type, time, data }) {
           <div>
             {type === "listening" ? (
               <div className="flex gap-3 items-center">
-                <FaHeadphones className="text-orange-500 font-bold text-2xl" />
-                <h2 className="font-bold text-orange-500 ">LISTENING</h2>
+                <FaHeadphones className="text-[#fb9400] font-bold text-2xl" />
+                <h2 className="font-bold text-[#fb9400] ">LISTENING</h2>
               </div>
             ) : type === "reading" ? (
               <div className="flex gap-3 items-center">
@@ -95,7 +95,7 @@ function FormQuestion({ type, time, data }) {
               ))}
             </div>
 
-            <Button className="bg-amber-600 font-bold " onClick={handleSubmit} > SUBMIT </Button>
+            <Button className="bg-[#fb9400] text-white font-bold " onClick={handleSubmit} > SUBMIT </Button>
           </div>
         </div>
 

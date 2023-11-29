@@ -15,13 +15,13 @@ function PageShowListExam() {
         <div className="mx-auto max-w-screen-lg">
             {data?.length > 0 && (
                 <>
-                    <Image
+                    {/* <Image
                         src={imageBanner}
                         width={1400}
                         height={"80vh"}
                         preview={false}
                         className=" object-cover h-[80vh]"
-                    />
+                    /> */}
                     <h2 className="text-center font-semibold text-2xl my-5 text-amber-500">
                         Danh sách các bài thi
                     </h2>
