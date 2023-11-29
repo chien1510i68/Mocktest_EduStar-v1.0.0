@@ -2,6 +2,7 @@ import React from "react";
 import { Image, Table } from "antd";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import imageBanner from "../image/toeic_luu_y.png";
+import imgNotExam from "../image/imgNotExam.png"
 import Column from "antd/es/table/Column";
 function PageShowListExam() {
     const location = useLocation();
@@ -11,7 +12,7 @@ function PageShowListExam() {
       console.log("Danh sach cac du lieu la : ", data?.length);
 
     return (
-        <div className="mx-auto w-[1400px]">
+        <div className="mx-auto max-w-screen-lg">
             {data?.length > 0 && (
                 <>
                     <Image
@@ -60,12 +61,14 @@ function PageShowListExam() {
                 </>
             )}
             {data?.length === 0 && (
-                <div className="bg-current h-[200px]">
-                    <h2 className="text-orange-500 text-2xl font-medium text-center">
+                <div className="mx-auto justify-center">
+                    <img className="py-6 mx-auto justify-center" src={imgNotExam}/>
+                    <h2 className="text-[#fb9600] text-center">
+                    {/* <h2 className="text-[#f3c374] text-center"> */}
                         Không có bài thi nào phù hợp{" "}
                         <br />
 
-                        Hãy <Link>mua khóa học </Link> để được hưởng các ưu đãi đặc biệt
+                        Hãy <Link className="text-[#ff735e]">mua khóa học </Link> để được hưởng các ưu đãi đặc biệt
                     </h2>
                 </div>
             )}

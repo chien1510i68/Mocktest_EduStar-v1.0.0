@@ -14,3 +14,7 @@ code {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.toeic-img .ant-image {
+  width: 100% !important;
+}

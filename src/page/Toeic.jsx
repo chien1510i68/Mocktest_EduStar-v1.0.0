@@ -22,15 +22,15 @@ function Toeic() {
     // };
     const navigate = useNavigate();
 
-  const handleSubmitFreeExam = () => {
-    getExamByType("toeic" , true).then((res) =>{
-        // console.log(res?.data?.body);
-        if(res?.data?.body?.success === true){
-          console.log(res?.data?.body?.data?.items);
-          navigate("/exam/all" , {state : res?.data?.body?.data?.items});
-        }
-      })
-  };
+    const handleSubmitFreeExam = () => {
+        getExamByType("toeic", true).then((res) => {
+            // console.log(res?.data?.body);
+            if (res?.data?.body?.success === true) {
+                console.log(res?.data?.body?.data?.items);
+                navigate("/exam/all", { state: res?.data?.body?.data?.items });
+            }
+        })
+    };
     return (
         <div className="w-full">
             {/* <AppMenu /> */}
@@ -92,25 +92,33 @@ function Toeic() {
                     <p className="font-bold text-xl">Listening</p>
                     <div className="grid tablet:grid-cols-4 mobile:grid-cols-1 gap-5 justify-around py-2">
                         <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 sm:h-full hover:shadow-lg">
-                            <Image src={part1} fill alt="" priority />
+                            <div className="w-full bg-no-repeat bg-center toeic-img">
+                                <Image src={part1} className="mx-auto justify-center object-cover" alt="" priority />
+                            </div>
                             <p className="font-bold">Path 1</p>
                             <p className="font-bold">Mô tả tranh</p>
                             <p className="text-sm text-[#667085]">Thí sinh sẽ nghe 1 lần duy nhất 4 câu mô tả tranh.Sau đó chọn 1 đáp án mô tả đúnh nhất.</p>
                         </div>
                         <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 hover:shadow-lg">
-                            <Image src={part2} fill alt="" priority />
+                            <div className="w-full bg-no-repeat bg-center toeic-img">
+                                <Image src={part2} fill alt="" priority />
+                            </div>
                             <p className="font-bold">Path 2</p>
                             <p className="font-bold">Hỏi-Đáp</p>
                             <p className="text-sm text-[#667085]">Thí sinh nghe 1 lần duy nhất 3 câu hồi đáp cho 1 câu hỏi hoặc 1 câu nói. Sau đó chọn câu hồi đáp phù hợp nhất.</p>
                         </div>
                         <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 hover:shadow-lg">
-                            <Image src={part3} fill alt="" priority />
+                            <div className="w-full bg-no-repeat bg-center toeic-img">
+                                <Image src={part3} fill alt="" priority />
+                            </div>
                             <p className="font-bold">Path 3</p>
                             <p className="font-bold">Đoạn hội thoại</p>
                             <p className="text-sm text-[#667085]">Thí sinh nghe 1 lần duy nhất các đoạn hội thoại giữa 2 hoặc 3 người. Mỗi đoạn hội thoại sẽ có 3 câu hỏi, mỗi câu hỏi có 4 lựa chọn. Thí sinh đọc câu hỏi sau đó chọn câu trả lời phù hợp nhất.</p>
                         </div>
                         <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 hover:shadow-lg">
-                            <Image src={part4} fill alt="" priority />
+                            <div className="w-full bg-no-repeat bg-center toeic-img">
+                                <Image src={part4} fill alt="" priority />
+                            </div>
                             <p className="font-bold">Path 4</p>
                             <p className="font-bold">Bài nói ngắn</p>
                             <p className="text-sm text-[#667085]">Thí sinh sẽ nghe một lần duy nhất các bài nói ngắn. Mỗi bài sẽ có 3 câu hỏi, mỗi câu hỏi có 4 lựa chọn. Thí sinh đọc câu hỏi sau đó chọn câu trả lời phù hợp nhất.</p>
@@ -119,19 +127,25 @@ function Toeic() {
                     <p className="font-bold text-xl">Reading</p>
                     <div className="grid tablet:grid-cols-4 mobile:grid-cols-1 gap-5 justify-around py-2">
                         <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 sm:h-full hover:shadow-lg">
-                            <Image src={part5} fill alt="" priority />
+                            <div className="w-full bg-no-repeat bg-center toeic-img">
+                                <Image src={part5} fill alt="" priority />
+                            </div>
                             <p className="font-bold">Path 5</p>
                             <p className="font-bold">Hoàn thành câu</p>
                             <p className="text-sm text-[#667085]">Chọn đáp án đúng nhất trong 4 đáp án để hoàn thành câu.</p>
                         </div>
                         <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 hover:shadow-lg">
-                            <Image src={part6} fill alt="" priority />
+                            <div className="w-full bg-no-repeat bg-center toeic-img">
+                                <Image src={part6} fill alt="" priority />
+                            </div>
                             <p className="font-bold">Path 6</p>
                             <p className="font-bold">Hoàn thành đoạn văn</p>
                             <p className="text-sm text-[#667085]">Chọn đáp án đũng nhất trong 4 đáp án(từ, cụm hoặc câu) để hoàn thành đoạn văn. Mỗi đoạn văn sẽ có 4 câu hỏi.</p>
                         </div>
                         <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 hover:shadow-lg">
-                            <Image src={part7} fill alt="" priority />
+                            <div className="w-full bg-no-repeat bg-center toeic-img">
+                                <Image src={part7} fill alt="" priority />
+                            </div>
                             <p className="font-bold">Path 7</p>
                             <p className="font-bold">Đọc hiểu</p>
                             <p className="text-sm text-[#667085]">Thí sinh sẽ đọc các bài đọc hiểu sau đó chọn đáp án đúng nhất cho các câu hỏi. Mỗi bài đọc sẽ bao gồm 2-5 câu hỏi.</p>
@@ -186,7 +200,7 @@ function Toeic() {
                                             <path d="M34.5 26.6176C34.7761 26.6176 35 26.3938 35 26.1176V15C34.9983 13.62 33.88 12.5017 32.5 12.5H13.5C12.12 12.5017 11.0017 13.62 11 15V29C11.0017 30.38 12.12 31.4983 13.5 31.5H19V33.7325L17.7225 34.5825C17.583 34.6756 17.4995 34.8323 17.5 35V35.5C17.5 36.0523 17.9477 36.5 18.5 36.5H27.5C28.0523 36.5 28.5 36.0523 28.5 35.5V35C28.5 34.8329 28.4165 34.6768 28.2775 34.584L27 33.7325V31.5882C27 31.3121 26.7761 31.0882 26.5 31.0882C26.2239 31.0882 26 31.3121 26 31.5882V34C26 34.1671 26.0835 34.3232 26.2225 34.416L27.5 35.2675V35.5H18.5V35.2675L19.7775 34.4175C19.917 34.3244 20.0005 34.1677 20 34V31.5H32.5C33.88 31.4983 34.9983 30.38 35 29V26.5C35 26.2239 34.7761 26 34.5 26H11.8824C11.6062 26 11.3824 26.2239 11.3824 26.5C11.3824 26.7761 11.6062 27 11.8824 27H34V29C34 29.8284 33.3284 30.5 32.5 30.5H13.5C12.6716 30.5 12 29.8284 12 29V15C12 14.1716 12.6716 13.5 13.5 13.5H32.5C33.3284 13.5 34 14.1716 34 15V26.1176C34 26.3938 34.2239 26.6176 34.5 26.6176Z" fill="#4883FF" stroke="#4883FF" stroke-width="0.4" />
                                             <path d="M20.8535 16.8524C20.6583 16.6573 20.3417 16.6573 20.1465 16.8524L17.1465 19.8524C16.9513 20.0477 16.9513 20.3642 17.1465 20.5594L20.1465 23.5594C20.3427 23.7489 20.6545 23.7462 20.8474 23.5534C21.0403 23.3605 21.043 23.0486 20.8535 22.8524L18.207 20.2059L20.8535 17.5594C21.0487 17.3642 21.0487 17.0477 20.8535 16.8524Z" fill="#4883FF" />
                                             <path d="M25.1465 23.5594C25.3418 23.7546 25.6583 23.7546 25.8535 23.5594L28.8535 20.5594C29.0487 20.3641 29.0487 20.0476 28.8535 19.8524L25.8535 16.8524C25.728 16.7224 25.5421 16.6703 25.3673 16.716C25.1924 16.7618 25.0559 16.8983 25.0102 17.0731C24.9644 17.2479 25.0165 17.4338 25.1465 17.5594L27.793 20.2059L25.1465 22.8524C24.9513 23.0476 24.9513 23.3641 25.1465 23.5594Z" fill="#4883FF" />
-                                        </svg> 
+                                        </svg>
                                         <p className="py-3 font-bold">Mô phỏng bài thi thật</p>
                                     </div>
                                     <p className="text-left">Các bài thi thử có cấu trúc như bài thi thật sẽ giúp bạn vượt qua kỳ thi một cách thành công</p>
