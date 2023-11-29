@@ -44,7 +44,7 @@ function Vstep() {
           <div className="flex justify-start gap-2">
             <button
               className="flex bg-[#fb9400] px-2 text-white font-bold my-auto sm:px-2 sm:py-1 sm:mr-2 border-2 border-[#fb9400] rounded-md shadow-md shadow-[#bfb7ac] hover:bg-yellow-500 hover:border-yellow-500"
-              onClick={handleSubmitFreeExam}
+              onClick={() => navigate("/register" , {state : "vstep_b1"})}
             // onClick={handleSubmit}
             >
               Thi thử miễn phí{" "}

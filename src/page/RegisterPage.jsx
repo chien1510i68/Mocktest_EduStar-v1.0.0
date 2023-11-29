@@ -1,14 +1,19 @@
 // import { Button } from "antd";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import FormRegister from "../component/form/FormRegister";
 import ModalCofirmInfor from "../component/modal/ModalCofirmInfor";
+import { Button } from "antd";
 
 function HomePage(props) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const location = useLocation();
+  const type =  location.state
+
   return (
     <div className="bg-[#2c7be5] w-full h-[100vh] relative ">
-          <FormRegister />
+    
+          <FormRegister type = {type}/>
           <ModalCofirmInfor/>
       
 

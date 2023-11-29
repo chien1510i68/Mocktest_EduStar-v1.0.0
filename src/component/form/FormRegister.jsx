@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../AppContext";
 import { getExamByType } from "../api/exam";
 
-function FormRegister(props) {
+function FormRegister({type}) {
   const navigate = useNavigate();
   const { data, dispatch } = useContext(AppContext);
   const { isOpenModalConfirm } = data;
@@ -26,7 +26,7 @@ function FormRegister(props) {
     notification.success({ message: "Your account has been saved" });
     // navigate("/exam/26f94768-5b8e-414b-b966-59f37fdf1a16");
     // navigate("/exam/all", );
-    getExamByType("vstep_b1" , true).then((res) =>{
+    getExamByType(type , true).then((res) =>{
       // console.log(res?.data?.body);
       if(res?.data?.body?.success === true){
         console.log(res?.data?.body?.data?.items);

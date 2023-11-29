@@ -22,15 +22,7 @@ function Toeic() {
     // };
     const navigate = useNavigate();
 
-    const handleSubmitFreeExam = () => {
-        getExamByType("toeic", true).then((res) => {
-            // console.log(res?.data?.body);
-            if (res?.data?.body?.success === true) {
-                console.log(res?.data?.body?.data?.items);
-                navigate("/exam/all", { state: res?.data?.body?.data?.items });
-            }
-        })
-    };
+
     return (
         <div className="w-full">
             {/* <AppMenu /> */}
@@ -63,7 +55,7 @@ function Toeic() {
 
                             <button
                                 className="my-auto flex bg-[#fb9400] duration-300 font-bold text-white border-[#fca01c] px-3 py-1 rounded-md shadow-lg hover:bg-yellow-500"
-                                onClick={handleSubmitFreeExam}
+                                onClick={() => navigate("/register" , {state : "toeic"})}
                             >
                                 Thi thử miễn phí{" "}
                                 <svg className="my-auto ml-2" width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
