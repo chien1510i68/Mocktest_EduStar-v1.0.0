@@ -4,7 +4,12 @@ import exam1 from "../../image/exam_1.png";
 import onlineTest from "../../image/online_test_1.png";
 import image1 from "../../image/image1.png";
 
+import {  useNavigate, useParams } from "react-router-dom";
+
 const BeforeExam = () => {
+    
+    const navigate = useNavigate();
+    const {examId} = useParams()
     return (
         <>
             <div className="bg-#fdf8ee max-w-screen-lg mx-auto">
@@ -59,7 +64,8 @@ const BeforeExam = () => {
                         </div>
                     </div>
                     <div className="row-span-1 col-span-1">
-                        <button className="bg-[#fb9400] w-full p-2 text-white font-bold uppercase rounded-md shadow-md shadow-[#bebbb3] hover:bg-yellow-500">thi thử</button>
+                        <button onClick={() => navigate(`/exam/${examId}`)} className="bg-[#fb9400] w-full p-2 text-white font-bold uppercase rounded-md shadow-md shadow-[#bebbb3] hover:bg-yellow-500"
+                        >thi thử</button>
                     </div>
                 </div>
             </div>

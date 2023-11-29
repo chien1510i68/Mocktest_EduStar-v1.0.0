@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import HomePage from "./page/HomePage";
+import RegisterPage from "./page/RegisterPage";
 import MocktestPage from "./page/MocktestPage";
 import ResultsPage from "./page/ResultsPage";
 import PageShowListExam from "./page/PageShowListExam";
@@ -10,8 +10,8 @@ import BeforeExam from "./component/beforeExam/BeforeExam";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
-    element: <HomePage />,
+    path: "/register",
+    element: <RegisterPage />,
   },
   {
     path: "/exam/:examId",
@@ -43,7 +43,7 @@ export const router = createBrowserRouter([
   },
 
   {
-    path: "/beforeExam",
+    path: "/beforeExam/:examId",
     element: <BeforeExam />,
   },
 ]);

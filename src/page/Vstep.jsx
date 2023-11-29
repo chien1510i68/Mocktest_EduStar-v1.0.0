@@ -17,7 +17,7 @@ function Vstep() {
       // console.log(res?.data?.body);
       if(res?.data?.body?.success === true){
         console.log(res?.data?.body?.data?.items);
-        navigate("/exam/all" , {state : res?.data?.body?.data?.items});
+        navigate("/register" , {state : res?.data?.body?.data?.items});
       }
     })
   };

@@ -1,12 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 import { Button } from 'antd';
-import HomePage from './page/HomePage';
+import RegisterPage from './page/RegisterPage';
 
 function App() {
   return (
     <div className="App">
-      <HomePage/>
+      <RegisterPage/>
     </div>
   );
 }

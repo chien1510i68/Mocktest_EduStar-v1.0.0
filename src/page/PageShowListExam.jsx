@@ -50,7 +50,8 @@ function PageShowListExam() {
                             key="action"
                             render={(_, record) => (
                                 <h2
-                                    onClick={() => navigate(`/exam/${record.id}`, { state: record.timeExam })}
+                                    // onClick={() => navigate(`/exam/${record.id}`, { state: record.timeExam })}
+                                    onClick={() => navigate(`/beforeExam/${record.id}`)}
                                     className="flex justify-center font-normal text-orange-500 hover:cursor-pointer"
                                 >
                                     Thi thử
