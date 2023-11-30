@@ -1,5 +1,8 @@
 import { Image } from "antd";
 import { useNavigate } from "react-router-dom";
+import Competition from "../component/competition/Competition";
+import Consultation from "../component/consultation/Consultation";
+import Footer from "../component/footer/Footer";
 import part1 from "../image/ImagePart1.png";
 import part2 from "../image/ImagePart2.png";
 import part3 from "../image/ImagePart3.png";
@@ -9,10 +12,6 @@ import part6 from "../image/ImagePart6.png";
 import part7 from "../image/ImagePart7.png";
 import banner from "../image/bannerToeic.png";
 import luuYThi from "../image/toeic_luu_y.png";
-import Consultation from "../component/consultation/Consultation";
-import Competition from "../component/competition/Competition";
-import Footer from "../component/footer/Footer";
-import { getExamByType } from "../component/api/exam";
 
 function Toeic() {
 
