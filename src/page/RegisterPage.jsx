@@ -11,9 +11,8 @@ function HomePage(props) {
   const type =  location.state
 
   return (
-    <div className="bg-[#2c7be5] w-full h-[100vh] relative ">
-    
-          <FormRegister type = {type}/>
+    <div className="w-full h-[100vh] relative ">
+          <FormRegister />
           <ModalCofirmInfor/>
       
 

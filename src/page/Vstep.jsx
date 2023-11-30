@@ -6,7 +6,7 @@ import luuY from "../image/vstep_luu_y.png";
 import Consultation from "../component/consultation/Consultation";
 import Competition from "../component/competition/Competition";
 import Footer from "../component/footer/Footer";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { getExamByType } from "../component/api/exam";
 
 function Vstep() {

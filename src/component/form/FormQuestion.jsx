@@ -1,4 +1,4 @@
-import { BackTop, Button, Checkbox, Form, Input, Radio, Tabs } from "antd";
+import { BackTop, Button, Checkbox, ConfigProvider, Form, Input, Radio, Tabs } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import ReactAudioPlayer from "react-audio-player";
 import Count from "../Count";
@@ -60,8 +60,8 @@ function FormQuestion({ type, time, data }) {
           <div>
             {type === "listening" ? (
               <div className="flex gap-3 items-center">
-                <FaHeadphones className="text-orange-500 font-bold text-2xl" />
-                <h2 className="font-bold text-orange-500 ">LISTENING</h2>
+                <FaHeadphones className="text-[#fb9400] font-bold text-2xl" />
+                <h2 className="font-bold text-[#fb9400] ">LISTENING</h2>
               </div>
             ) : type === "reading" ? (
               <div className="flex gap-3 items-center">
@@ -94,8 +94,15 @@ function FormQuestion({ type, time, data }) {
                 </span>
               ))}
             </div>
-
-            <Button className="bg-amber-600 font-bold " onClick={handleSubmit} > SUBMIT </Button>
+            <ConfigProvider
+              theme={{
+                token: {
+                  colorPrimary: "tranparent"
+                }
+              }}
+            >
+              <Button className="bg-[#fb9400] text-white font-bold hover:!text-white hover:!border-[#fb9400]" onClick={handleSubmit} > SUBMIT </Button>
+            </ConfigProvider>
           </div>
         </div>
 

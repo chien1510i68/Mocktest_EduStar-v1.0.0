@@ -1,4 +1,4 @@
-import { Button, Modal, notification } from "antd";
+import { Button, ConfigProvider, Modal, notification } from "antd";
 import React, { useContext } from "react";
 import { AppContext } from "../AppContext";
 import { useNavigate, useParams } from "react-router-dom";
@@ -55,12 +55,20 @@ function ModalConfirmSubmit() {
         </p>
 
         <div className="flex justify-end gap-4">
-          <Button onClick={handleCancel} className="bg-red-800 text-gray-300">
-            Cancel
-          </Button>
-          <Button className="bg-lime-800 text-gray-200" onClick={handleOk}>
-            Agree
-          </Button>
+          <ConfigProvider
+            theme={{
+              token: {
+                colorPrimary: "tranparent",
+              }
+            }}
+          >
+            <Button onClick={handleCancel} className="bg-[#fb9400] text-white hover:!text-white hover:!border-[#fb9400] hover:shadow-md">
+              Cancel
+            </Button>
+            <Button className="bg-lime-800 text-white hover:!text-white hover:!border-lime-800 hover:shadow-md" onClick={handleOk}>
+              Agree
+            </Button>
+          </ConfigProvider>
         </div>
       </Modal>
     </div>
