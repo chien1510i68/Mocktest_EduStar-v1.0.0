@@ -55,6 +55,22 @@ function FormRegister(props) {
         </h2>
        </Form.Item>
 
+        <Form.Item
+         name="UserName"
+          label={
+           <span className="text-[#808080] font-normal text-left phone:text-xs tablet:text-sm">
+              Họ Và Tên
+           </span>
+         }
+          rules={[
+           {
+             required: true,
+           },
+         ]}
+        >
+          <Input className="border border-[#fb9400] hover:border-[#fb9400] hover:shadow-md"/>
+        </Form.Item>
+
        <Form.Item
          name="email"
          label={
@@ -71,21 +87,6 @@ function FormRegister(props) {
          <Input className="border border-[#fb9400] hover:border-[#fb9400] hover:shadow-md"/>
        </Form.Item>
 
-       <Form.Item
-         name="UserName"
-         label={
-           <span className="text-[#808080] font-normal text-left phone:text-xs tablet:text-sm">
-             Họ Và Tên
-           </span>
-         }
-         rules={[
-           {
-             required: true,
-           },
-         ]}
-       >
-         <Input className="border border-[#fb9400] hover:border-[#fb9400] hover:shadow-md"/>
-       </Form.Item>
 
         <Form.Item
           name="phoneNumber"
@@ -105,6 +106,7 @@ function FormRegister(props) {
 
         <Form.Item>
          <Button
+         onClick={() => {}}
            className="bg-[#fb9400]  mx-auto block border border-[#fb9400] text-white font-bold  hover:border-[#fb9400] hover:!text-white hover:shadow-md"
            htmlType="submit"
          >

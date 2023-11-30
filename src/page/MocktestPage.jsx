@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, ConfigProvider } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AppContext } from "../component/AppContext";
@@ -68,14 +68,23 @@ function MocktestPage(props) {
     <>
       <FormQuestion type={type} time={time} data={data1} />
       {data1 && (
-        <Button
-          className="ml-auto block bg-orange-500 my-5"
-          onClick={handleConfirmNextSection}
-        >
-          {
-           ( type !== "writing" ) ? "Next": "Save and Submit"
+        <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: "tranparent",
           }
-        </Button>
+        }}
+        >
+          <Button
+          className="ml-auto block bg-[#fb9400] my-5 text-white hover:!border-[#fb9400] hover:!text-white"
+          onClick={handleConfirmNextSection}
+          >
+            {
+            ( type !== "writing" ) ? "Next": "Save and Submit"
+            }
+          </Button>
+        </ConfigProvider>
+        
       )}
       <ModalNextSection
         handleChangeType={handleChangeType}

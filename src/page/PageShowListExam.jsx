@@ -12,7 +12,7 @@ function PageShowListExam() {
       console.log("Danh sach cac du lieu la : ", data?.length);
 
     return (
-        <div className="mx-auto max-w-screen-lg">
+        <div className="mx-auto max-w-screen-lg ">
             {data?.length > 0 && (
                 <>
                     {/* <Image
@@ -25,7 +25,7 @@ function PageShowListExam() {
                     <h2 className="text-center font-semibold text-2xl my-5 text-amber-500">
                         Danh sách các bài thi
                     </h2>
-                    <Table dataSource={data} className="text-center">
+                    <Table dataSource={data} className="text-center mx-2">
                         <Column
                             title={<div className="text-center">Tên bài thi</div>}
                             dataIndex="name"
@@ -52,7 +52,7 @@ function PageShowListExam() {
                                 <h2
                                     // onClick={() => navigate(`/exam/${record.id}`, { state: record.timeExam })}
                                     onClick={() => navigate(`/beforeExam/${record.id}`)}
-                                    className="flex justify-center font-normal text-orange-500 hover:cursor-pointer"
+                                    className="flex justify-center font-normal text-[#fb9400] hover:cursor-pointer"
                                 >
                                     Thi thử
                                 </h2>

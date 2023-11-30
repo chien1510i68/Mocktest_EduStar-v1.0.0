@@ -10,15 +10,15 @@ const ExamResult = () => {
   console.log("Danh sach cac du lieu la : ", data);
   return (
     <>
-      <div className="grid tablet:grid-cols-2 mobile:grid-cols-1 max-w-screen-lg mx-auto gap-10 mt-2 sm:mt-5 justify-center">
-        <div className="col-span-1 hidden sm:block mx-2 relative">
-          <div className="sm:absolute bottom-0">
+      <div className="grid tablet:grid-cols-2 mobile:grid-cols-1 max-w-screen-lg mx-auto gap-10 px-2 sm:mt-5 justify-center">
+        <div className="col-span-1 hidden sm:block relative">
+          <div className="lg:absolute bottom-0">
             <Image width="200" src={imgResult} preview={false} />
           </div>
         </div>
-        <div className="col-span-1 mx-auto">
-          <Space direction="vertical" size={16}>
-            <Card
+        <div className="col-span-1 mx-auto my-5 justify-center">
+          <Space>
+            <Card style={{ width: 300 }}
               className="border-[#fb9400] shadow-lg"
               bodyStyle={{ padding: 0 }}
             >
@@ -45,7 +45,7 @@ const ExamResult = () => {
                 <p>Tổng điểm</p>
                 <p className="text-[#fb9400] px-2">{data?.totalPoint}</p>
               </div>
-              <div className=" grid grid-cols-2 gap-x-4 border-[#fb9400] p-5">
+              <div className="gap-x-4 border-[#fb9400] p-5">
                 <ConfigProvider
                   theme={{
                     token: {
@@ -53,10 +53,9 @@ const ExamResult = () => {
                     },
                   }}
                 >
-                  <Button className="text-white border-[#fb9400] shadow-none py-1 bg-[#fb9400] font-bold hoever:border-2 hover:!border-[#fb9400] hover:shadow-md hover:!text-white">
-                    Xem đáp án
-                  </Button>
-                  <Button className="border-[#808080] text-[#808080]  hover:!border-[#fb9400] hover:!text-[#fb9400] hover:shadow-md">
+                  <Button 
+                  onClick={() => {navigate("/vstep")}}
+                  className="text-white border-[#fb9400] py-1 bg-[#fb9400] font-bold hover:!border-[#fb9400] hover:shadow-md hover:!text-white w-full">
                     Đóng
                   </Button>
                 </ConfigProvider>

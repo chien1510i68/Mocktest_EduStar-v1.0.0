@@ -6,7 +6,7 @@ import luuY from "../image/vstep_luu_y.png";
 import Consultation from "../component/consultation/Consultation";
 import Competition from "../component/competition/Competition";
 import Footer from "../component/footer/Footer";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { getExamByType } from "../component/api/exam";
 
 function Vstep() {
@@ -45,7 +45,6 @@ function Vstep() {
             <button
               className="flex bg-[#fb9400] px-2 text-white font-bold my-auto sm:px-2 sm:py-1 sm:mr-2 border-2 border-[#fb9400] rounded-md shadow-md shadow-[#bfb7ac] hover:bg-yellow-500 hover:border-yellow-500"
               onClick={handleSubmitFreeExam}
-            // onClick={handleSubmit}
             >
               Thi thử miễn phí{" "}
               <svg className="my-auto mx-2 hidden sm:block" width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,4 +1,4 @@
-import { BackTop, Button, Checkbox, Form, Input, Radio, Tabs } from "antd";
+import { BackTop, Button, Checkbox, ConfigProvider, Form, Input, Radio, Tabs } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import ReactAudioPlayer from "react-audio-player";
 import Count from "../Count";
@@ -94,8 +94,15 @@ function FormQuestion({ type, time, data }) {
                 </span>
               ))}
             </div>
-
-            <Button className="bg-[#fb9400] text-white font-bold " onClick={handleSubmit} > SUBMIT </Button>
+            <ConfigProvider
+              theme={{
+                token: {
+                  colorPrimary: "tranparent"
+                }
+              }}
+            >
+              <Button className="bg-[#fb9400] text-white font-bold hover:!text-white hover:!border-[#fb9400]" onClick={handleSubmit} > SUBMIT </Button>
+            </ConfigProvider>
           </div>
         </div>
 
