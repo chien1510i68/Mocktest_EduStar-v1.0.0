@@ -12,16 +12,33 @@ import part6 from "../image/ImagePart6.png";
 import part7 from "../image/ImagePart7.png";
 import banner from "../image/bannerToeic.png";
 import luuYThi from "../image/toeic_luu_y.png";
+import { handleGetExamByType } from "../component/handlelogic/handleExam";
+import { useContext } from "react";
+import { AppContext } from "../component/AppContext";
+import ModalWarning from "../component/modal/ModalWarning";
 
 function Toeic() {
-
+    const {data , dispatch} = useContext(AppContext)
     // const navigate = useNavigate();
     // const handleSubmit = () => {
     //     window.location.href = '/beforeExam';
     // };
     const navigate = useNavigate();
-
-
+    const handleNavigate = async () => {
+        const phoneNumber = JSON.parse(localStorage.getItem("phoneNumber"));
+        console.log("phoneNumber", phoneNumber);
+        if (phoneNumber === null) {
+          navigate("/register", { state: "toeic" });
+        } else {
+          const data = await handleGetExamByType("toeic");
+          if (data?.data?.total === 0) {
+            dispatch({type : "openModalWarning"})
+          } else {
+            navigate("/exam/all", { state: data?.data?.items });
+          }
+        }
+      };
+  
     return (
         <div className="w-full">
             {/* <AppMenu /> */}
@@ -54,7 +71,7 @@ function Toeic() {
 
                             <button
                                 className="my-auto flex bg-[#fb9400] duration-300 font-bold text-white border-[#fca01c] px-3 py-1 rounded-md shadow-lg hover:bg-yellow-500"
-                                onClick={() => navigate("/register" , {state : "toeic"})}
+                                onClick={handleNavigate}
                             >
                                 Thi thử miễn phí{" "}
                                 <svg className="my-auto ml-2" width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -239,6 +256,7 @@ function Toeic() {
             <Consultation />
             <Competition />
             {/* <MyForm /> */}
+            <ModalWarning/>
             <Footer />
         </div>
     )

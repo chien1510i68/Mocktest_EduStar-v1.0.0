@@ -12,7 +12,7 @@ function HomePage(props) {
 
   return (
     <div className="w-full h-[100vh] relative ">
-          <FormRegister />
+          <FormRegister type ={type}/>
           <ModalCofirmInfor/>
       
 
