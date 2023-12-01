@@ -4,17 +4,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../AppContext";
 import { getExamByType } from "../api/exam";
 
+
 function FormRegister({ type }) {
   const navigate = useNavigate();
   const { data, dispatch } = useContext(AppContext);
   const { isOpenModalConfirm } = data;
   const validateMessages = {
     // eslint-disable-next-line no-template-curly-in-string
-    required: "${label} is required!",
+    // required: " Vui lòng nhập ${label}!",
     types: {
-      email: "${label} is not a valid email!",
+      email: "${label} không hợp lệ!",
       // eslint-disable-next-line no-template-curly-in-string
-      number: "${label} is not a valid number!",
+      number: "${label} is not a valid!",
     },
   };
   const onFinish = (values) => {
@@ -24,8 +25,8 @@ function FormRegister({ type }) {
     localStorage.setItem("phoneNumber", JSON.stringify(values.phoneNumber));
     localStorage.setItem("username", JSON.stringify(values.username));
     notification.success({ message: "Your account has been saved" });
-    // navigate("/exam/26f94768-5b8e-414b-b966-59f37fdf1a16");
-    // navigate("/exam/all", );
+    
+
     getExamByType(type, true).then((res) => {
       // console.log(res?.data?.body);
       if (res?.data?.body?.success === true) {
@@ -34,86 +35,27 @@ function FormRegister({ type }) {
       }
     });
   };
+
+  const validatePhone = (value) => {
+    // const isNumber = /^[0-9]*$/;
+    //   if (!isNumber.test(value)) {
+    //     callback('Vui lòng nhập số!');
+    //   } else {
+    //     callback();
+    //   }
+    if(value && typeof value === "string") {
+      if(!/^0/.test(value)) {
+        value = "0" + value;
+        console.log(value);
+      }
+      return value.trim()
+    }
+    return value;
+
+  };
+
   return (
-    // <Form
-    // name="nest-messages"
-    // onFinish={onFinish}
-    // layout="vertical"
-    // className=" w-[60%] px-[10%] py-[3%] bg-[#fff] rounded-md absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
-    // validateMessages={validateMessages}
-    // >
-    //   <ConfigProvider
-    //   theme={{
-    //     token:{
-    //       colorPrimary:"#fb9400"
-    //     }
-    //   }}
-    //   >
-    //   <Form.Item>
-    //    <h2 className="text-[#fb9600] font-bold text-center phone:text-base tablet:text-lg laptop:text-xl uppercase">
-    //       Đăng ký thi thử {isOpenModalConfirm}
-    //     </h2>
-    //    </Form.Item>
-
-    //     <Form.Item
-    //      name="UserName"
-    //       label={
-    //        <span className="text-[#808080] font-normal text-left phone:text-xs tablet:text-sm">
-    //           Họ Và Tên
-    //        </span>
-    //      }
-    //       rules={[
-    //        {
-    //          required: true,
-    //        },
-    //      ]}
-    //     >
-    //       <Input className="border border-[#fb9400] hover:border-[#fb9400] hover:shadow-md"/>
-    //     </Form.Item>
-
-    //    <Form.Item
-    //      name="email"
-    //      label={
-    //        <span className="text-[#808080] font-normal text-left phone:text-xs tablet:text-sm">
-    //          Email
-    //        </span>
-    //      }
-    //      rules={[
-    //        {
-    //          required: true,
-    //        },
-    //      ]}
-    //    >
-    //      <Input className="border border-[#fb9400] hover:border-[#fb9400] hover:shadow-md"/>
-    //    </Form.Item>
-
-    //     <Form.Item
-    //       name="phoneNumber"
-    //       label={
-    //         <span className="text-[#808080] font-normal phone:text-xs tablet:text-sm">
-    //           Số Điện Thoại
-    //         </span>
-    //       }
-    //       rules={[
-    //         {
-    //           required: true,
-    //         },
-    //       ]}
-    //     >
-    //       <Input className="border border-[#fb9400] hover:border-[#fb9400] hover:shadow-md"/>
-    //     </Form.Item>
-
-    //     <Form.Item>
-    //      <Button
-    //      onClick={() => {}}
-    //        className="bg-[#fb9400]  mx-auto block border border-[#fb9400] text-white font-bold  hover:border-[#fb9400] hover:!text-white hover:shadow-md"
-    //        htmlType="submit"
-    //      >
-    //        Đăng ký
-    //      </Button>
-    //    </Form.Item>
-    //   </ConfigProvider>
-    //   </Form>
+    
     <Form
       layout="vertical"
       onFinish={onFinish}
@@ -130,7 +72,7 @@ function FormRegister({ type }) {
         }
         rules={[
           {
-            type: "email",
+            message: 'Vui lòng nhập giá trị!',
             required: true,
           },
         ]}
@@ -141,52 +83,69 @@ function FormRegister({ type }) {
         <Input
           className="border-[#fb9400]  hover:!border-[#fb9400] hover:shadow-md"
           // prefix={<img src={svgCallFormInput} />}
-          placeholder="email"
+          placeholder="Vui lòng nhập email"
           // style={{
           //   width: 486,
           // }}
         />
       </Form.Item>
       <Form.Item
-        name="username"
+        name="UserName"
         label={
           <span className="text-[#808080] font-normal text-left phone:text-xs tablet:text-sm">
-            Username
+            Họ Và Tên
           </span>
         }
        
         rules={[
           {
             required: true,
+            message: 'Vui lòng nhập giá trị!',
           },
         ]}
       >
-        <Input className="border border-[#fb9400] hover:border-[#fb9400]"  placeholder="Input your user name" />
+        <Input className="border border-[#fb9400] hover:border-[#fb9400]"  placeholder="Vui lòng nhập họ và tên" />
       </Form.Item>
       <Form.Item
         name="phoneNumber"
-        placeholder
         label={
           <span className="text-[#808080] font-normal text-left phone:text-xs tablet:text-sm">
             Phone number
           </span>
         }
         rules={[
-          {
-            required: true,
-          },
+          { required: true, message: 'Vui lòng nhập giá trị!' },
+          {pattern: /^\d+$/, message: "Vui lòng chỉ nhập số!3322232"},
+          {max: 10, message: "Số điện thoại chỉ được phép nhập 10 số"},
+          {min:10,message: "Số điện thoại chỉ được phép nhập 10 số"}
+          // { validator: validateNumber },
         ]}
       >
-        <Input className="border border-[#fb9400] hover:border-[#fb9400]"  placeholder="Input your phone number" />
+        <Input
+        type="text" className="border border-[#fb9400] hover:border-[#fb9400]" placeholder="Vui lòng nhập số điện thoại"
+        // onChange={checkNumber}
+        // style={{
+        //   width: 500,
+        // }}
+      />
       </Form.Item>
 
       <Form.Item>
-        <Button
-          className="bg-[#fb9400] mx-auto block border border-[#fb9400] text-white font-bold  hover:border-[#fb9400] hover:text-red"
-          htmlType="submit"
+        <ConfigProvider
+          theme={{
+            token:{
+              colorPrimary: "tranparent",
+            }
+          }}
         >
+
+        <Button
+          className="mx-auto bg-[#fb9400] text-white block border-none font-bold hover:!text-white hover:!border-[#fb9400]"
+          htmlType="submit"
+          >
           Đăng ký thi thử miễn phí
         </Button>
+          </ConfigProvider>
       </Form.Item>
       <h2 className="text-[#fb9400] text-center">
         Nếu bạn đã có tài khoản vui lòng đăng nhập{" "}
