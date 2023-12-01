@@ -26,7 +26,6 @@ function FormRegister({ type }) {
     localStorage.setItem("username", JSON.stringify(values.username));
     notification.success({ message: "Your account has been saved" });
     
-
     getExamByType(type, true).then((res) => {
       // console.log(res?.data?.body);
       if (res?.data?.body?.success === true) {
@@ -43,6 +42,7 @@ function FormRegister({ type }) {
     //   } else {
     //     callback();
     //   }
+
     if(value && typeof value === "string") {
       if(!/^0/.test(value)) {
         value = "0" + value;
@@ -53,6 +53,13 @@ function FormRegister({ type }) {
     return value;
 
   };
+
+  // const handleSubmit = () => {
+  //   getAllExam()
+  //   .then((res) => {
+
+  //   })
+  // }
 
   return (
     
@@ -142,6 +149,7 @@ function FormRegister({ type }) {
         <Button
           className="mx-auto bg-[#fb9400] text-white block border-none font-bold hover:!text-white hover:!border-[#fb9400]"
           htmlType="submit"
+          onClick={() => navigate("/vstep")}
           >
           Đăng ký thi thử miễn phí
         </Button>

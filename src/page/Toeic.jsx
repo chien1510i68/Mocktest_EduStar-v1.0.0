@@ -34,7 +34,7 @@ function Toeic() {
           if (data?.data?.total === 0) {
             dispatch({type : "openModalWarning"})
           } else {
-            navigate("/exam/all", { state: data?.data?.items });
+            navigate("/vstep",);
           }
         }
       };
