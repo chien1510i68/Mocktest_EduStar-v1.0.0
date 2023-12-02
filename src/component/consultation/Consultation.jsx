@@ -1,343 +1,142 @@
 import React from "react";
-import { Button, ConfigProvider, Form, Input, Col, Row } from "antd";
-// import "../Custom-antd.css";
-// import { useState } from "react";
-import svgAccounFormInput from "../../vector/svgAccountForm.svg"
-// import svgAccounFormInput from "../vector/svgAccountForm.svg";
+import { Button, Form, Input } from "antd";
+import svgAccounFormInput from "../../vector/svgAccountForm.svg";
 import svgCallFormInput from "../../vector/svgCallForm.svg";
 import svgEmailFormInput from "../../vector/svgEmailForm.svg";
 import svgContentFormInput from "../../vector/svgContentForm.svg";
 
-// const onFinish = (values) => {
-//   console.log("Success:", values);
-// };
-// const onFinishFailed = (errorInfo) => {
-//   console.log("Failed:", errorInfo);
-// };
-
 const Consultation = () => {
-  //  const [formData, setFormData] = useState({
-  //     userName: '',
-  //     phoneNumber: '',
-  //     email: '',
-  //     content: '',
-  // });
+  const validateMessages = {
+    required: "Trường thông tin bắt buộc!",
+    types: {
+      email: "Dữ liệu đã nhập không phải Email!",
+      // eslint-disable-next-line no-template-curly-in-string
+      number: "Dữ liệu đã nhập không phải số!",
+    },
+  };
+ 
+  const onFinish = (values) => {
+    // Gửi dữ liệu lên server khi form được submit
+    sendData(values, (error, responseData) => {
+      if (error) {
+        console.error("Lỗi khi gửi dữ liệu:", error);
+      } else {
+        console.log(
+          "Dữ liệu đã được gửi thành công. Phản hồi từ máy chủ:",
+          responseData
+        );
+      }
+    });
+  };
 
-  const handleSubmit = (e) => {
-        try {
-            fetch('https://api.edustar.com.vn/consulting/registration', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                // body: JSON.stringify(formData),
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        } catch (error) {
-            console.log("error:: ", error)
-        }
-        e.preventDefault();
-    };
+  const sendData = (data, onFinish) => {
+    fetch("https://api.edustar.com.vn/consulting/registration", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((responseData) => onFinish(null, responseData))
+      .catch((error) => onFinish(error.message || "Có lỗi khi gửi dữ liệu"));
+  };
   return (
     <>
-      <div className=" flex justify-center">
-        <p className=" text-[#fb9400] font-bold text-3xl my-10">
-          Đăn
-          <span className="sm:border-b-2 border-[#fb9400] py-2">
-            g ký nhận tư
-          </span>{" "}
-          vấn
-        </p>
-      </div>
-      <Form onSubmit={handleSubmit}
-      className="mx-2"
-        name="wrap"
-        labelCol={{ flex: "110px" }}
-        labelWrap
-        wrapperCol={{ flex: 1 }}
-        colon={false}
-      >
-        <ConfigProvider
-          theme={{
-            token: {
-              colorPrimary: "#fb9400",
-            },
-          }}
-        >
-          <Row
-            className="max-w-screen-lg !mx-auto"
-            gutter={[{ xs:8, sm: 16, md: 40, lg: 100 }, 0]}
-          >
-            <Col span={12}>
+      <div className="max-w-screen-lg mx-auto justify-center px-5">
+        <div className="text-center mx-auto  my-6">
+          <span className="text-[#fb9400] font-bold text-3xl sm:border-b-2 border-[#fb9400] p-2">
+            Đăng ký nhận tư vấn
+          </span>
+        </div>
+        <Form name="myForm" onFinish={onFinish} validateMessages={validateMessages}>
+          <div className="grid grid-cols-2 sm:gap-24 gap-8 mt-5">
+            <div className="col-span-1">
               <Form.Item
-                name="username "
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your Username!",
-                  },
-                ]}
+                name="name"
+                rules={[{ required: true, message: "Vui lòng điền họ tên!" }]}
               >
                 <Input
-                  className="border-[#fb9400] hover:border-[#fb9400] hover:shadow-md"
-                  prefix={<img src={svgAccounFormInput} />}
-                  placeholder="Họ và tên"
-                  // style={{
-                  //   width: 486,
-                  // }}
+                  className="border-[#fb9400] hover:!border-[#fb9400]"
+                  prefix={<img src={svgAccounFormInput} alt="" />}
+                  placeholder="Họ và Tên"
                 />
               </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                name="phone"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your Phone!",
-                  },
-                ]}
-              >
-                <Input
-                  className="border-[#fb9400]  hover:!border-[#fb9400] hover:shadow-md"
-                  prefix={<img src={svgCallFormInput} />}
-                  placeholder="phone"
-                  // style={{
-                  //   width: 486,
-                  // }}
-                />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
+
               <Form.Item
                 name="email"
+                rules={[{ required: true, message: "Vui lòng điền email!", type: "email" }]}
+              >
+                <Input
+                  className="border-[#fb9400] hover:!border-[#fb9400]"
+                  prefix={<img src={svgEmailFormInput} alt=""/>}
+                  placeholder="Email"
+                />
+              </Form.Item>
+            </div>
+
+            <div className="col-span-1 gap-5">
+              <Form.Item
+                name="phoneNumber"
                 rules={[
-                  {
-                    required: true,
-                    message: "Please input your email!",
-                  },
+                  { required: true, message: "Vui lòng điền số điện thoại!" },
+                  {pattern: /^\d+$/, message: "Vui lòng chỉ nhập số!"},
+                  {max: 10, message: "Số điện thoại chỉ được phép nhập 10 số"},
+                  {min:10,message: "Số điện thoại chỉ được phép nhập 10 số"}
                 ]}
               >
                 <Input
-                  className="border-[#fb9400]  hover:border-[#fb9400] hover:shadow-md"
-                  prefix={<img src={svgEmailFormInput} />}
-                  placeholder="Email"
-                  // style={{
-                  //   width: 486,
-                  // }}
+                  className="border-[#fb9400] hover:!border-[#fb9400]"
+                  prefix={<img src={svgCallFormInput} alt=""/>}
+                  placeholder="Số điện thoại"
                 />
               </Form.Item>
-            </Col>
-            <Col span={12}>
+
               <Form.Item
                 name="content"
                 rules={[
                   {
                     required: true,
-                    message: "Please input your Content!",
+                    message: "Vui lòng điền nội dung cần tư vấn!",
                   },
                 ]}
               >
                 <Input
-                  className="border-[#fb9400]  hover:!border-[#fb9400] hover:shadow-md"
-                  prefix={<img src={svgContentFormInput} />}
-                  placeholder="content"
-                  // style={{
-                  //   width: 486,
-                  // }}
+                  className="border-[#fb9400] hover:!border-[#fb9400]"
+                  prefix={<img src={svgContentFormInput} alt=""/>}
+                  placeholder="Nội dung tư vấn"
                 />
               </Form.Item>
-            </Col>
-          </Row>
-          <Row className="mx-auto justify-center">
-            <Button
-              // type="primary"
-              className="text-white shadow-none bg-[#fb9400] font-bold hover:!border-[#fb9400] hover:!shadow-md hover:!text-white"
-              htmlType="submit"
-            >
-              Gửi thông tin
-            </Button>
-          </Row>
-        </ConfigProvider>
-      </Form>
+            </div>
+          </div>
+
+          <div className="mx-auto items-center">
+            <Form.Item>
+              <Button
+                htmlType="submit"
+                className="bg-[#fb9400] text-white font-bold mx-auto justify-center block hover:!border-[#fb9400] hover:!text-white"
+              >
+                gửi thông tin
+              </Button>
+            </Form.Item>
+          </div>
+        </Form>
+      </div>
     </>
   );
-
-  // const [formData, setFormData] = useState({
-  //     userName: '',
-  //     phoneNumber: '',
-  //     email: '',
-  //     content: '',
-  // });
-
-  // const handleInputChange = (e) => {
-  //     const { name, value } = e.target;
-  //     setFormData({
-  //         ...formData,
-  //         [name]: value,
-  //     });
-  // };
-
-  // const handleSubmit = (e) => {
-  //     try {
-  //         fetch('http://localhost:8000/blogs', {
-  //             method: 'POST',
-  //             headers: {
-  //                 'Content-Type': 'application/json',
-  //             },
-  //             body: JSON.stringify(formData),
-  //         })
-  //             .then(response => response.json())
-  //             .then(data => {
-  //                 console.log(data);
-  //             })
-  //             .catch(error => {
-  //                 console.error('Error:', error);
-  //             });
-  //     } catch (error) {
-  //         console.log("error:: ", error)
-  //     }
-  //     e.preventDefault();
-  // };
-
-  // return (
-  //     <>
-  //         <form onSubmit={handleSubmit}>
-  //             <div className="max-w-screen-xl my-5 mx-auto">
-  //                 <div className=" flex justify-center">
-  //                     <p className=" text-[#fb9400] font-bold text-3xl mb-10">
-  //                         Đăn
-  //                         <span className="sm:border-b-2 border-[#fb9400] py-2">
-  //                             g ký nhận tư
-  //                         </span>{" "}
-  //                         vấn
-  //                     </p>
-  //                 </div>
-  //                 <div className="grid lg:gap-x-20 gap-y-4 grid-cols-2 md:mx-16">
-  //                     <div className="relative mx-1">
-  //                         <div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-  //                             <svg
-  //                                 className="w-5 h-5 text-gray-500 dark:text-gray-400"
-  //                                 aria-hidden="true"
-  //                                 xmlns="http://www.w3.org/2000/svg"
-  //                                 fill="currentColor"
-  //                                 viewBox="0 0 20 16"
-  //                             >
-  //                                 <path
-  //                                     d="M11 11C13.0251 11 14.6667 9.3584 14.6667 7.33335C14.6667 5.30831 13.0251 3.66669 11 3.66669C8.97497 3.66669 7.33334 5.30831 7.33334 7.33335C7.33334 9.3584 8.97497 11 11 11Z"
-  //                                     fill="#808080"
-  //                                 />
-  //                                 <path
-  //                                     d="M11 12.8333C8.55249 12.8333 3.66666 14.0616 3.66666 16.5V18.3333H18.3333V16.5C18.3333 14.0616 13.4475 12.8333 11 12.8333Z"
-  //                                     fill="#808080"
-  //                                 />
-  //                             </svg>
-  //                         </div>
-  //                         <input
-  //                             type="text"
-  //                             name="userName"
-  //                             value={formData.firstName}
-  //                             onChange={handleInputChange}
-  //                             className="text-sm rounded-lg focus:ring-yellow-400  block w-full pl-10 p-2.5  bg-white text-gray-700 border border-collapse border-[#fb9400]  py-3 px-8 leading-tight focus:outline-none focus:bg-white dark:focus:border-yellow-500"
-  //                             placeholder="Họ và Tên"
-  //                         />
-  //                     </div>
-
-  //                     <div className="relative mx-1">
-  //                         <div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-  //                             <svg
-  //                                 className="w-5 h-5 text-gray-500 dark:text-gray-400"
-  //                                 aria-hidden="true"
-  //                                 xmlns="http://www.w3.org/2000/svg"
-  //                                 fill="currentColor"
-  //                                 viewBox="0 0 20 16"
-  //                             >
-  //                                 <path
-  //                                     d="M16.675 12.8167C15.65 12.8167 14.6583 12.65 13.7333 12.35C13.4417 12.25 13.1167 12.325 12.8917 12.55L11.5833 14.1917C9.225 13.0667 7.01667 10.9417 5.84167 8.5L7.46667 7.11667C7.69167 6.88333 7.75833 6.55833 7.66667 6.26667C7.35833 5.34167 7.2 4.35 7.2 3.325C7.2 2.875 6.825 2.5 6.375 2.5H3.49167C3.04167 2.5 2.5 2.7 2.5 3.325C2.5 11.0667 8.94167 17.5 16.675 17.5C17.2667 17.5 17.5 16.975 17.5 16.5167V13.6417C17.5 13.1917 17.125 12.8167 16.675 12.8167Z"
-  //                                     fill="#808080"
-  //                                 />
-  //                             </svg>
-  //                         </div>
-  //                         <input
-
-  //                             type="tel"
-  //                             name="phoneNumber"
-  //                             value={formData.lastName}
-  //                             onChange={handleInputChange}
-  //                             className="text-sm rounded-lg focus:ring-blue-500  block w-full pl-10 p-2.5  bg-white text-gray-700 border border-collapse border-[#fb9400]  py-3 px-8 leading-tight focus:outline-none focus:bg-white dark:focus:border-yellow-500"
-  //                             placeholder="Nhap so dien thoai"
-  //                         />
-  //                     </div>
-
-  //                     <div className="relative mx-1">
-  //                         <div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-  //                             <svg
-  //                                 className="w-5 h-5 text-gray-500 dark:text-gray-400"
-  //                                 aria-hidden="true"
-  //                                 xmlns="http://www.w3.org/2000/svg"
-  //                                 fill="currentColor"
-  //                                 viewBox="0 0 20 16"
-  //                             >
-  //                                 <path
-  //                                     d="M15 3H3C2.175 3 1.5075 3.675 1.5075 4.5L1.5 13.5C1.5 14.325 2.175 15 3 15H15C15.825 15 16.5 14.325 16.5 13.5V4.5C16.5 3.675 15.825 3 15 3ZM15 6L9 9.75L3 6V4.5L9 8.25L15 4.5V6Z"
-  //                                     fill="#808080"
-  //                                 />
-  //                             </svg>
-  //                         </div>
-  //                         <input
-  //                             type="email"
-  //                             name="email"
-  //                             value={formData.email}
-  //                             onChange={handleInputChange}
-  //                             className="text-sm rounded-lg focus:ring-blue-500  block w-full pl-10 p-2.5  bg-white text-gray-700 border border-collapse border-[#fb9400]  py-3 px-8 leading-tight focus:outline-none focus:bg-white dark:focus:border-yellow-500"
-  //                             placeholder="Email"
-  //                         />
-  //                     </div>
-
-  //                     <div className="relative mx-1">
-  //                         <div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-  //                             <svg
-  //                                 className="w-5 h-5 text-gray-500 dark:text-gray-400"
-  //                                 aria-hidden="true"
-  //                                 xmlns="http://www.w3.org/2000/svg"
-  //                                 fill="currentColor"
-  //                                 viewBox="0 0 20 16"
-  //                             >
-  //                                 <path
-  //                                     d="M15.4688 14.6953H2.53125C2.22012 14.6953 1.96875 14.9467 1.96875 15.2578V15.8906C1.96875 15.968 2.03203 16.0312 2.10938 16.0312H15.8906C15.968 16.0312 16.0312 15.968 16.0312 15.8906V15.2578C16.0312 14.9467 15.7799 14.6953 15.4688 14.6953ZM4.52988 13.2188C4.56504 13.2188 4.6002 13.2152 4.63535 13.21L7.59199 12.6914C7.62715 12.6844 7.66055 12.6686 7.68516 12.6422L15.1365 5.19082C15.1528 5.17456 15.1657 5.15524 15.1746 5.13398C15.1834 5.11271 15.1879 5.08992 15.1879 5.06689C15.1879 5.04387 15.1834 5.02108 15.1746 4.99981C15.1657 4.97855 15.1528 4.95923 15.1365 4.94297L12.215 2.01973C12.1816 1.98633 12.1377 1.96875 12.0902 1.96875C12.0428 1.96875 11.9988 1.98633 11.9654 2.01973L4.51406 9.47109C4.4877 9.49746 4.47187 9.5291 4.46484 9.56426L3.94629 12.5209C3.92919 12.6151 3.9353 12.712 3.96409 12.8033C3.99288 12.8945 4.04349 12.9774 4.11152 13.0447C4.22754 13.1572 4.37344 13.2188 4.52988 13.2188Z"
-  //                                     fill="#808080"
-  //                                 />
-  //                             </svg>
-  //                         </div>
-  //                         <input
-
-  //                             type="text"
-  //                             name="content"
-  //                             value={formData.content}
-  //                             onChange={handleInputChange}
-  //                             className="text-sm rounded-lg focus:ring-blue-500  block w-full pl-10 p-2.5  bg-white text-gray-700 border border-collapse border-[#fb9400]  py-3 px-8 leading-tight focus:outline-none focus:bg-white dark:focus:border-yellow-500"
-  //                             placeholder="Nội dung tư vấn"
-  //                         />
-  //                     </div>
-  //                 </div>
-  //             </div>
-  //             <nav className="justify-normal text-center">
-  //                 <button
-  //                     // onClick={() => handleSubmit()}
-  //                     type="submit"
-  //                     className="text-white duration-300 bg-[#fb9400] hover:bg-yellow-500 font-bold rounded-lg text-bold sm:text-sm px-3 py-2 m-5"
-  //                 >
-  //                     Gửi thông tin
-  //                 </button>
-  //             </nav>
-  //         </form>
-  //     </>
-  // );
 };
 export default Consultation;
+
+// import React from 'react';
+// import { Form, Input, Button } from 'antd';
+
+// const Consultation = () => {
+
+//   };
+
+//   return (
+
+//   );
+// };
+
+// export default Consultation;

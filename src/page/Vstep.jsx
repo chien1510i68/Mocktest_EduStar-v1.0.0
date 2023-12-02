@@ -117,11 +117,11 @@ function Vstep() {
           </div>
         </div>
         <div className="col-span-1">
-          <Image src={ImageBanner} />
+          <img src={ImageBanner} />
         </div>
       </div>
 
-      <div className="max-w-screen-lg mx-auto">
+      <div className="max-w-screen-lg mx-auto px-3">
         <div className="mobile:my-5 grid tablet:grid-cols-2 mobile:grid-cols-1 gap-10 justify-center py-10">
           <div className="col-span-1 text-left tablet:ml-[10%] mobile:ml-2">
             <p className="font-bold text-xl my-3">Lợi ích khi thi thử VSTEP</p>

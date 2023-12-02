@@ -110,8 +110,9 @@ function Toeic() {
                                 </svg>
 
                             </button> */}
-              <Button className=" bg-[#fb9400] font-bold flex hover:!shadow-md text-white hover:!bg-[#fb9400] hover:!border-[#fb9400] hover:!text-white"
-              onClick={handleNavigate}
+              <Button
+                className=" bg-[#fb9400] font-bold flex hover:!shadow-md text-white hover:!bg-[#fb9400] hover:!border-[#fb9400] hover:!text-white"
+                onClick={handleNavigate}
               >
                 Thi thử miễn phí{" "}
                 <svg
@@ -132,7 +133,7 @@ function Toeic() {
               </Button>
             </div>
             <div className="col-span-1">
-              <Image src={banner} fill alt="" />
+              <img src={banner} fill alt="" />
             </div>
           </div>
           <div className="my-10">
@@ -164,7 +165,7 @@ function Toeic() {
           </div>
           <p className="font-bold text-xl">Listening</p>
           <div className="grid tablet:grid-cols-4 mobile:grid-cols-1 gap-5 justify-around py-2">
-            <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 sm:h-full hover:shadow-lg">
+            <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 sm:h-full duration-500 hover:shadow-[#808080]">
               <div className="w-full bg-no-repeat bg-center toeic-img">
                 <Image
                   src={part1}
@@ -180,7 +181,7 @@ function Toeic() {
                 đáp án mô tả đúnh nhất.
               </p>
             </div>
-            <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 hover:shadow-lg">
+            <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 duration-500 hover:shadow-[#808080]">
               <div className="w-full bg-no-repeat bg-center toeic-img">
                 <Image src={part2} fill alt="" priority />
               </div>
@@ -191,7 +192,7 @@ function Toeic() {
                 câu nói. Sau đó chọn câu hồi đáp phù hợp nhất.
               </p>
             </div>
-            <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 hover:shadow-lg">
+            <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 duration-500 hover:shadow-[#808080]">
               <div className="w-full bg-no-repeat bg-center toeic-img">
                 <Image src={part3} fill alt="" priority />
               </div>
@@ -203,7 +204,7 @@ function Toeic() {
                 chọn. Thí sinh đọc câu hỏi sau đó chọn câu trả lời phù hợp nhất.
               </p>
             </div>
-            <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 hover:shadow-lg">
+            <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 duration-500 hover:shadow-[#808080]">
               <div className="w-full bg-no-repeat bg-center toeic-img">
                 <Image src={part4} fill alt="" priority />
               </div>
@@ -218,7 +219,7 @@ function Toeic() {
           </div>
           <p className="font-bold text-xl">Reading</p>
           <div className="grid tablet:grid-cols-4 mobile:grid-cols-1 gap-5 justify-around py-2">
-            <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 sm:h-full hover:shadow-lg">
+            <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 sm:h-full duration-500 hover:shadow-[#808080]">
               <div className="w-full bg-no-repeat bg-center toeic-img">
                 <Image src={part5} fill alt="" priority />
               </div>
@@ -228,7 +229,7 @@ function Toeic() {
                 Chọn đáp án đúng nhất trong 4 đáp án để hoàn thành câu.
               </p>
             </div>
-            <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 hover:shadow-lg">
+            <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 duration-500 hover:shadow-[#808080]">
               <div className="w-full bg-no-repeat bg-center toeic-img">
                 <Image src={part6} fill alt="" priority />
               </div>
@@ -239,7 +240,7 @@ function Toeic() {
                 thành đoạn văn. Mỗi đoạn văn sẽ có 4 câu hỏi.
               </p>
             </div>
-            <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 hover:shadow-lg">
+            <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 duration-500 hover:shadow-[#808080]">
               <div className="w-full bg-no-repeat bg-center toeic-img">
                 <Image src={part7} fill alt="" priority />
               </div>
