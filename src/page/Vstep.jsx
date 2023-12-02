@@ -6,7 +6,7 @@ import Footer from "../component/footer/Footer";
 import group from "../image/Group 5355.png";
 import ImageBanner from "../image/banner_vstep.png";
 import luuY from "../image/vstep_luu_y.png";
-// import { useEffect } from "react";
+import AppMenu from "../component/header/HeaderMenu"
 import { handleGetExamByType } from "../component/handlelogic/handleExam";
 import { useContext } from "react";
 import { AppContext } from "../component/AppContext";
@@ -31,10 +31,11 @@ function Vstep() {
 
   return (
     <div className="">
+      <AppMenu />
       {/* <HeaderMenu /> */}
       {/* <h2>this is the text</h2> */}
 
-      <div className="sm:pt-20 p-5 bg-[#FFF4E5] grid tablet:grid-cols-2 mobile:grid-cols-1 gap-5  mb-5 items-center shadow-md">
+      <div className="sm:pt-20 p-5 bg-[#FFF4E5] grid tablet:grid-cols-2 mobile:grid-cols-1 gap-5 mt-16  mb-5 items-center shadow-md">
         <div className="col-span-1 text-left tablet:ml-[10%] mobile:ml-2">
           <h2 className="text-slate-950 font-semibold text-3xl ">
             {" "}

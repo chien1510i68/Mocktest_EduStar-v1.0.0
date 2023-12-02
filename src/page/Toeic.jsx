@@ -2,6 +2,7 @@ import { Image } from "antd";
 import { useNavigate } from "react-router-dom";
 import Competition from "../component/competition/Competition";
 import Consultation from "../component/consultation/Consultation";
+import AppMenu from "../component/header/HeaderMenu";
 import Footer from "../component/footer/Footer";
 import part1 from "../image/ImagePart1.png";
 import part2 from "../image/ImagePart2.png";
@@ -41,12 +42,13 @@ function Toeic() {
   
     return (
         <div className="w-full">
-            {/* <AppMenu /> */}
+            
+            <AppMenu />
             {/* <HeaderMenu /> */}
             {/* <Speed /> */}
 
-            <div className="mx-2">
-                <div className="absolute mx-14 py-5">
+            <div className="mx-2 mt-10">
+                <div className="absolute mx-14 py-10">
                     <svg width="300" height="300" viewBox="0 0 384 385" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="191.982" cy="192.704" r="74.6232" stroke="#FB9400" stroke-opacity="0.5" />
                         <circle cx="192.445" cy="193.168" r="122.387" stroke="#FB9400" stroke-opacity="0.5" />
