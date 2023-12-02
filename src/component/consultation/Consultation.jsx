@@ -1,31 +1,31 @@
 import React from "react";
 import { Button, ConfigProvider, Form, Input, Col, Row } from "antd";
 // import "../Custom-antd.css";
-import { useState } from "react";
+// import { useState } from "react";
 import svgAccounFormInput from "../../vector/svgAccountForm.svg"
 // import svgAccounFormInput from "../vector/svgAccountForm.svg";
 import svgCallFormInput from "../../vector/svgCallForm.svg";
 import svgEmailFormInput from "../../vector/svgEmailForm.svg";
 import svgContentFormInput from "../../vector/svgContentForm.svg";
 
-const onFinish = (values) => {
-  console.log("Success:", values);
-};
-const onFinishFailed = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
+// const onFinish = (values) => {
+//   console.log("Success:", values);
+// };
+// const onFinishFailed = (errorInfo) => {
+//   console.log("Failed:", errorInfo);
+// };
 
 const Consultation = () => {
-   const [formData, setFormData] = useState({
-      userName: '',
-      phoneNumber: '',
-      email: '',
-      content: '',
-  });
+  //  const [formData, setFormData] = useState({
+  //     userName: '',
+  //     phoneNumber: '',
+  //     email: '',
+  //     content: '',
+  // });
 
   const handleSubmit = (e) => {
         try {
-            fetch('http://localhost:8000/blogs', {
+            fetch('https://api.edustar.com.vn/consulting/registration', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -158,7 +158,7 @@ const Consultation = () => {
           <Row className="mx-auto justify-center">
             <Button
               // type="primary"
-              className="text-white border-[#fb9400] shadow-none py-1 bg-[#fb9400] font-bold hover:!border-[#fb9400] hover:shadow-md hover:!text-white"
+              className="text-white shadow-none bg-[#fb9400] font-bold hover:!border-[#fb9400] hover:!shadow-md hover:!text-white"
               htmlType="submit"
             >
               Gửi thông tin

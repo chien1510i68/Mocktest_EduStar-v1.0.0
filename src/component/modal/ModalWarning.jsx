@@ -21,7 +21,7 @@ function ModalWarning(props) {
           onClick={() => {
             dispatch({ type: "closeModalWarning" });
           }}
-          className="block ml-auto"
+          className="block ml-auto hover:!border-gray-300 hover:!text-black hover:shadow-md"
         >
           Thoát
         </Button>

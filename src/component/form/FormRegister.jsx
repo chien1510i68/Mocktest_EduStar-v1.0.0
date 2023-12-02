@@ -149,7 +149,7 @@ function FormRegister({ type }) {
         <Button
           className="mx-auto bg-[#fb9400] text-white block border-none font-bold hover:!text-white hover:!border-[#fb9400]"
           htmlType="submit"
-          onClick={() => navigate("/vstep")}
+          onClick={() =>{}}
           >
           Đăng ký thi thử miễn phí
         </Button>

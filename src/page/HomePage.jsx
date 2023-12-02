@@ -29,13 +29,14 @@ const HomePage = () => {
     setopenDrawerVstep(false);
   };
 
-  const src = "https://youtube.com";
+  // const src = "https://youtube.com";
   return (
     <div>
       <AppMenu />
-      <div className="my-20">
-        <div className="max-w-screen-sm my-6 text-center mx-auto justify-center text-3xl font-bold">
-          <iframe
+      <div className="my-20 mx-auto justify-center">
+        <div className="mx-auto justify-center max-w-screen-md my-6 text-center ">
+          {/* <iframe
+          className="hidden sm:block"
             width="640"
             height="360"
             src="https://www.youtube.com/embed/na80LQCX1KU"
@@ -43,19 +44,19 @@ const HomePage = () => {
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
-          ></iframe>
+          ></iframe> */}
 
-          <Image src={iconLogo} fill alt="" />
-          <p className=" my-4">
-            Địa điểm thích hợp nhất để luyện thi các chứng chỉ Tiếng Anh{<br />}{" "}
+          <Image src={iconLogo} className="w-full md:w-30" fill alt="" />
+          <p className="px-2 max-w-screen-lg my-4 text-3xl font-bold">
+            Địa điểm thích hợp nhất để luyện thi các chứng chỉ Tiếng Anh
             Quốc tế
           </p>
         </div>
 
-        <div className="grid tablet:grid-cols-2 mobile:grid-cols-span-1 max-w-screen-lg mx-auto justify-center">
-          <div className="col-span-1 shadow-xl shadow-[#c0c0c0] p-6 rounded-2xl m-6">
+        <div className="grid tablet:grid-cols-2 mobile:grid-cols-span-1 gap-16 max-w-screen-lg mx-auto justify-center">
+          <div className="col-span-1 shadow-xl shadow-[#c0c0c0] p-6 rounded-2xl">
             <img src={imgToeic} alt="" />
-            <h2 className="text-xl font-bold my-6">
+            <h2 className="text-xl font-bold py-6">
               Bài thi TOEIC là công cụ chuẩn cho phép đánh giá và so sánh được
               mặt bằng trình độ ngoại ngữ{" "}
             </h2>
@@ -121,7 +122,7 @@ const HomePage = () => {
               </Button>
             </ConfigProvider>
           </Drawer>
-          <div className="col-span-1 shadow-xl shadow-[#c0c0c0] p-6 rounded-2xl m-6">
+          <div className="col-span-1 shadow-xl shadow-[#c0c0c0] p-6 rounded-2xl">
             <img src={imgVstep} alt="" />
             <h2 className="text-xl font-bold my-6">
               Bài thi đánh giá năng lực tiếng anh theo khung năng lực Ngoại ngữ

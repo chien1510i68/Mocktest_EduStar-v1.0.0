@@ -8,14 +8,14 @@ import { Menu } from "antd";
 const AppHeader = () => {
   return (
     <div>
-      <div className="z-10 w-full bg-[#f3f4f6] bg-opacity-50 mb-5 justify-between flex items-center px-10 fixed top-0">
-        <Link to="/home">
-          <img src={imgLogo} alt="logo" className=" w-48" />
+      <div className="z-10 w-full bg-[#f3f4f6] bg-opacity-50  justify-between flex items-center px-10 fixed top-0">
+        <Link to="https://edustar.com.vn/">
+          <img src={imgLogo} alt="logo" className=" w-44" />
         </Link>
         <Menu mode="horizontal" className="block ml-auto">
           <Menu.SubMenu
-            key="setting"
-            icon={<img src={iconMenu} width={5} height={5}/>}
+            key="home"
+            icon={<img src={iconMenu} width={4} height={4}/>}
             className="!bg-[#f9f9fa] bg-opacity-50 !p-0 !m-0 block"
           >
             <Menu.Item key="Vstep">
