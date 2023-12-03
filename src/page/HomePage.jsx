@@ -34,7 +34,7 @@ const HomePage = () => {
     <div>
       <AppMenu />
       <div className="my-20">
-        <div className="max-w-screen-sm my-6 text-center mx-auto justify-center text-3xl font-bold">
+        <div className=" my-6 text-center mx-auto justify-center text-3xl font-bold">
           <iframe
             width="640"
             height="360"
