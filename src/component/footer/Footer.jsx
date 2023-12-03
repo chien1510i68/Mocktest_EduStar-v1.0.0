@@ -32,7 +32,7 @@ const AppFooter = () => {
         {/* end logo */}
         <div className="mx-auto grid tablet:grid-cols-3 mobile:grid-cols-1">
           <div className="col-span-1">
-            <div className="grid grid-row-4 py-5 justify-around">
+            <div className="grid grid-row-4 py-5 justify-start md:justify-center">
               <div className="row-span-1 flex gap-2">
                 <img src={svgCall} alt="" className="my-2" />
                 <p className="my-2">Liên hệ</p>

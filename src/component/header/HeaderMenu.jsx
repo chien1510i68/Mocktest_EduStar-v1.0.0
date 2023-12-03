@@ -1,22 +1,24 @@
 import imgLogo from "../../image/Logo.png";
-import iconMenu from "../../vector/Ellipsis.svg"
+// import iconMenu from "../../vector/ellipsis.svg";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
-import { AppstoreOutlined, MailOutlined } from "@ant-design/icons";
+import { AlignRightOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
 
 const AppHeader = () => {
+  const iconSize = 30;
   return (
     <div>
-      <div className="z-10 w-full bg-[#f3f4f6] bg-opacity-50 mb-5 justify-between flex items-center px-10 fixed top-0">
-        <Link to="/home">
-          <img src={imgLogo} alt="logo" className=" w-48" />
+      <div className="z-10 w-full bg-[#f3f4f6] bg-opacity-60  justify-between flex items-center px-10 fixed top-0">
+        <Link to="https://edustar.com.vn/">
+          <img src={imgLogo} alt="logo" className="w-44" />
         </Link>
         <Menu mode="horizontal" className="block ml-auto">
           <Menu.SubMenu
-            key="setting"
-            icon={<img src={iconMenu} width={5} height={5}/>}
-            className="!bg-[#f9f9fa] bg-opacity-50 !p-0 !m-0 block"
+            title={<span><AlignRightOutlined/></span>}
+            key="home"
+            // icon={<EllipsisOutlined width={40} height={40} />}
+            className="bg-[rgb(243,244,246)] bg-opacity-60 !p-0 !m-0 block"
           >
             <Menu.Item key="Vstep">
               <Link to="/vstep">Thi thử VSTEP</Link>

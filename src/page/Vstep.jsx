@@ -1,4 +1,4 @@
-import { Image } from "antd";
+import { Image, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import Competition from "../component/competition/Competition";
 import Consultation from "../component/consultation/Consultation";
@@ -6,14 +6,14 @@ import Footer from "../component/footer/Footer";
 import group from "../image/Group 5355.png";
 import ImageBanner from "../image/banner_vstep.png";
 import luuY from "../image/vstep_luu_y.png";
-import AppMenu from "../component/header/HeaderMenu"
+import AppMenu from "../component/header/HeaderMenu";
 import { handleGetExamByType } from "../component/handlelogic/handleExam";
 import { useContext } from "react";
 import { AppContext } from "../component/AppContext";
 
 function Vstep() {
   const navigate = useNavigate();
-  const {data , dispatch} = useContext(AppContext)
+  const { data, dispatch } = useContext(AppContext);
   const handleNavigate = async () => {
     const phoneNumber = JSON.parse(localStorage.getItem("phoneNumber"));
     console.log("phoneNumber", phoneNumber);
@@ -22,7 +22,7 @@ function Vstep() {
     } else {
       const data = await handleGetExamByType("vstep_b1");
       if (data?.data?.total === 0) {
-        dispatch({type : "openModalWarning"})
+        dispatch({ type: "openModalWarning" });
       } else {
         navigate("/exam/all", { state: data?.data?.items });
       }
@@ -50,7 +50,7 @@ function Vstep() {
           </p>
 
           <div className="flex justify-start gap-2">
-            <button
+            {/* <button
               className="flex bg-[#fb9400] px-2 text-white font-bold my-auto sm:px-2 sm:py-1 sm:mr-2 border-2 border-[#fb9400] rounded-md shadow-md shadow-[#bfb7ac] hover:bg-yellow-500 hover:border-yellow-500"
               onClick={handleNavigate}
             >
@@ -70,8 +70,32 @@ function Vstep() {
                   stroke-width="1.25"
                 />
               </svg>
-            </button>
-            <button className="flex px-2 sm:px-5 border my-auto border-[#fb9400] rounded-md sm:py-1 text-[#fb9400] font-bold  hover:bg-yellow-500 hover:border-yellow-500 hover:text-white">
+            </button> */}
+            <Button
+              className="bg-[#fb9400] flex border-[#fff4e5] text-white font-bold hover:!bg-[#fb9400] hover:!text-white hover:!border-[#fb9400]"
+              onClick={handleNavigate}
+            >
+              Thi thử miễn phí{" "}
+              <svg
+                className="my-auto mx-2 hidden sm:block"
+                width="7"
+                height="11"
+                viewBox="0 0 7 11"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 0.847063V1.75991C1 1.82198 1.02612 1.8804 1.06896 1.91692L5.16088 5.37477L1.06896 8.83262C1.02612 8.86914 1 8.92756 1 8.98963V9.90248C1 9.98159 1.07732 10.0278 1.13271 9.98159L6.21207 5.69C6.39598 5.53421 6.39598 5.21533 6.21207 5.06075L1.13271 0.769167C1.07732 0.721699 1 0.76795 1 0.847063Z"
+                  fill="white"
+                  stroke="white"
+                  stroke-width="1.25"
+                />
+              </svg>
+            </Button>
+            <Button
+              className="flex border-[#fb9400] text-[#fb9400] font-bold hover:!bg-[#fb9400] hover:!text-white duration-50 hover:!border-[#fb9400]"
+              onClick={handleNavigate}
+            >
               Xem lịch thi thử VSTEP
               <svg
                 className="my-auto ml-2 hover:fill-[#fff] hidden sm:block"
@@ -89,15 +113,15 @@ function Vstep() {
                   fill="#fb9400"
                 />
               </svg>
-            </button>
+            </Button>
           </div>
         </div>
         <div className="col-span-1">
-          <Image src={ImageBanner} />
+          <img src={ImageBanner} />
         </div>
       </div>
 
-      <div className="max-w-screen-lg mx-auto">
+      <div className="max-w-screen-lg mx-auto px-3">
         <div className="mobile:my-5 grid tablet:grid-cols-2 mobile:grid-cols-1 gap-10 justify-center py-10">
           <div className="col-span-1 text-left tablet:ml-[10%] mobile:ml-2">
             <p className="font-bold text-xl my-3">Lợi ích khi thi thử VSTEP</p>

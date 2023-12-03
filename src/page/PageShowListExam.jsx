@@ -38,12 +38,12 @@ function PageShowListExam() {
                             key="type"
                             className="text-center"
                         />
-                        <Column
+                        {/* <Column
                             title={<div className="text-center">Thời gian thi</div>}
                             dataIndex="timeExam"
                             key="timeExam"
                             className="text-center"
-                        />
+                        /> */}
 
                         <Column
                             title={<div className="text-center">Action</div>}
