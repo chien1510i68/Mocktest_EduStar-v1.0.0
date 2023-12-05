@@ -1,6 +1,7 @@
 import { Image, Button } from "antd";
 import { useNavigate } from "react-router-dom";
-import Competition from "../component/competition/Competition";
+// import Competition from "../component/competition/Competition";
+import Feedback from "../component/feedback/Feedback";
 import Consultation from "../component/consultation/Consultation";
 import AppMenu from "../component/header/HeaderMenu";
 import Footer from "../component/footer/Footer";
@@ -86,7 +87,7 @@ function Toeic() {
           </svg>
         </div>
 
-        <div className="max-w-screen-lg mx-auto">
+        <div className="max-w-[1200px] mx-auto">
           <div className="grid tablet:grid-cols-2 mobile:grid-cols-1 gap-5 justify-around my-10">
             <div className="col-span-1 text-left justify-center my-auto sm:pt-32">
               <h2 className="text-slate-950 font-semibold sm:text-3xl ">
@@ -499,7 +500,8 @@ function Toeic() {
         </div>
       </div>
       <Consultation />
-      <Competition />
+      {/* <Competition /> */}
+      <Feedback />
       {/* <MyForm /> */}
       <ModalWarning />
       <Footer />

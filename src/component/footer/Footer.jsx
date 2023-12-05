@@ -6,15 +6,43 @@ import svgEmail from "../../vector/svgEmail.svg";
 import svgFacebook from "../../vector/svgFacebook.svg";
 import svgRadioButton from "../../vector/radioButton.svg";
 import { List } from "antd";
+import { Navigate } from "react-router-dom";
 
 const AppFooter = () => {
+  // const serviceProcided = [
+  //   "Luyện thi VSTEP",
+  //   "Luyện thi APTIS",
+  //   "Luyện thi TOEIC",
+  //   "Luyện thi IELTS",
+  //   "Luyện thi Anh ngữ học thuật",
+  // ];
   const serviceProcided = [
-    "Luyện thi VSTEP",
-    "Luyện thi APTIS",
-    "Luyện thi TOEIC",
-    "Luyện thi IELTS",
-    "Luyện thi Anh ngữ học thuật",
-  ];
+    {
+      url: 'https://mocktest.edustar.com.vn/',
+      label: 'Luyện thi VSTEP',
+    },
+
+    {
+      url: 'https://mocktest.edustar.com.vn/',
+      label: 'Luyện thi APTIS',
+    },
+
+    {
+      url: 'https://mocktest.edustar.com.vn/',
+      label: 'Luyện thi TOEIC',
+    },
+
+    {
+      url: 'https://mocktest.edustar.com.vn/',
+      label: 'Luyện thi IELTS',
+    },
+
+    {
+      url: 'https://mocktest.edustar.com.vn/',
+      label: 'Luyện thi Anh ngữ học thuật',
+    },
+
+  ]
   const workCalendar = [
     "Tư vấn 24/24",
     "Thi thử miễn phí",
@@ -23,7 +51,7 @@ const AppFooter = () => {
   ];
   return (
     <footer className=" bg-gray-100 ">
-      <div className="max-w-screen-xl mx-auto px-5">
+      <div className="w-full mx-auto px-5">
         <div className="px-2">
           <a href="#!">
             <img src={Logo} alt="" />
@@ -36,19 +64,21 @@ const AppFooter = () => {
               <div className="row-span-1 flex gap-2">
                 <img src={svgCall} alt="" className="my-2" />
                 <p className="my-2">Liên hệ</p>
-                <p className="my-2">+84 1234567890</p>
+                <p className="my-2">+84 0986 511 750</p>
               </div>
               <div className="row-span-1 flex gap-2">
                 <img src={svgAddress} alt="" className="my-4" />
                 <p className="my-2">Địa chỉ</p>
-                <p className="my-2 overflow-hidden inline">Trung tâm Anh ngữ - HVNNVN</p>
+                <p className="my-2 overflow-hidden inline">
+                  Công ty Anh ngữ Edustar
+                </p>
               </div>
               <div className="row-span-1 flex gap-2">
                 <img src={svgEmail} alt="" className="my-2" />
                 <p className="my-2">Email</p>
                 <p className="my-2">edustar1910@gmail.com</p>
               </div>
-              
+
               <div className="row-span-1  flex gap-2">
                 <img src={svgFacebook} alt="" className="my-2" />
                 <p className="my-2">Facebook</p>
@@ -67,7 +97,7 @@ const AppFooter = () => {
               renderItem={(item) => (
                 <List.Item className="!flex !justify-start !border-none !text-[#7b7b7b] !p-1 gap-4 sm:gap-2">
                   <img src={svgRadioButton} alt="" />
-                  <span>{item}</span>
+                  {/* <button onClick={Navigate({ item.url })}>{item.label}</button> */}
                 </List.Item>
               )}
             />
@@ -76,7 +106,7 @@ const AppFooter = () => {
             <span className="text-lg text-[#f69050] border-b border-[#fb9400] font-bold">
               Lịch làm việc
             </span>
-             <List
+            <List
               dataSource={workCalendar}
               renderItem={(item) => (
                 <List.Item className="!flex !justify-start !border-none !text-[#7b7b7b] !p-1">

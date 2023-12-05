@@ -1,9 +1,10 @@
 import React from "react";
-import { Button, Form, Input } from "antd";
+import { Button, ConfigProvider, Form, Input } from "antd";
 import svgAccounFormInput from "../../vector/svgAccountForm.svg";
 import svgCallFormInput from "../../vector/svgCallForm.svg";
 import svgEmailFormInput from "../../vector/svgEmailForm.svg";
 import svgContentFormInput from "../../vector/svgContentForm.svg";
+import InputElement from "../inputElement/Input";
 
 const Consultation = () => {
   const validateMessages = {
@@ -43,7 +44,7 @@ const Consultation = () => {
   };
   return (
     <>
-      <div className="max-w-screen-lg mx-auto justify-center px-5">
+      <div className="max-w-[1200px] mx-auto justify-center px-5">
         <div className="text-center mx-auto  my-6">
           <span className="text-[#fb9400] font-bold text-3xl sm:border-b-2 border-[#fb9400] p-2">
             Đăng ký nhận tư vấn
@@ -56,9 +57,8 @@ const Consultation = () => {
                 name="name"
                 rules={[{ required: true, message: "Vui lòng điền họ tên!" }]}
               >
-                <Input
-                  className="border-[#fb9400] hover:!border-[#fb9400]"
-                  prefix={<img src={svgAccounFormInput} alt="" />}
+                <InputElement
+                  prefix={<img src={svgAccounFormInput} alt=""/>}
                   placeholder="Họ và Tên"
                 />
               </Form.Item>
@@ -67,11 +67,15 @@ const Consultation = () => {
                 name="email"
                 rules={[{ required: true, message: "Vui lòng điền email!", type: "email" }]}
               >
-                <Input
+                {/* <Input
                   className="border-[#fb9400] hover:!border-[#fb9400]"
                   prefix={<img src={svgEmailFormInput} alt=""/>}
                   placeholder="Email"
-                />
+                /> */}
+                <InputElement
+                prefix={<img src={svgEmailFormInput} alt=""/>}
+                placeholder="Email"
+              />
               </Form.Item>
             </div>
 
@@ -85,8 +89,13 @@ const Consultation = () => {
                   {min:10,message: "Số điện thoại chỉ được phép nhập 10 số"}
                 ]}
               >
-                <Input
+                
+                {/* <Input
                   className="border-[#fb9400] hover:!border-[#fb9400]"
+                  prefix={<img src={svgCallFormInput} alt=""/>}
+                  placeholder="Số điện thoại"
+                /> */}
+                <InputElement
                   prefix={<img src={svgCallFormInput} alt=""/>}
                   placeholder="Số điện thoại"
                 />
@@ -101,8 +110,12 @@ const Consultation = () => {
                   },
                 ]}
               >
-                <Input
+                {/* <Input
                   className="border-[#fb9400] hover:!border-[#fb9400]"
+                  prefix={<img src={svgContentFormInput} alt=""/>}
+                  placeholder="Nội dung tư vấn"
+                /> */}
+                <InputElement
                   prefix={<img src={svgContentFormInput} alt=""/>}
                   placeholder="Nội dung tư vấn"
                 />
