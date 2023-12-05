@@ -1,11 +1,36 @@
 import imgLogo from "../../image/Logo.png";
 // import iconMenu from "../../vector/ellipsis.svg";
-import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { AlignRightOutlined } from "@ant-design/icons";
-import { Menu } from "antd";
+import { Menu, notification } from "antd";
+import Cookies from "js-cookie";
+import { getListExamByServiceUser } from "../api/exam";
 
 const AppHeader = () => {
+  const navigate = useNavigate();
+  const [listExam , setListExam] = useState([])
+  const handleSubmitExamByService = () => {
+    const id = Cookies.get("id");
+    getListExamByServiceUser(id)
+      .then((res) => {
+        
+        if (res.data.success === true) {
+          // notification.success({ message: "Thành công " });
+          navigate("/exam/all", { state: res.data.data.items });
+        }
+        // if(res)
+        console.log(res.data.data.items);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        if(err.response.data.success === false){
+          notification.error({message : err.response.data.error.message});
+        }
+      });
+  };
+  const valueJwt = Cookies.get("jwt");
+  
   const iconSize = 30;
   return (
     <div>
@@ -15,7 +40,11 @@ const AppHeader = () => {
         </Link>
         <Menu mode="horizontal" className="block ml-auto">
           <Menu.SubMenu
-            title={<span><AlignRightOutlined/></span>}
+            title={
+              <span>
+                <AlignRightOutlined />
+              </span>
+            }
             key="home"
             // icon={<EllipsisOutlined width={40} height={40} />}
             className="bg-[rgb(243,244,246)] bg-opacity-60 !p-0 !m-0 block"
@@ -26,6 +55,11 @@ const AppHeader = () => {
             <Menu.Item key="Toeic">
               <Link to="/toeic">Thi thử TOEIC</Link>
             </Menu.Item>
+            {valueJwt !== "null" && (
+              <Menu.Item key="Toeic">
+                <h2 onClick={handleSubmitExamByService}>Bài thi dành riêng</h2>
+              </Menu.Item>
+            )}
           </Menu.SubMenu>
         </Menu>
       </div>

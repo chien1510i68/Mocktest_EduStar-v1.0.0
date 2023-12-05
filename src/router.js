@@ -8,6 +8,7 @@ import Vstep from "./page/Vstep";
 import Toeic from "./page/Toeic";
 import BeforeExam from "./component/beforeExam/BeforeExam";
 import HomePage from "./page/HomePage";
+import Test from "./page/Test";
 
 export const router = createBrowserRouter([{
 path : "/" ,
@@ -16,6 +17,10 @@ element : <HomePage/>
   {
     path: "/register",
     element: <RegisterPage />,
+  },
+  {
+    path: "/test",
+    element: <Test />,
   },
 
   {
