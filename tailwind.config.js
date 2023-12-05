@@ -53,6 +53,10 @@ module.exports = {
       lg: '976px',
       xl: '1440px',
     },
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    }
   },
   plugins: [],
 }

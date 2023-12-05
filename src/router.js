@@ -8,6 +8,7 @@ import Vstep from "./page/Vstep";
 import Toeic from "./page/Toeic";
 import BeforeExam from "./component/beforeExam/BeforeExam";
 import HomePage from "./page/HomePage";
+import TestLayoutComponents from "./page/TestLayoutComponents";
 
 export const router = createBrowserRouter([{
 path : "/" ,
@@ -51,6 +52,11 @@ element : <HomePage/>
   {
     path: "/beforeExam/:examId",
     element: <BeforeExam />,
+  },
+  
+  {
+    path: "/testLayout",
+    element: <TestLayoutComponents />,
   },
   
 ]);

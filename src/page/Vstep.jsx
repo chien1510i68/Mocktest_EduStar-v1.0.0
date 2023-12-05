@@ -1,6 +1,7 @@
 import { Image, Button } from "antd";
 import { useNavigate } from "react-router-dom";
-import Competition from "../component/competition/Competition";
+// import Competition from "../component/competition/Competition";
+import Feedback from "../component/feedback/Feedback";
 import Consultation from "../component/consultation/Consultation";
 import Footer from "../component/footer/Footer";
 import group from "../image/Group 5355.png";
@@ -121,7 +122,7 @@ function Vstep() {
         </div>
       </div>
 
-      <div className="max-w-screen-lg mx-auto px-3">
+      <div className="max-w-[1200px] mx-auto justify-center px-3">
         <div className="mobile:my-5 grid tablet:grid-cols-2 mobile:grid-cols-1 gap-10 justify-center py-10">
           <div className="col-span-1 text-left tablet:ml-[10%] mobile:ml-2">
             <p className="font-bold text-xl my-3">Lợi ích khi thi thử VSTEP</p>
@@ -159,7 +160,7 @@ function Vstep() {
               </li>
             </ul>
           </div>
-          <div className="col-span-1">
+          <div className="col-span-1 mx-auto ">
             <Image src={group} />
           </div>
         </div>
@@ -251,7 +252,9 @@ function Vstep() {
       </div>
 
       <Consultation />
-      <Competition />
+      {/* <Competition /> */}
+      <Feedback />
+
       <Footer />
     </div>
   );
