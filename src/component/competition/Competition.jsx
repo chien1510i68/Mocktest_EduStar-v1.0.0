@@ -11,7 +11,7 @@ const Competitions = () => {
     // const path = "/public";
     return (
         <div>
-            <div className=" my-10 justify-around mx-auto max-w-screen-lg">
+            <div className=" my-10 justify-around mx-auto max-w-[1200px]">
                 <p className=" text-[#fb9400] font-bold text-3xl mb-10 text-center">
                     Các đơn vị tổ
                     <span className=" sm:border-b-2 border-[#fb9400]"> chức thi và c</span>

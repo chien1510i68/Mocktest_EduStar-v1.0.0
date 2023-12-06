@@ -1,6 +1,5 @@
-// import React from "react";
-import { Button, ConfigProvider, Form, Input, Space, notification } from "antd";
-import React , { useContext, useState } from "react";
+import { Button, Form, Input, notification } from "antd";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../AppContext";
 import { getExamByType } from "../api/exam";
@@ -11,11 +10,12 @@ function FormRegister(props) {
   const { isOpenModalConfirm } = data;
   const validateMessages = {
     // eslint-disable-next-line no-template-curly-in-string
-    required: "${label} is required!",
+    // required: "${label} is required!",
+    required: "Trường thông tin bắt buộc!",
     types: {
-      email: "${label} is not a valid email!",
+      email: "Dữ liệu đã nhập không phải Email!",
       // eslint-disable-next-line no-template-curly-in-string
-      number: "${label} is not a valid number!",
+      number: "Dữ liệu đã nhập không phải số!",
     },
   };
   const onFinish = (values) => {
@@ -27,136 +27,120 @@ function FormRegister(props) {
     notification.success({ message: "Your account has been saved" });
     // navigate("/exam/26f94768-5b8e-414b-b966-59f37fdf1a16");
     // navigate("/exam/all", );
-    getExamByType("vstep_b1" , true).then((res) =>{
-      // console.log(res?.data?.body);
-      if(res?.data?.body?.success === true){
-        console.log(res?.data?.body?.data?.items);
-        navigate("/exam/all" , {state : res?.data?.body?.data?.items});
+    sendData(values, (error, responseData) => {
+      if (error) {
+        console.error("Lỗi khi gửi dữ liệu:", error);
+      } else {
+        console.log(
+          "Dữ liệu đã được gửi thành công. Phản hồi từ máy chủ:",
+          responseData
+        );
       }
-    })
+    });
+    getExamByType("vstep_b1", true).then((res) => {
+      // console.log(res?.data?.body);
+      if (res?.data?.body?.success === true) {
+        console.log(res?.data?.body?.data?.items);
+        navigate("/exam/all", { state: res?.data?.body?.data?.items });
+      }
+    });
   };
-  
-const [submittable, setSubmittable] = React.useState(false);
+
+  const sendData = (data, onFinish) => {
+    
+// https://api.edustar.com.vn/consulting/registration
+    // fetch("http://localhost:8000/blogs", {
+    fetch("https://api.edustar.com.vn/consulting/registration", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((responseData) => onFinish(null, responseData))
+      .catch((error) => onFinish(error.message || "Có lỗi khi gửi dữ liệu"));
+  };
+
   return (
-    // <Form
-    // name="nest-messages"
-    // onFinish={onFinish}
-    // className="max-w-screen-lg mx-auto"
-    // layout="vertical"
-    // autoComplete="off"
-    // validateMessages={validateMessages}
-    // >
-    //   <ConfigProvider
-    //   theme={{
-    //     token:{
-    //       colorPrimary:"#fb9400"
-    //     }
-    //   }}
-    //   >
-    //   <Form.Item>
-    //    <h2 className="text-[#fb9600] font-bold text-center phone:text-base tablet:text-lg laptop:text-xl uppercase">
-    //       Đăng ký thi thử {isOpenModalConfirm}
-    //     </h2>
-    //    </Form.Item>
-
-    //     <Form.Item
-    //      name="UserName"
-    //       label={
-    //        <span className="text-[#808080] font-normal ml-auto text-left phone:text-xs tablet:text-sm">
-    //           Họ Và Tên
-    //        </span>
-    //      }
-    //       rules={[
-    //        {
-    //          required: true,
-    //        },
-    //      ]}
-    //     >
-    //       <Input className="border border-[#fb9400] hover:border-[#fb9400] hover:shadow-md"/>
-    //     </Form.Item>
-
-    //    <Form.Item
-    //      name="email"
-    //      label={
-    //        <p className="text-[#808080] font-normal text-left phone:text-xs tablet:text-sm">
-    //          Email
-    //        </p>
-    //      }
-    //      rules={[
-    //        {
-    //          required: true,
-    //        },
-    //      ]}
-    //    >
-    //      <Input className="border border-[#fb9400] hover:border-[#fb9400] hover:shadow-md"/>
-    //    </Form.Item>
-
-    //     <Form.Item
-    //       name="phoneNumber"
-    //       label={
-    //         <p className="text-[#808080] font-normal phone:text-xs tablet:text-sm">
-    //           Số Điện Thoại
-    //         </p>
-    //       }
-    //       rules={[
-    //         {
-    //           required: true,
-    //         },
-    //       ]}
-    //     >
-    //       <Input className="border border-[#fb9400] hover:border-[#fb9400] hover:shadow-md"/>
-    //     </Form.Item>
-
-    //     <Form.Item>
-    //      <Button
-    //      onClick={() => {}}
-    //        className="bg-[#fb9400]  mx-auto block border border-[#fb9400] text-white font-bold  hover:border-[#fb9400] hover:!text-white hover:shadow-md"
-    //        htmlType="submit"
-    //      >
-    //        Đăng ký
-    //      </Button>
-    //    </Form.Item>
-    //   </ConfigProvider>
-    //   </Form>
-
-    <Button type="primary" htmlType="submit" disabled={!submittable}>
-    Submit
-  </Button>
-);
-};
-const App = () => {
-const [form] = Form.useForm();
-return (
-  <Form form={form} name="validateOnly" layout="vertical" autoComplete="off">
-    <Form.Item
-      name="name"
-      label="Name"
-      rules={[
-        {
-          required: true,
-        },
-      ]}
+    <Form
+      name="nest-messages"
+      onFinish={onFinish}
+      layout="vertical"
+      className=" w-[60%] px-[10%] py-[3%] rounded-md absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] opacity-90"
+      validateMessages={validateMessages}
+      //   className="bg-[#2c7be5]"
     >
-      <Input />
-    </Form.Item>
-    <Form.Item
-      name="age"
-      label="Age"
-      rules={[
-        {
-          required: true,
-        },
-      ]}
-    >
-      <Input />
-    </Form.Item>
-    {/* <Form.Item>
-      <Space>
-        <SubmitButton form={form} />
-        <Button htmlType="reset">Reset</Button>
-      </Space>
-    </Form.Item> */}
-  </Form>
+      {/* <h2 className="text-white">{isOpenModalConfirm} aaaa</h2> */}
+      <Form.Item>
+        <h2 className="text-[#fb9400] font-bold text-center phone:text-base tablet:text-lg laptop:text-xl">
+          Đăng ký thi thử {isOpenModalConfirm}
+        </h2>
+      </Form.Item>
+      <label htmlFor="userName"> Họ Và Tên</label>
+      <Form.Item
+        name="username"
+        id="userName"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Input className="border-[#fb9400] hover:border-[#fb9400] hover:shadow-md" />
+      </Form.Item>
+
+      <label htmlFor="email">Email</label>
+      <Form.Item
+        name="email"
+        id="email"
+        rules={[
+          {
+            type: "email",
+            required: true,
+          },
+        ]}
+      >
+        {/* <h2 className="text-slate-300 font-normal text-left phone:text-sm tablet:">
+            Email{" "}
+          </h2> */}
+
+        <Input className="border-[#fb9400] hover:border-[#fb9400] hover:shadow-md" />
+      </Form.Item>
+
+      <label htmlFor="phoneNumber"> Số Điện Thoại</label>
+      <Form.Item
+        name="phoneNumber"
+        id="phoneNumber"
+        rules={[
+          // {
+          //   required: true,
+          // },
+          { required: true, message: "Trường thông tin bắt buộc!" },
+          { pattern: /^\d+$/, message: "Vui lòng chỉ nhập số!" },
+          { max: 10, message: "Số điện thoại chỉ được phép nhập 10 số" },
+          { min: 10, message: "Số điện thoại chỉ được phép nhập 10 số" },
+        ]}
+      >
+        <Input className="border-[#fb9400] hover:border-[#fb9400] hover:shadow-md" />
+      </Form.Item>
+
+      <Form.Item>
+        <Button
+          // ml-auto
+          className="bg-[#fb9400] text-white font-bold mx-auto justify-center block hover:!border-[#fb9400] hover:!text-white"
+          htmlType="submit"
+        >
+          Đăng ký thi thử
+        </Button>
+      </Form.Item>
+      <h2 className="text-[#fb9400] text-center">
+        Nếu bạn đã có tài khoản vui lòng đăng nhập hoặc{" "}
+        <Link to={""} className="text-gray-600">
+          Quay lại trang chủ tại đây{" "}
+        </Link>
+      </h2>
+    </Form>
   );
 }
 

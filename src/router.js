@@ -7,11 +7,21 @@ import ExamResult from "./page/ExamResult";
 import Vstep from "./page/Vstep";
 import Toeic from "./page/Toeic";
 import BeforeExam from "./component/beforeExam/BeforeExam";
+import HomePage from "./page/HomePage";
+import Test from "./page/Test";
+import TestLayoutComponents from "./page/TestLayoutComponents";
 
-export const router = createBrowserRouter([
+export const router = createBrowserRouter([{
+path : "/" ,
+element : <HomePage/>
+},
   {
     path: "/register",
     element: <RegisterPage />,
+  },
+  {
+    path: "/test",
+    element: <Test />,
   },
 
   {
@@ -48,4 +58,10 @@ export const router = createBrowserRouter([
     path: "/beforeExam/:examId",
     element: <BeforeExam />,
   },
+  
+  {
+    path: "/testLayout",
+    element: <TestLayoutComponents />,
+  },
+  
 ]);

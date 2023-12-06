@@ -16,7 +16,7 @@ import { PiSpeakerHighFill } from "react-icons/pi";
 import { TfiWrite } from "react-icons/tfi";
 import { AppContext } from "../AppContext";
 import Count from "../Count";
-function FormQuestion({ type, time, data }) {
+function FormQuestion2({ type, time, data }) {
   const [userChoices, setUserChoices] = useState([]);
   const [formData, setFormData] = useState({});
   const { data1, dispatch } = useContext(AppContext);
@@ -317,4 +317,4 @@ function FormQuestion({ type, time, data }) {
   );
 }
 
-export default FormQuestion;
+export default FormQuestion2;

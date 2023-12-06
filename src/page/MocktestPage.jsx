@@ -66,6 +66,7 @@ function MocktestPage(props) {
   }, [type]);
   return (
     <>
+    <div className=" mx-auto">
       <FormQuestion type={type} time={time} data={data1} />
       {data1 && (
         <ConfigProvider
@@ -91,6 +92,7 @@ function MocktestPage(props) {
         isContinue={isContinue}
       />
       <ModalConfirmSubmit />
+    </div>
     </>
   );
 }

@@ -13,3 +13,10 @@ export const getExamByType = (type, isFree) => {
 export const createResponseUser = (data) => {
   return request.post("client/response/add", data);
 };
+export const getListExamByServiceUser = (id) =>{
+  return request.get(`mocktest/exam/examService/${id}`);
+}
+
+export const getDetailExamById = (id) =>{
+  return request.get(`client/exam/${id}`);
+}
