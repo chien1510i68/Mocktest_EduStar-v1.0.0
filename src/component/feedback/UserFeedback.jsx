@@ -10,7 +10,7 @@ import avatar8 from "../../image/iconFeedback/Image8.png"
 import avatar9 from "../../image/iconFeedback/Image9.png"
 import SlidesToShow from "../carousel/Carousel";
 
-const Feedback = () => {
+const UserFeedback = () => {
   const slides = [
     {
       image: avatar1,
@@ -78,7 +78,7 @@ const Feedback = () => {
   return (
     <div className=" justify-center my-10 mx-auto max-w-[1200px]">
       <div className=" text-center">
-        <span className=" text-[#fb9400] font-bold text-3xl border-b-2 py-2 border-[#fb9400]">
+        <span className=" max-w-[1200] text-[#fb9400] font-bold text-3xl border-b-2 py-2 border-[#fb9400]">
           Đánh giá của học viên
         </span>
       </div>
@@ -87,4 +87,4 @@ const Feedback = () => {
   );
 };
 
-export default Feedback;
+export default UserFeedback;
