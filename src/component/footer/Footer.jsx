@@ -98,7 +98,7 @@ const AppFooter = () => {
               )}
             />
           </div>
-          <div className="col-span-1 mx-auto">
+          <div className="col-span-1 sm:mx-auto ml-0 pb-5">
             <span className="font-bold text-lg text-[#f69050] border-b border-[#fb9400]">
               Dịch vụ
             </span>
@@ -115,7 +115,7 @@ const AppFooter = () => {
               )}
             />
           </div>
-          <div className="col-span-1 mx-auto">
+          <div className="col-span-1 sm:mx-auto ml-0">
             <span className="text-lg text-[#f69050] border-b border-[#fb9400] font-bold">
               Lịch làm việc
             </span>
