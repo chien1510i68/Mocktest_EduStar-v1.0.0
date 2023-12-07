@@ -45,7 +45,7 @@ const Consultation = () => {
   return (
     <>
       <div className="max-w-[1200px] mx-auto justify-center px-5">
-        <div className="text-center mx-auto  my-6">
+        <div className="text-center mx-auto  my-10">
           <span className="text-[#fb9400] font-bold text-3xl sm:border-b-2 border-[#fb9400] p-2">
             Đăng ký nhận tư vấn
           </span>

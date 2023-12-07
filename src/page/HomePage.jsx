@@ -53,7 +53,7 @@ const HomePage = () => {
         </div>
 
         <div className="grid tablet:grid-cols-2 mobile:grid-cols-span-1 gap-16 max-w-screen-lg mx-auto justify-center">
-          <div className="col-span-1 shadow-xl shadow-[#c0c0c0] p-6 rounded-2xl">
+          <div className="col-span-1 shadow-xl shadow-[#c0c0c0] p-6 rounded-2xl border mx-2">
             <img src={imgToeic} alt="" />
             <h2 className="text-xl font-bold py-6">
               Bài thi TOEIC là công cụ chuẩn cho phép đánh giá và so sánh được
@@ -124,7 +124,7 @@ const HomePage = () => {
               </Button>
             </ConfigProvider>
           </Drawer>
-          <div className="col-span-1 shadow-xl shadow-[#c0c0c0] p-6 rounded-2xl">
+          <div className="col-span-1 shadow-xl shadow-[#c0c0c0] p-6 rounded-2xl border mx-2">
             <img src={imgVstep} alt="" />
             <h2 className="text-xl font-bold my-6">
               Bài thi đánh giá năng lực tiếng anh theo khung năng lực Ngoại ngữ

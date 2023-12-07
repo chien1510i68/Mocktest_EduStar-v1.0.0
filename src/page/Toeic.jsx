@@ -1,7 +1,7 @@
 import { Image, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 // import Competition from "../component/competition/Competition";
-import Feedback from "../component/feedback/Feedback";
+import Feedback from "../component/feedback/FeedbackComponent";
 import Consultation from "../component/consultation/Consultation";
 import AppMenu from "../component/header/HeaderMenu";
 import Footer from "../component/footer/Footer";
@@ -47,8 +47,8 @@ function Toeic() {
       {/* <HeaderMenu /> */}
       {/* <Speed /> */}
 
-      <div className="mx-2 mt-10">
-        <div className="absolute mx-14 py-10">
+       <div className="mx-2 mt-20">
+        {/* <div className="absolute mx-14 py-10">
           <svg
             width="300"
             height="300"
@@ -85,7 +85,7 @@ function Toeic() {
               stroke-opacity="0.5"
             />
           </svg>
-        </div>
+        </div> */}
 
         <div className="max-w-[1200px] mx-auto">
           <div className="grid tablet:grid-cols-2 mobile:grid-cols-1 gap-5 justify-around my-10">

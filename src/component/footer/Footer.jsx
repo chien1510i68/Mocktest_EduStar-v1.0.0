@@ -81,7 +81,7 @@ const AppFooter = () => {
           </a>
         </div>
         {/* end logo */}
-        <div className="mx-auto grid tablet:grid-cols-3 mobile:grid-cols-1">
+        <div className="mx-auto grid tablet:grid-cols-3 mobile:grid-cols-1 pb-5">
           <div className="col-span-1">
             <List
               dataSource={companyInfo}
@@ -98,7 +98,7 @@ const AppFooter = () => {
               )}
             />
           </div>
-          <div className="col-span-1 sm:mx-auto ml-0 pb-5">
+          <div className="col-span-1 sm:mx-auto ml-0">
             <span className="font-bold text-lg text-[#f69050] border-b border-[#fb9400]">
               Dịch vụ
             </span>

@@ -1,15 +1,13 @@
 // import Feedback from "../component/feedback/Feedback";
 import svgAccounFormInput from "../vector/svgAccountForm.svg";
 import InputElement from "../component/inputElement/Input";
-import SlideComponent from "../component/feedback/Feedback";
-import Intro from "../component/intro/Intro";
+import SlideComponent from "../component/feedback/FeedbackComponent";
 
 const TestLayOut = () => {
   return (
     <>
-      <div className="max-w-lg mx-auto justify-center">
+      <div className=" mx-auto justify-center">
         <SlideComponent />
-        <Intro />
         <InputElement
           placeholder="Họ và tên"
           prefix={<img src={svgAccounFormInput} alt="" />}

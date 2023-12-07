@@ -1,7 +1,7 @@
 import { Image, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 // import Competition from "../component/competition/Competition";
-import Feedback from "../component/feedback/UserFeedback";
+import Feedback from "../component/feedback/FeedbackComponent";
 import Consultation from "../component/consultation/Consultation";
 import Footer from "../component/footer/Footer";
 import group from "../image/Group 5355.png";
