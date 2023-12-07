@@ -1,28 +1,20 @@
-import {
-  BackTop,
-  Button,
-  Checkbox,
-  ConfigProvider,
-  Form,
-  Input,
-  Radio,
-  Tabs,
-} from "antd";
+import { Button, Checkbox, ConfigProvider, Form, Input, Radio } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import ReactAudioPlayer from "react-audio-player";
-import { FaHeadphones } from "react-icons/fa";
-import { IoBook } from "react-icons/io5";
+import Count from "../Count";
 import { PiSpeakerHighFill } from "react-icons/pi";
 import { TfiWrite } from "react-icons/tfi";
+import { IoBook } from "react-icons/io5";
+import { FaHeadphones } from "react-icons/fa";
 import { AppContext } from "../AppContext";
-import Count from "../Count";
-function FormQuestion2({ type, time, data }) {
+
+function FormQuestionDemo({ type, time, section }) {
+  // console.log("totalChoice",totalChoice);
   const [userChoices, setUserChoices] = useState([]);
   const [formData, setFormData] = useState({});
   const { data1, dispatch } = useContext(AppContext);
   const [totalChoice, setTotalChoice] = useState(0);
 
-  console.log("data in exam :", data);
   const handleCheckListChoice = (section) => {
     const choicesInLocalStorage = JSON.parse(
       localStorage.getItem("responseUsers")
@@ -35,34 +27,21 @@ function FormQuestion2({ type, time, data }) {
       ) {
         results.push(choice);
       }
+
       return results;
     }, []);
 
-    console.log("totalChoice" ,totalChoice);
-    return (totalChoice?.length + 1);
+    // console.log("totalChoice", totalChoice);
+    return totalChoice?.length;
   };
 
-  const isQuestionInType = (questionId) => {
-    // setTotalChoice(totalChoice + 1 )
-    const isSelected = userChoices.some(
-      (choice) => choice.questionId === questionId
-    );
-    // if (isSelected) {
-    //   setTotalChoice(totalChoice + 1);
-    // }
-    return isSelected;
-    // return userChoices.some((choice) => choice.questionId === questionId);
-  };
-
-  const handleOptionChange = (section, questionId, answerKey, text) => {
+  const handleOptionChange = (questionId, answerKey, text) => {
     const newUserChoices = [
       ...userChoices.filter((choice) => choice.questionId !== questionId),
       { questionId, answerKey: [answerKey], value: text },
     ];
     setUserChoices(newUserChoices);
-
-    setTotalChoice(handleCheckListChoice(section));
-
+    setTotalChoice(handleCheckListChoice(section) +1);
     localStorage.setItem("responseUsers", JSON.stringify(newUserChoices));
   };
 
@@ -75,7 +54,7 @@ function FormQuestion2({ type, time, data }) {
     localStorage.setItem("responseUsers", JSON.stringify(newUserChoices));
   };
   const handleQuestionEssay = (questionId, value) => {
-    console.log(questionId, value);
+    // console.log(questionId, value);
     const newUserChoices = [
       ...userChoices?.filter((choice) => choice.questionId !== questionId),
       { questionId, value: value },
@@ -87,16 +66,13 @@ function FormQuestion2({ type, time, data }) {
   const handleSubmit = () => {
     dispatch({ type: "openModalSubmit" });
   };
-  // const handleCreateUserResponse = () => {};
-  const items = data?.map((section, index) => ({
-    key: section?.id,
-    label: (
-      <>
-        <h2>PART {index + 1}</h2>
-      </>
-    ),
+  useEffect(() => {
+    setTotalChoice(handleCheckListChoice(section));
 
-    children: (
+    // console.log("Render ...");
+  }, [section]);
+  return (
+    <div>
       <>
         <div className="flex justify-between">
           <div>
@@ -124,21 +100,10 @@ function FormQuestion2({ type, time, data }) {
           </div>
           <Count time={time} />
           <div className="flex items-center gap-5">
-            {/* <div>
-              {section?.questions?.map((question, questionIndex) => (
-                <span
-                  key={question.id}
-                  className={`px-3 border border-slate-800 rounded-sm mr-1  ${
-                    isQuestionInType(question.id) ? "bg-amber-600" : ""
-                  }`}
-                >
-                  {questionIndex + 1}
-                </span>
-              ))}
-            </div> */}
             <div>
               <h2 className="py-1 px-10 rounded-lg font-medium text-[#fff] bg-orange-300">
-                {totalChoice }  / {section?.questions.length}
+                {totalChoice } /{" "}
+                {section?.questions.length}
               </h2>
             </div>
             <ConfigProvider
@@ -212,12 +177,7 @@ function FormQuestion2({ type, time, data }) {
                       <Radio.Group
                         className="grid phone:grid-cols-1 tablet:grid-cols-2 laptop:gap-x-40"
                         onChange={(e) =>
-                          handleOptionChange(
-                            section,
-                            question.id,
-                            e.target.value,
-                            null
-                          )
+                          handleOptionChange(question.id, e.target.value, null)
                         }
                         value={
                           userChoices.find(
@@ -286,43 +246,8 @@ function FormQuestion2({ type, time, data }) {
           </div>
         </div>
       </>
-    ),
-  }));
-
-  const onChange = (key) => {
-    console.log(key);
-    const currentSection = data.find((section) => section.id === key);
-    setTotalChoice(handleCheckListChoice(currentSection));
-  };
-  useEffect(() => {
-    setUserChoices([]);
-  }, [type]);
-
-  const renderTabBar = (props, DefaultTabBar) => (
-    <div className="text-left w-[] bg-slate-500 ">
-      <DefaultTabBar {...props} />
-      <h2>{type}</h2>
-    </div>
-  );
-
-  return (
-    <div>
-      {/* <Button onClick={() => console.log(userChoices)}>Click</Button> */}
-
-      {/* <h2>{totalChoice}</h2> */}
-      <Tabs
-        tabPosition="bottom"
-        centered={true}
-        type="card"
-        defaultActiveKey="1"
-        items={items}
-        className="mt-5"
-        onChange={onChange}
-        renderTabBar={renderTabBar}
-      />
-      <BackTop />
     </div>
   );
 }
 
-export default FormQuestion2;
+export default FormQuestionDemo;

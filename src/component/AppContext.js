@@ -4,6 +4,7 @@ const initialData = {
   isOpenModalNextSection: false,
   isOpenModalSubmit: false,
   isModalWarning: false,
+  typeSection: "listening",
 };
 
 const reducer = (state, action) => {
@@ -37,6 +38,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         isModalWarning: false,
+      };
+    case "changeType":
+      return {
+        ...state,
+        type: action.payload,
       };
     default:
       return state;

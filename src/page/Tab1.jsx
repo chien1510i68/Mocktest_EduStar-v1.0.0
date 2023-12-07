@@ -9,16 +9,11 @@ export default function Tab1({ listItem }) {
     console.log(key);
   };
   const [listening, setListListening] = useState([]);
-  const [reading , setReading] = useState([])
+  const [reading, setReading] = useState([]);
   useEffect(() => {
     setListListening(listItem?.filter((item) => item.type === "listening"));
     setReading(listItem?.filter((item) => item.type === "reading"));
   }, []);
-  const generateLabel = (index) => {
-    const labels = ["A", "B", "C", "D", "E"]; // Chữ để hiển thị giữa mỗi 3 tab
-    const labelIndex = Math.floor(index / 3);
-    return labels[labelIndex];
-  };
 
   const items = [
     {
@@ -31,19 +26,29 @@ export default function Tab1({ listItem }) {
       label: "Reading",
       children: <FormQuestion2 type="listening" time={80} data={reading} />,
     },
-   
   ];
 
   console.log("listItem", listItem);
 
   return (
-    <div>
-      <Tabs
-        tabPosition="bottom"
-        defaultActiveKey="1"
-        items={items}
-        onChange={onChange}
-      />
-    </div>
+    <>
+      <div>
+        <Tabs
+          tabPosition="bottom"
+          defaultActiveKey="1"
+          items={items}
+          onChange={onChange}
+        />
+        <p>Listening</p>
+      </div>
+      {/* <div>
+        <Tabs
+          tabPosition="bottom"
+          defaultActiveKey="1"
+          items={items}
+          onChange={onChange}
+        />
+      </div> */}
+    </>
   );
 }

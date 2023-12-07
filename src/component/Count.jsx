@@ -5,6 +5,10 @@ import { AppContext } from "./AppContext";
 function Count({ time }) {
   const { data, dispatch } = useContext(AppContext);
   const renderer = ({ hours, minutes, seconds }) => {
+    // console.log(hours , minutes , seconds);
+    // localStorage.setItem("seconds",JSON.stringify(seconds))
+    // localStorage.setItem("minutes",JSON.stringify(minutes))
+    // localStorage.setItem("hours",JSON.stringify(hours))
     return (
       <div className="bg-orange-400 px-5 py-2 rounded-lg">
         <h1 className="font-medium text-lg text-yellow-50 ">  
@@ -19,6 +23,7 @@ function Count({ time }) {
     dispatch({ type: "openModalNextSection" });
     // notification.success({message : "Thanh cong"})
   };
+
   return (
     <div>
       <Countdown
