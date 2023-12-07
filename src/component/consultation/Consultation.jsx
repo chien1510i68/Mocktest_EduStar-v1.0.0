@@ -4,7 +4,7 @@ import svgAccounFormInput from "../../vector/svgAccountForm.svg";
 import svgCallFormInput from "../../vector/svgCallForm.svg";
 import svgEmailFormInput from "../../vector/svgEmailForm.svg";
 import svgContentFormInput from "../../vector/svgContentForm.svg";
-import InputElement from "../inputElement/Input";
+import InputComponent from "../inputComponent/InputComponent";
 
 const Consultation = () => {
   const validateMessages = {
@@ -57,10 +57,11 @@ const Consultation = () => {
                 name="name"
                 rules={[{ required: true, message: "Vui lòng điền họ tên!" }]}
               >
-                <InputElement
+                <InputComponent
                   prefix={<img src={svgAccounFormInput} alt=""/>}
                   placeholder="Họ và Tên"
                 />
+                {/* <Input className="border-[#fb9400] hover:border-[#fb9400] hover:shadow-md" /> */}
               </Form.Item>
 
               <Form.Item
@@ -72,7 +73,7 @@ const Consultation = () => {
                   prefix={<img src={svgEmailFormInput} alt=""/>}
                   placeholder="Email"
                 /> */}
-                <InputElement
+                <InputComponent
                 prefix={<img src={svgEmailFormInput} alt=""/>}
                 placeholder="Email"
               />
@@ -95,7 +96,7 @@ const Consultation = () => {
                   prefix={<img src={svgCallFormInput} alt=""/>}
                   placeholder="Số điện thoại"
                 /> */}
-                <InputElement
+                <InputComponent
                   prefix={<img src={svgCallFormInput} alt=""/>}
                   placeholder="Số điện thoại"
                 />
@@ -115,7 +116,7 @@ const Consultation = () => {
                   prefix={<img src={svgContentFormInput} alt=""/>}
                   placeholder="Nội dung tư vấn"
                 /> */}
-                <InputElement
+                <InputComponent
                   prefix={<img src={svgContentFormInput} alt=""/>}
                   placeholder="Nội dung tư vấn"
                 />

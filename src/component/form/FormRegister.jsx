@@ -1,8 +1,9 @@
-import { Button, Form, Input, notification } from "antd";
+import { Button, Form, notification } from "antd";
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../AppContext";
 import { getExamByType } from "../api/exam";
+import InputComponent from "../inputComponent/InputComponent"
 
 function FormRegister(props) {
   const navigate = useNavigate();
@@ -67,7 +68,7 @@ function FormRegister(props) {
       name="nest-messages"
       onFinish={onFinish}
       layout="vertical"
-      className=" w-[60%] px-[10%] py-[3%] rounded-md absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] opacity-90"
+      className="w-[60%] px-[10%] py-[3%] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
       validateMessages={validateMessages}
       //   className="bg-[#2c7be5]"
     >
@@ -87,7 +88,7 @@ function FormRegister(props) {
           },
         ]}
       >
-        <Input className="border-[#fb9400] hover:border-[#fb9400] hover:shadow-md" />
+        <InputComponent />
       </Form.Item>
 
       <label htmlFor="email">Email</label>
@@ -105,7 +106,7 @@ function FormRegister(props) {
             Email{" "}
           </h2> */}
 
-        <Input className="border-[#fb9400] hover:border-[#fb9400] hover:shadow-md" />
+        <InputComponent />
       </Form.Item>
 
       <label htmlFor="phoneNumber"> Số Điện Thoại</label>
@@ -122,7 +123,7 @@ function FormRegister(props) {
           { min: 10, message: "Số điện thoại chỉ được phép nhập 10 số" },
         ]}
       >
-        <Input className="border-[#fb9400] hover:border-[#fb9400] hover:shadow-md" />
+        <InputComponent />
       </Form.Item>
 
       <Form.Item>
@@ -136,7 +137,7 @@ function FormRegister(props) {
       </Form.Item>
       <h2 className="text-[#fb9400] text-center">
         Nếu bạn đã có tài khoản vui lòng đăng nhập hoặc{" "}
-        <Link to={""} className="text-gray-600">
+        <Link to={"https://edustar.com.vn/"} className="text-gray-600">
           Quay lại trang chủ tại đây{" "}
         </Link>
       </h2>

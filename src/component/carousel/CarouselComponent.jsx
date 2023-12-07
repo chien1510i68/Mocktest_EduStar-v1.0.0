@@ -91,7 +91,7 @@ export default function Celebrates({ slides }) {
             <SwiperSlide key={index}>
               <div
                 key={index}
-                className="my-5 h-[400px] mx-2 px-2  rounded-xl shadow-lg border"
+                className="my-5 h-[400px] mx-2 px-5 rounded-xl shadow-lg border"
               >
                 <div class="grid grid-rows-2 grid-flow-col my-10 max-w-[1200]">
                   <div class="row-span-2">
