@@ -71,6 +71,11 @@ function PageDemo(props) {
     setType(type);
     setKey(data.id);
   };
+
+  const showHandleSave = () => {
+    alert("bài thi đã được lưu!")
+  }
+
   const handleConfirmNextSection = () => {
     if (type !== "writing") {
       setIsContinue(true);
@@ -160,21 +165,21 @@ function PageDemo(props) {
 
   return (
     <>
-      <div className="">
+      <div className="my-3">
         <div className="pb-[5%]">
           <FormQuestionDemo type={type} time={time} section={section} />
           {/* {handleTest} */}
         </div>
 
-        <div className="w-[100vw]">
-          <div className="w-full py-2 bg-slate-600 z-20 flex gap-5 justify-center fixed bottom-0">
+        <div className="">
+          <div className="w-full py-2 bg-slate-600 px-3 flex gap-5 justify-center fixed bottom-0">
             <ButtonGroup className="grid">
-              <div className="flex">
+              <div className="md:flex hidden">
                 {listening &&
                   listening?.map((item, index) => (
                     <Button
                       className={`text-xs mx-[1px] ${
-                        key === item.id ? "text-slate-200  bg-orange-500" : ""
+                        key === item.id ? "text-slate-200 bg-orange-500" : ""
                       }`}
                       onClick={
                         type === "listening"
@@ -186,10 +191,10 @@ function PageDemo(props) {
                     </Button>
                   ))}
               </div>
-              <h2 className="mx-auto mt-2 font-medium"> Listening</h2>
+              <h2 className="md:flex hidden mx-auto mt-2 font-medium"> Listening</h2>
             </ButtonGroup>
             <ButtonGroup className="grid">
-              <div className="flex">
+              <div className="md:flex hidden">
                 {
                   reading &&
                     reading?.map((item, index) => (
@@ -209,10 +214,10 @@ function PageDemo(props) {
                   //   <h2>test</h2>
                 }
               </div>
-              <h2 className="mx-auto mt-2 font-medium"> Reading</h2>
+              <h2 className="md:flex hidden mx-auto mt-2 font-medium"> Reading</h2>
             </ButtonGroup>
             <ButtonGroup className="grid">
-              <div className="flex">
+              <div className="md:flex hidden">
                 {
                   writing &&
                     writing?.map((item, index) => (
@@ -232,7 +237,7 @@ function PageDemo(props) {
                   //   <h2>test</h2>
                 }
               </div>
-              <h2 className="mx-auto mt-2 font-medium"> Writing</h2>
+              <h2 className="md:flex hidden mx-auto mt-2 font-medium"> Writing</h2>
             </ButtonGroup>
             {/* <ButtonGroup className="grid">
               <div className="flex">
@@ -263,6 +268,12 @@ function PageDemo(props) {
             >
               {type !== "writing" ? "Next" : "Save and Submit"}
             </Button>
+            <Button 
+            className=" block bg-[#fb9400]  text-white hover:!border-[#fb9400] hover:!text-white"
+            onClick={showHandleSave}
+            >
+              save
+              </Button>
           </div>
         </div>
 

@@ -98,12 +98,12 @@ function FormQuestion2({ type, time, data }) {
 
     children: (
       <>
-        <div className="flex justify-between">
+        <div className="flex justify-between px-2">
           <div>
             {type === "listening" ? (
               <div className="flex gap-3 items-center">
-                <FaHeadphones className="text-[#fb9400] font-bold text-2xl" />
-                <h2 className="font-bold text-[#fb9400] ">LISTENING</h2>
+                {/* <FaHeadphones className="text-[#fb9400] font-bold text-2xl" />
+                <h2 className="font-bold text-[#fb9400] ">LISTENING</h2> */}
               </div>
             ) : type === "reading" ? (
               <div className="flex gap-3 items-center">
@@ -137,9 +137,9 @@ function FormQuestion2({ type, time, data }) {
               ))}
             </div> */}
             <div>
-              <h2 className="py-1 px-10 rounded-lg font-medium text-[#fff] bg-orange-300">
+              <Button className="py-1 flex px-10 rounded-lg font-medium text-[#fff] bg-orange-300">
                 {totalChoice }  / {section?.questions.length}
-              </h2>
+              </Button>
             </div>
             <ConfigProvider
               theme={{
@@ -198,7 +198,7 @@ function FormQuestion2({ type, time, data }) {
             )}
             <Form layout="vertical">
               {section?.questions.map((question, questionIndex) => (
-                <div key={questionIndex}>
+                <div key={questionIndex} className="!mx-5">
                   <h2 className="font-medium text-base">
                     Question {questionIndex + 1} : {question.content}
                     {question?.description?.startsWith("https") && (

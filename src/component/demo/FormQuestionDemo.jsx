@@ -74,33 +74,33 @@ function FormQuestionDemo({ type, time, section }) {
   return (
     <div>
       <>
-        <div className="flex justify-between">
+        <div className="flex justify-between px-2 my-5">
           <div>
             {type === "listening" ? (
               <div className="flex gap-3 items-center">
-                <FaHeadphones className="text-[#fb9400] font-bold text-2xl" />
+                <FaHeadphones className="text-[#fb9400] sm:block hidden font-bold text-2xl" />
                 <h2 className="font-bold text-[#fb9400] ">LISTENING</h2>
               </div>
             ) : type === "reading" ? (
               <div className="flex gap-3 items-center">
-                <IoBook className="text-orange-500 font-bold text-2xl" />
+                <IoBook className="text-orange-500 sm:block hidden font-bold text-2xl" />
                 <h2 className="font-bold text-orange-500 ">READING</h2>
               </div>
             ) : type === "wiriting" ? (
               <div className="flex gap-3 items-center">
-                <TfiWrite className="text-orange-500 font-bold text-2xl" />
+                <TfiWrite className="text-orange-500 sm:block hidden font-bold text-2xl" />
                 <h2 className="font-bold text-orange-500 ">WRITING</h2>
               </div>
             ) : (
               <div className="flex gap-3 items-center">
-                <PiSpeakerHighFill className="text-orange-500 font-bold text-2xl" />
+                <PiSpeakerHighFill className="text-orange-500 sm:block hidden font-bold text-2xl" />
                 <h2 className="font-bold text-orange-500 ">SPEAKING</h2>
               </div>
             )}
           </div>
           <Count time={time} />
           <div className="flex items-center gap-5">
-            <div>
+            <div className="sm:block hidden">
               <h2 className="py-1 px-10 rounded-lg font-medium text-[#fff] bg-orange-300">
                 {totalChoice } /{" "}
                 {section?.questions.length}
@@ -161,7 +161,7 @@ function FormQuestionDemo({ type, time, section }) {
                 className="my-5"
               />
             )}
-            <Form layout="vertical">
+            <Form layout="vertical" className="sm:px-6 px-2">
               {section?.questions.map((question, questionIndex) => (
                 <div key={questionIndex}>
                   <h2 className="font-medium text-base">

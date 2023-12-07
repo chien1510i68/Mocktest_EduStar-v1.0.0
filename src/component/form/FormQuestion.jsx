@@ -98,7 +98,7 @@ function FormQuestion({ type, time, data }) {
 
     children: (
       <>
-        <div className="flex justify-between">
+        <div className="flex justify-between max-w-[1200px]">
           <div>
             {type === "listening" ? (
               <div className="flex gap-3 items-center">
