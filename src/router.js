@@ -10,6 +10,7 @@ import BeforeExam from "./component/beforeExam/BeforeExam";
 import HomePage from "./page/HomePage";
 import Test from "./page/Test";
 import TestLayoutComponents from "./page/TestLayoutComponents";
+import PageDemo from "./component/demo/PageDemo";
 
 export const router = createBrowserRouter([{
 path : "/" ,
@@ -26,7 +27,8 @@ element : <HomePage/>
 
   {
     path: "/exam/:examId",
-    element: <MocktestPage />,
+    // element: <MocktestPage />,
+    element:<PageDemo/>
   },
 
   {
@@ -62,6 +64,9 @@ element : <HomePage/>
   {
     path: "/testLayout",
     element: <TestLayoutComponents />,
-  },
+  },{
+    path : "/demo" ,
+    element :<PageDemo/>
+  }
   
 ]);
