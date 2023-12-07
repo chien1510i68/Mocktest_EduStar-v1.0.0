@@ -27,7 +27,8 @@ element : <HomePage/>
 
   {
     path: "/exam/:examId",
-    element: <MocktestPage />,
+    // element: <MocktestPage />,
+    element:<PageDemo/>
   },
 
   {

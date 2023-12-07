@@ -5,6 +5,9 @@ const initialData = {
   isOpenModalSubmit: false,
   isModalWarning: false,
   typeSection: "listening",
+  firstReading: null,
+  firstWriting: null,
+  firstSpeaking: null,
 };
 
 const reducer = (state, action) => {
@@ -44,6 +47,14 @@ const reducer = (state, action) => {
         ...state,
         type: action.payload,
       };
+
+    case "saveFirstReading":
+      return { ...state, firstReading: action.payload };
+    case "saveFirstWriting":
+      return { ...state, firstWriting: action.payload };
+    case "saveFirstSpeaking":
+      return { ...state, firstSpeaking: action.payload };
+
     default:
       return state;
   }

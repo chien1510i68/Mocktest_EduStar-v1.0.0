@@ -9,7 +9,7 @@ function ModalNextSection({ handleChangeType, isContinue }) {
   const handleOk = () => {
     // setIsModalOpen(false);
     handleChangeType();
-    console.log("OK");
+    // console.log("OK");
   };
   const handleCancel = () => {
     // setIsModalOpen(false);
