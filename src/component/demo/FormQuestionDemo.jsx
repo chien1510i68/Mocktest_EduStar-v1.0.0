@@ -16,29 +16,6 @@ function FormQuestionDemo({ type, time, section }) {
   const { data1, dispatch } = useContext(AppContext);
   const [totalChoice, setTotalChoice] = useState(1);
 
-  // const handleCheckListChoice = (section) => {
-
-  //     const localData = JSON.parse(localStorage.getItem("responseUsers"));
-  //     const listQues = section?.questions;
-  //     const commonElements = localData?.filter((itemA) =>
-  //       listQues?.some((itemB) => itemB.id === itemA.questionId)
-  //     );
-  //     const numberOfCommonElements = commonElements?.length;
-  //     setTotalChoice(numberOfCommonElements);
-  //     console.log(numberOfCommonElements); // Kết quả: 2
-
-  // };
-
-  // const handleOptionChange = (questionId, answerKey, text) => {
-  //   const newUserChoices = [
-  //     ...userChoices.filter((choice) => choice.questionId !== questionId),
-  //     { questionId, answerKey: [answerKey], value: text },
-  //   ];
-  //   setUserChoices(newUserChoices);
-  //   // setTotalChoice(handleCheckListChoice(section) + 1);
-  //   handleCheckListChoice(section);
-  //   localStorage.setItem("responseUsers", JSON.stringify(newUserChoices));
-  // };
   const handleCheckListChoice = (section) => {
     const localData = JSON.parse(localStorage.getItem("responseUsers"));
     const listQues = section?.questions;

@@ -6,7 +6,7 @@ import { getDetailExamById } from "../api/exam";
 import ModalConfirmSubmit from "../modal/ModalConfirmSubmit";
 import ModalNextSection from "../modal/ModalNextSection";
 import FormQuestionDemo from "./FormQuestionDemo";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 function PageDemo(props) {
   const { data, dispatch } = useContext(AppContext);
@@ -15,6 +15,7 @@ function PageDemo(props) {
   const [reading, setReading] = useState(null);
   const [writing, setWriting] = useState(null);
   const [speaking, setSpeaking] = useState(null);
+  const navigate = useNavigate()
   const [section, setSection] = useState(null);
   const [firstReading, setFirstReading] = useState(null);
   const [firstWriting, setFirstWriting] = useState(null);
@@ -25,6 +26,7 @@ function PageDemo(props) {
   const [listSection ,setListSection] = useState([])
   const [time, setTime] = useState(40);
   const { examId } = useParams();
+  const{typeInSection} = useParams()
 
   const [key, setKey] = useState(null);
   const handleGetData = async () => {
@@ -37,6 +39,12 @@ function PageDemo(props) {
       setSection(listListening?.length > 0 ? listListening[0] : null);
       setKey(listListening?.length > 0 ? listListening[0]?.id : null);
       setListening(listListening);
+
+
+
+      const sectionList = res?.data?.sections.filter((i) => i.type === typeInSection)
+      setSection(sectionList?.length > 0 ? sectionList[0] : null);
+      setKey(sectionList?.length > 0 ? sectionList[0]?.id : null);
 
       const listReading = res?.data?.sections.filter(
         (i) => i.type === "reading"
@@ -64,7 +72,7 @@ function PageDemo(props) {
   useEffect(() => {
     handleGetData();
     localStorage.setItem("timeSection", JSON.stringify(45));
-    localStorage.setItem("typeSection", JSON.stringify("listening"));
+    // localStorage.setItem("typeSection", JSON.stringify("listening"));
    
   }, []);
 
@@ -88,26 +96,29 @@ function PageDemo(props) {
   const handleChangeType = () => {
     switch (type) {
       case "listening":
+        navigate(`/exam/${examId}/reading`)
         setSection(firstReading);
         setTime(45);
         setKey(firstReading?.id);
         localStorage.setItem("timeSection", JSON.stringify(60));
         localStorage.setItem("typeSection", JSON.stringify("reading"));
-
+        
         dispatch({ type: "setChangeTimeSection" ,payload : true});
         setType("reading");
         break;
-      case "reading":
+        case "reading":
+        navigate(`/exam/${examId}/writing`)
         setSection(firstWriting);
         setTime(60);
         localStorage.setItem("timeSection", JSON.stringify(60));
         dispatch({ type: "setChangeTimeSection" ,payload : true});
         localStorage.setItem("typeSection", JSON.stringify("writing"));
-
+        
         setKey(firstWriting?.id);
         setType("writing");
         break;
-      case "writing":
+        case "writing":
+        navigate(`/exam/${examId}/speaking`)
         localStorage.setItem("timeSection", JSON.stringify(15));
         dispatch({ type: "setChangeTimeSection" ,payload : true});
         localStorage.setItem("typeSection", JSON.stringify("speaking"));
@@ -148,7 +159,7 @@ function PageDemo(props) {
                         key === item.id ? "text-slate-200  bg-orange-500" : ""
                       }`}
                       onClick={
-                        type === "listening"
+                        typeInSection === "listening"
                           ? () => handleShowSection(item, "listening")
                           : null
                       }
@@ -169,7 +180,7 @@ function PageDemo(props) {
                           key === item.id ? "text-slate-200  bg-orange-500" : ""
                         }`}
                         onClick={
-                          type === "reading"
+                          typeInSection === "reading"
                             ? () => handleShowSection(item, "reading")
                             : null
                         }
@@ -192,7 +203,7 @@ function PageDemo(props) {
                           key === item.id ? "text-slate-200  bg-orange-500" : ""
                         }`}
                         onClick={
-                          type === "writing"
+                          typeInSection === "writing"
                             ? () => handleShowSection(item, "writing")
                             : null
                         }
@@ -229,10 +240,10 @@ function PageDemo(props) {
               <h2 className="mx-auto mt-2 font-medium"> Speaking</h2>
             </ButtonGroup> */}
             <Button
-              className=" block bg-[#fb9400]  text-white hover:!border-[#fb9400] hover:!text-white"
+              className= {`block bg-[#fb9400]  text-white hover:!border-[#fb9400] hover:!text-white ${(type === "writing") ? "hidden" : ""}`}
               onClick={handleConfirmNextSection}
             >
-              {type !== "writing" ? "Next" : "Save and Submit"}
+              {type !== "writing" ? "Next" : ""}
             </Button>
           </div>
         </div>

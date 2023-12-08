@@ -68,7 +68,7 @@ const BeforeExam = () => {
                         </div>
                     </div>
                     <div className="row-span-1 col-span-1">
-                        <button onClick={() => navigate(`/exam/${examId}`)} className="bg-[#fb9400] w-full p-2 text-white font-bold uppercase rounded-md shadow-md shadow-[#bebbb3] hover:bg-yellow-500"
+                        <button onClick={() => navigate(`/exam/${examId}/listening`)} className="bg-[#fb9400] w-full p-2 text-white font-bold uppercase rounded-md shadow-md shadow-[#bebbb3] hover:bg-yellow-500"
                         >thi thử</button>
                     </div>
                 </div>

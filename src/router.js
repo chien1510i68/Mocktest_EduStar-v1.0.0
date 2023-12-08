@@ -31,7 +31,7 @@ element : <HomePage/>
     element :<Count/>
   },
   {
-    path: "/exam/:examId",
+    path: "/exam/:examId/:typeInSection",
     // element: <MocktestPage />,
     element:<PageDemo/>
   },

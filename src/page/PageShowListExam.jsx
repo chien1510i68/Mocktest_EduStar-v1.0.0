@@ -9,7 +9,8 @@ function PageShowListExam() {
     const navigate = useNavigate();
 
     const data = location.state
-      console.log("Danh sach cac du lieu la : ", data?.length);
+    //   console.log("Danh sach cac du lieu la : ", data?.length);
+     
 
     return (
         <div className="mx-auto max-w-screen-lg ">

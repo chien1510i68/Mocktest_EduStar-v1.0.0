@@ -1,9 +1,11 @@
 import { Button, ConfigProvider, Modal } from "antd";
 import React, { useContext, useState } from "react";
 import { AppContext } from "../AppContext";
+import { useNavigate } from "react-router";
 
 function ModalNextSection({ handleChangeType, isContinue }) {
   const { data, dispatch } = useContext(AppContext);
+  const navigate = useNavigate()
   const { isOpenModalNextSection, setChangeTimeSection } = data;
 
   const handleOk = () => {
@@ -11,6 +13,8 @@ function ModalNextSection({ handleChangeType, isContinue }) {
     handleChangeType();
     console.log("setChangeTimeSection", setChangeTimeSection);
     dispatch({type : "setChangeTimeSection" ,payload : true})
+    
+    
     // console.log("OK");
   };
   const handleCancel = () => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Image, Card, Space, Button, ConfigProvider } from "antd";
 import imgResult from "../image/imgResult.png";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -8,6 +8,14 @@ const ExamResult = () => {
 
   const data = location.state;
   console.log("Danh sach cac du lieu la : ", data);
+  useEffect(() =>{
+    localStorage.removeItem("timeSection")
+    localStorage.removeItem("timeLeft")
+    localStorage.removeItem("responsewriting")
+    localStorage.removeItem("responselistening")
+    localStorage.removeItem("responsereading")
+    localStorage.removeItem("typeSection")
+  },[])
   return (
     <>
       <div className="grid tablet:grid-cols-2 mobile:grid-cols-1 max-w-screen-lg mx-auto gap-10 px-2 sm:mt-5 justify-center">
