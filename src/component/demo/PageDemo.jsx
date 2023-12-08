@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, notification } from "antd";
 import ButtonGroup from "antd/es/button/button-group";
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../AppContext";
@@ -22,8 +22,9 @@ function PageDemo(props) {
   const [type, setType] = useState(typeSection);
   const [isContinue, setIsContinue] = useState(false);
   const [totalChoice, setTotalChoice] = useState(0);
+  const [listSection ,setListSection] = useState([])
   const [time, setTime] = useState(40);
-  const {examId} = useParams()
+  const { examId } = useParams();
 
   const [key, setKey] = useState(null);
   const handleGetData = async () => {
@@ -34,7 +35,7 @@ function PageDemo(props) {
         (i) => i.type === "listening"
       );
       setSection(listListening?.length > 0 ? listListening[0] : null);
-      setKey(listListening?.length > 0 ? listListening[0]?.id : null)
+      setKey(listListening?.length > 0 ? listListening[0]?.id : null);
       setListening(listListening);
 
       const listReading = res?.data?.sections.filter(
@@ -49,12 +50,12 @@ function PageDemo(props) {
       setFirstWriting(listWriting?.length > 0 ? listWriting[0] : null);
       setWriting(listWriting);
 
-
       const listSpeaking = res?.data?.sections.filter(
         (i) => i.type === "writing"
       );
       setFirstSpeaking(listSpeaking?.length > 0 ? listSpeaking[0] : null);
       setSpeaking(listSpeaking);
+      
     } catch (error) {
       console.log(error);
     }
@@ -62,7 +63,9 @@ function PageDemo(props) {
 
   useEffect(() => {
     handleGetData();
-    localStorage.setItem("timeSection", JSON.stringify(time));
+    localStorage.setItem("timeSection", JSON.stringify(45));
+    localStorage.setItem("typeSection", JSON.stringify("listening"));
+   
   }, []);
 
   const handleShowSection = (data, type) => {
@@ -82,81 +85,49 @@ function PageDemo(props) {
       dispatch({ type: "openModalSubmit" });
     }
   };
-  // const handleChangeType = () => {
-  //   switch (type) {
-  //     case "listening":
-  //       setSection(firstReading);
-  //       break;
-  //     case "reading":
-  //       setSection(firstWriting);
-  //       break;
-  //       case "writing" :
-  //         setSection(firstSpeaking)
-  //         break
-  //     default:
-  //       return null;
-  //   }
-
-  //   // setSection(
-  //   //   type === "listening"
-  //   //     ? firstReading
-  //   //     : type === "reading"
-  //   //     ? firstWriting
-  //   //     : null
-  //   // );
-  //   // setSection((type === "reading") ? firstWriting : null)
-  //   setType(
-  //     type === "listening" ? "reading" : type === "reading" ? "writing" : ""
-  //   );
-  //   const answerUser = JSON.parse(localStorage.getItem("responseUsers"));
-  //   localStorage.setItem(`response${type}`, JSON.stringify(answerUser));
-  //   localStorage.removeItem("responseUsers");
-  //   dispatch({ type: "closeModalNextSection" });
-  //   if (type === "reading") {
-  //     setSection(firstReading);
-  //   }
-  //   console.log(firstReading);
-  // };
   const handleChangeType = () => {
     switch (type) {
       case "listening":
         setSection(firstReading);
-        setKey(firstReading?.id)
+        setTime(45);
+        setKey(firstReading?.id);
+        localStorage.setItem("timeSection", JSON.stringify(60));
+        localStorage.setItem("typeSection", JSON.stringify("reading"));
+
+        dispatch({ type: "setChangeTimeSection" ,payload : true});
         setType("reading");
         break;
       case "reading":
         setSection(firstWriting);
-        setKey(firstWriting?.id)
+        setTime(60);
+        localStorage.setItem("timeSection", JSON.stringify(60));
+        dispatch({ type: "setChangeTimeSection" ,payload : true});
+        localStorage.setItem("typeSection", JSON.stringify("writing"));
+
+        setKey(firstWriting?.id);
         setType("writing");
         break;
       case "writing":
+        localStorage.setItem("timeSection", JSON.stringify(15));
+        dispatch({ type: "setChangeTimeSection" ,payload : true});
+        localStorage.setItem("typeSection", JSON.stringify("speaking"));
+
+        setTime(10);
         setSection(firstSpeaking);
-        setType(""); // or set to the appropriate value
+        setType("speaking"); // or set to the appropriate value
         break;
       default:
         return null;
     }
-  
+
     const answerUser = JSON.parse(localStorage.getItem("responseUsers"));
     localStorage.setItem(`response${type}`, JSON.stringify(answerUser));
     localStorage.removeItem("responseUsers");
     dispatch({ type: "closeModalNextSection" });
     console.log(firstReading);
   };
-  
-  useEffect(() => {
-    setTime((prevTime) => {
-      const newTime =
-        type === "listening"
-          ? 40
-          : type === "reading"
-          ? 25
-          : type === "writing"
-          ? 15
-          : 10;
-      localStorage.setItem("timeSection", JSON.stringify(newTime));
-    });
-  }, [type]);
+
+
 
   return (
     <>

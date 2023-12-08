@@ -11,6 +11,7 @@ import HomePage from "./page/HomePage";
 import Test from "./page/Test";
 import TestLayoutComponents from "./page/TestLayoutComponents";
 import PageDemo from "./component/demo/PageDemo";
+import Count from "./component/Count";
 
 export const router = createBrowserRouter([{
 path : "/" ,
@@ -25,6 +26,10 @@ element : <HomePage/>
     element: <Test />,
   },
 
+  {
+    path : "/count" ,
+    element :<Count/>
+  },
   {
     path: "/exam/:examId",
     // element: <MocktestPage />,

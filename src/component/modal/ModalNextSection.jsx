@@ -4,11 +4,13 @@ import { AppContext } from "../AppContext";
 
 function ModalNextSection({ handleChangeType, isContinue }) {
   const { data, dispatch } = useContext(AppContext);
-  const { isOpenModalNextSection } = data;
+  const { isOpenModalNextSection, setChangeTimeSection } = data;
 
   const handleOk = () => {
     // setIsModalOpen(false);
     handleChangeType();
+    console.log("setChangeTimeSection", setChangeTimeSection);
+    dispatch({type : "setChangeTimeSection" ,payload : true})
     // console.log("OK");
   };
   const handleCancel = () => {
@@ -18,7 +20,6 @@ function ModalNextSection({ handleChangeType, isContinue }) {
   return (
     <div>
       <Modal footer={null} open={isOpenModalNextSection}>
-       
         <h2 className="font-medium text-center text-xl text-orange-400">
           Move on to the next test{" "}
         </h2>
@@ -28,22 +29,27 @@ function ModalNextSection({ handleChangeType, isContinue }) {
         </p>
         <div className="flex justify-end gap-5">
           {isContinue === true && (
-            <ConfigProvider 
-            theme={{
-              token: {
-                colorPrimary: "transparent",
-              }
-            }}
+            <ConfigProvider
+              theme={{
+                token: {
+                  colorPrimary: "transparent",
+                },
+              }}
             >
-              <Button className="bg-[#eca52b] text-white hover:!text-white hover:!border-[#eca52b] hover:shadow-md" onClick={handleCancel}
-            >
-              Cancel
-            </Button>
-          <Button className="bg-lime-800 text-white hover:!text-white hover:!border-lime-800 hover:shadow-md" onClick={handleOk}>
-            Confirm
-          </Button>
+              <Button
+                className="bg-[#eca52b] text-white hover:!text-white hover:!border-[#eca52b] hover:shadow-md"
+                onClick={handleCancel}
+              >
+                Cancel
+              </Button>
+              <Button
+                className="bg-lime-800 text-white hover:!text-white hover:!border-lime-800 hover:shadow-md"
+                onClick={handleOk}
+              >
+                Confirm
+              </Button>
             </ConfigProvider>
-          )} 
+          )}
         </div>
       </Modal>
     </div>

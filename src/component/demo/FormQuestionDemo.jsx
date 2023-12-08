@@ -7,32 +7,47 @@ import { TfiWrite } from "react-icons/tfi";
 import { IoBook } from "react-icons/io5";
 import { FaHeadphones } from "react-icons/fa";
 import { AppContext } from "../AppContext";
+import Count2 from "../Count2";
 
 function FormQuestionDemo({ type, time, section }) {
   // console.log("totalChoice",totalChoice);
   const [userChoices, setUserChoices] = useState([]);
   const [formData, setFormData] = useState({});
   const { data1, dispatch } = useContext(AppContext);
-  const [totalChoice, setTotalChoice] = useState(0);
+  const [totalChoice, setTotalChoice] = useState(1);
 
+  // const handleCheckListChoice = (section) => {
+
+  //     const localData = JSON.parse(localStorage.getItem("responseUsers"));
+  //     const listQues = section?.questions;
+  //     const commonElements = localData?.filter((itemA) =>
+  //       listQues?.some((itemB) => itemB.id === itemA.questionId)
+  //     );
+  //     const numberOfCommonElements = commonElements?.length;
+  //     setTotalChoice(numberOfCommonElements);
+  //     console.log(numberOfCommonElements); // Kết quả: 2
+
+  // };
+
+  // const handleOptionChange = (questionId, answerKey, text) => {
+  //   const newUserChoices = [
+  //     ...userChoices.filter((choice) => choice.questionId !== questionId),
+  //     { questionId, answerKey: [answerKey], value: text },
+  //   ];
+  //   setUserChoices(newUserChoices);
+  //   // setTotalChoice(handleCheckListChoice(section) + 1);
+  //   handleCheckListChoice(section);
+  //   localStorage.setItem("responseUsers", JSON.stringify(newUserChoices));
+  // };
   const handleCheckListChoice = (section) => {
-    const choicesInLocalStorage = JSON.parse(
-      localStorage.getItem("responseUsers")
+    const localData = JSON.parse(localStorage.getItem("responseUsers"));
+    const listQues = section?.questions;
+    const commonElements = localData?.filter((itemA) =>
+      listQues?.some((itemB) => itemB.id === itemA.questionId)
     );
-    const totalChoice = choicesInLocalStorage?.reduce((results, choice) => {
-      if (
-        section?.questions?.some(
-          (question) => question.id === choice.questionId
-        )
-      ) {
-        results.push(choice);
-      }
-
-      return results;
-    }, []);
-
-    // console.log("totalChoice", totalChoice);
-    return totalChoice?.length;
+    const numberOfCommonElements = commonElements?.length;
+    console.log(numberOfCommonElements); // Kết quả: 2
+    return numberOfCommonElements; // Trả về giá trị để sử dụng ở nơi khác
   };
 
   const handleOptionChange = (questionId, answerKey, text) => {
@@ -41,7 +56,13 @@ function FormQuestionDemo({ type, time, section }) {
       { questionId, answerKey: [answerKey], value: text },
     ];
     setUserChoices(newUserChoices);
-    setTotalChoice(handleCheckListChoice(section) +1);
+
+    const updatedTotalChoice = handleCheckListChoice(section);
+    if (!isNaN(updatedTotalChoice)) {
+      setTotalChoice(updatedTotalChoice);
+      console.log(updatedTotalChoice);
+    }
+
     localStorage.setItem("responseUsers", JSON.stringify(newUserChoices));
   };
 
@@ -67,10 +88,18 @@ function FormQuestionDemo({ type, time, section }) {
     dispatch({ type: "openModalSubmit" });
   };
   useEffect(() => {
-    setTotalChoice(handleCheckListChoice(section));
-
+    if (isNaN(totalChoice)) {
+      setTotalChoice(0);
+      console.log(0);
+    } else {
+      // Chỉ gọi setTotalChoice khi người dùng thực hiện hành động
+      const choice = handleCheckListChoice(section);
+      console.log(choice);
+      setTotalChoice(choice);
+    }
     // console.log("Render ...");
-  }, [section]);
+  }, [section, userChoices]); // Thêm userChoices vào dependency để cập nhật khi userChoices thay đổi
+
   return (
     <div>
       <>
@@ -98,12 +127,12 @@ function FormQuestionDemo({ type, time, section }) {
               </div>
             )}
           </div>
-          <Count time={time} />
+          <Count2/>
+
           <div className="flex items-center gap-5">
             <div>
               <h2 className="py-1 px-10 rounded-lg font-medium text-[#fff] bg-orange-300">
-                {totalChoice } /{" "}
-                {section?.questions.length}
+                {totalChoice} / {section?.questions?.length}
               </h2>
             </div>
             <ConfigProvider
@@ -162,7 +191,7 @@ function FormQuestionDemo({ type, time, section }) {
               />
             )}
             <Form layout="vertical">
-              {section?.questions.map((question, questionIndex) => (
+              {section?.questions?.map((question, questionIndex) => (
                 <div key={questionIndex}>
                   <h2 className="font-medium text-base">
                     Question {questionIndex + 1} : {question.content}

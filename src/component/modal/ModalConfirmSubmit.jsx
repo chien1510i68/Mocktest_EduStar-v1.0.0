@@ -44,6 +44,9 @@ function ModalConfirmSubmit() {
     })
 
   };
+  const handleTest = () =>{
+    localStorage.setItem("timeLeft" ,JSON.stringify(0))
+  }
   return (
     <div>
       <Modal open={isOpenModalSubmit} footer={null} maskClosable={true}>
@@ -62,6 +65,7 @@ function ModalConfirmSubmit() {
               }
             }}
           >
+            <Button onClick={ handleTest}>Click</Button>
             <Button onClick={handleCancel} className="bg-[#fb9400] text-white hover:!text-white hover:!border-[#fb9400] hover:shadow-md">
               Cancel
             </Button>

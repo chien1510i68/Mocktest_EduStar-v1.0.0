@@ -8,6 +8,7 @@ const initialData = {
   firstReading: null,
   firstWriting: null,
   firstSpeaking: null,
+  setChangeTimeSection : false 
 };
 
 const reducer = (state, action) => {
@@ -54,7 +55,8 @@ const reducer = (state, action) => {
       return { ...state, firstWriting: action.payload };
     case "saveFirstSpeaking":
       return { ...state, firstSpeaking: action.payload };
-
+    case "setChangeTimeSection" : 
+    return {...state , setChangeTimeSection : action.payload}
     default:
       return state;
   }

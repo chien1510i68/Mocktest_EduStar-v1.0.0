@@ -5,11 +5,15 @@ import onlineTest from "../../image/online_test_1.png";
 import image1 from "../../image/image1.png";
 
 import {  useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 const BeforeExam = () => {
     
     const navigate = useNavigate();
     const {examId} = useParams()
+    useEffect(() =>{
+        localStorage.setItem("typeSection", JSON.stringify("listening")); 
+    },[])
     return (
         <>
             <div className="bg-#fdf8ee max-w-screen-lg mx-auto">
