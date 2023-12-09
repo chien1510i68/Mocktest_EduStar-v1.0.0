@@ -77,31 +77,31 @@ function FormQuestionDemo({ type, time, section }) {
         <div className="flex justify-between px-2 my-5">
           <div>
             {type === "listening" ? (
-              <div className="flex gap-3 items-center">
-                <FaHeadphones className="text-[#fb9400] sm:block hidden font-bold text-2xl" />
-                <h2 className="font-bold text-[#fb9400] ">LISTENING</h2>
+              <div className="flex gap-3 items-center ">
+                <FaHeadphones className="text-[#fb9400] font-bold text-2xl mt-3" />
+                <h2 className="font-bold text-[#fb9400] hidden mt-3 sm:block">LISTENING</h2>
               </div>
             ) : type === "reading" ? (
               <div className="flex gap-3 items-center">
-                <IoBook className="text-orange-500 sm:block hidden font-bold text-2xl" />
-                <h2 className="font-bold text-orange-500 ">READING</h2>
+                <IoBook className="text-orange-500 font-bold text-2xl mt-3" />
+                <h2 className="font-bold hidden sm:block text-orange-500 mt-3">READING</h2>
               </div>
-            ) : type === "wiriting" ? (
+            ) : type === "writing" ? (
               <div className="flex gap-3 items-center">
-                <TfiWrite className="text-orange-500 sm:block hidden font-bold text-2xl" />
-                <h2 className="font-bold text-orange-500 ">WRITING</h2>
+                <TfiWrite className="text-orange-500 font-bold text-2xl mt-3" />
+                <h2 className="font-bold sm:block hidden text-orange-500 mt-3">WRITING</h2>
               </div>
             ) : (
               <div className="flex gap-3 items-center">
-                <PiSpeakerHighFill className="text-orange-500 sm:block hidden font-bold text-2xl" />
-                <h2 className="font-bold text-orange-500 ">SPEAKING</h2>
+                <PiSpeakerHighFill className="text-orange-500 font-bold text-2xl mt-3" />
+                <h2 className="font-bold sm:block hidden text-orange-500 mt-3">SPEAKING</h2>
               </div>
             )}
           </div>
           <Count time={time} />
           <div className="flex items-center gap-5">
-            <div className="sm:block hidden">
-              <h2 className="py-1 px-10 rounded-lg font-medium text-[#fff] bg-orange-300">
+            <div>
+              <h2 className="text-lg font-medium text-[#fb9400]">
                 {totalChoice } /{" "}
                 {section?.questions.length}
               </h2>

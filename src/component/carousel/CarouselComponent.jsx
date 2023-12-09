@@ -18,25 +18,25 @@ import { Rate } from "antd";
 //   return (
 //     <Slider {...settings} className="custom-slider">
 //       {slides.map((slide, index) => (
-// <Card key={index} className="my-5 h-[400px] px-2 rounded-xl shadow-lg">
-//   <div class="grid grid-rows-2 grid-flow-col my-10 max-w-[1200]">
-//     <div class="row-span-2">
-//       <img
-//         src={slide.image}
-//         alt={`Slide ${index + 1}`}
-//         className="w-24"
-//       />
-//     </div>
-//     <div class="col-span-3">
-//       <h3 className="font-bold">{slide.name}</h3>
-//     </div>
-//     <div class="row-span-1 col-span-3">
-//       <Rate disabled defaultValue={5} />
-//       {/* <h3 className="text-lg font-bold my-3">{slide.caption}</h3> */}
-//     </div>
-//   </div>
-//   <h3>{slide.content}</h3>
-// </Card>
+//         <div key={index} className="my-5 h-[400px] px-2 rounded-xl shadow-lg">
+//           <div class="grid grid-rows-2 grid-flow-col my-10 max-w-[1200]">
+//             <div class="row-span-2">
+//               {/* <img
+//                 src={slide.image}
+//                 alt={`Slide ${index + 1}`}
+//                 className="w-24"
+//               /> */}
+//             </div>
+//             <div class="col-span-3">
+//               {/* <h3 className="font-bold">{slide.name}</h3> */}
+//             </div>
+//             <div class="row-span-1 col-span-3">
+//               <Rate disabled defaultValue={5} />
+//               {/* <h3 className="text-lg font-bold my-3">{slide.caption}</h3> */}
+//             </div>
+//           </div>
+//           <h3>{slide.content}</h3>
+//         </div>
 //       ))}
 //     </Slider>
 //   );

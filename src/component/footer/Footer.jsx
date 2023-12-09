@@ -92,7 +92,7 @@ const AppFooter = () => {
                     <p className="text-[#515151] font-bold">{item.key}</p>
                   </div>
                   <div className="basis-2/3">
-                    <p>{item.value}</p>
+                    <p className="font-medium">{item.value}</p>
                   </div>
                 </List.Item>
               )}

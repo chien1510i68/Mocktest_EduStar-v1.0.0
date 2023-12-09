@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, notification } from "antd";
 import ButtonGroup from "antd/es/button/button-group";
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../AppContext";
@@ -23,7 +23,7 @@ function PageDemo(props) {
   const [isContinue, setIsContinue] = useState(false);
   const [totalChoice, setTotalChoice] = useState(0);
   const [time, setTime] = useState(40);
-  const {examId} = useParams()
+  const { examId } = useParams();
 
   const [key, setKey] = useState(null);
   const handleGetData = async () => {
@@ -34,7 +34,7 @@ function PageDemo(props) {
         (i) => i.type === "listening"
       );
       setSection(listListening?.length > 0 ? listListening[0] : null);
-      setKey(listListening?.length > 0 ? listListening[0]?.id : null)
+      setKey(listListening?.length > 0 ? listListening[0]?.id : null);
       setListening(listListening);
 
       const listReading = res?.data?.sections.filter(
@@ -48,7 +48,6 @@ function PageDemo(props) {
       );
       setFirstWriting(listWriting?.length > 0 ? listWriting[0] : null);
       setWriting(listWriting);
-
 
       const listSpeaking = res?.data?.sections.filter(
         (i) => i.type === "writing"
@@ -72,9 +71,26 @@ function PageDemo(props) {
     setKey(data.id);
   };
 
+
+//=> {
+  const [api, contextHolder] = notification.useNotification();
   const showHandleSave = () => {
-    alert("bài thi đã được lưu!")
-  }
+    // api.open({
+    //   key,
+    //   message: 'Notification Title',
+    //   description: 'description.',
+    // });
+    setTimeout(() => {
+      api.open({
+        key,
+        message: "Lưu bài thi",
+        description: "bài thi của bạn đã được lưu vào hệ thống!",
+      });
+    }, 500);
+  };
+ 
+//}
+
 
   const handleConfirmNextSection = () => {
     if (type !== "writing") {
@@ -87,6 +103,7 @@ function PageDemo(props) {
       dispatch({ type: "openModalSubmit" });
     }
   };
+
   // const handleChangeType = () => {
   //   switch (type) {
   //     case "listening":
@@ -126,12 +143,12 @@ function PageDemo(props) {
     switch (type) {
       case "listening":
         setSection(firstReading);
-        setKey(firstReading?.id)
+        setKey(firstReading?.id);
         setType("reading");
         break;
       case "reading":
         setSection(firstWriting);
-        setKey(firstWriting?.id)
+        setKey(firstWriting?.id);
         setType("writing");
         break;
       case "writing":
@@ -141,14 +158,21 @@ function PageDemo(props) {
       default:
         return null;
     }
-  
+
     const answerUser = JSON.parse(localStorage.getItem("responseUsers"));
     localStorage.setItem(`response${type}`, JSON.stringify(answerUser));
     localStorage.removeItem("responseUsers");
     dispatch({ type: "closeModalNextSection" });
     console.log(firstReading);
   };
-  
+
+  const handleClick = (item)=> {
+    console.log("item:: ",item)
+    console.log("type:: ",type)
+    const a =   type === "listening" ? () => handleShowSection(item, "listening") : null
+    return a()
+  }
+
   useEffect(() => {
     setTime((prevTime) => {
       const newTime =
@@ -172,34 +196,42 @@ function PageDemo(props) {
         </div>
 
         <div className="">
-          <div className="w-full py-2 bg-slate-600 px-3 flex gap-5 justify-center fixed bottom-0">
+          <div className="w-full py-2 bg-[#a1def5] px-3 flex gap-5 justify-center fixed bottom-0">
+          {/* {(isMobile ? [selectedButton] : type).map((buttonType) => ( */}
             <ButtonGroup className="grid">
-              <div className="md:flex hidden">
+              <div className="flex">
                 {listening &&
                   listening?.map((item, index) => (
                     <Button
-                      className={`text-xs mx-[1px] ${
-                        key === item.id ? "text-slate-200 bg-orange-500" : ""
+                      className={`text-xs mx-[1px] border-[#fb9400] ${
+                        key === item.id ? "text-slate-200 bg-orange-500 hover:!border-[#fb9400] hover:!text-white" : ""
                       }`}
                       onClick={
-                        type === "listening"
-                          ? () => handleShowSection(item, "listening")
-                          : null
+                        ()=>{
+                        handleClick(item)
+                        // handleButtonClick('listening')
+                        }
                       }
                     >
                       PART {index + 1}
                     </Button>
                   ))}
               </div>
-              <h2 className="md:flex hidden mx-auto mt-2 font-medium"> Listening</h2>
+              <h2 className="mx-auto mt-2 font-medium ">
+                {" "}
+                listening
+              </h2>
             </ButtonGroup>
+            
+             {/* ))} */}
+
             <ButtonGroup className="grid">
-              <div className="md:flex hidden">
+              <div className="flex">
                 {
                   reading &&
                     reading?.map((item, index) => (
                       <Button
-                        className={`text-xs mx-[1px] ${
+                        className={`text-xs mx-[1px] border-[#fb9400] ${
                           key === item.id ? "text-slate-200  bg-orange-500" : ""
                         }`}
                         onClick={
@@ -214,15 +246,18 @@ function PageDemo(props) {
                   //   <h2>test</h2>
                 }
               </div>
-              <h2 className="md:flex hidden mx-auto mt-2 font-medium"> Reading</h2>
+              <h2 className="mx-auto mt-2 font-medium">
+                {" "}
+                reading
+              </h2>
             </ButtonGroup>
             <ButtonGroup className="grid">
-              <div className="md:flex hidden">
+              <div className="flex">
                 {
                   writing &&
                     writing?.map((item, index) => (
                       <Button
-                        className={`text-xs mx-[1px] ${
+                        className={`text-xs mx-[1px] border-[#fb9400] ${
                           key === item.id ? "text-slate-200  bg-orange-500" : ""
                         }`}
                         onClick={
@@ -237,7 +272,10 @@ function PageDemo(props) {
                   //   <h2>test</h2>
                 }
               </div>
-              <h2 className="md:flex hidden mx-auto mt-2 font-medium"> Writing</h2>
+              <h2 className="mx-auto mt-2 font-medium">
+                {" "}
+                Writing
+              </h2>
             </ButtonGroup>
             {/* <ButtonGroup className="grid">
               <div className="flex">
@@ -262,18 +300,21 @@ function PageDemo(props) {
               </div>
               <h2 className="mx-auto mt-2 font-medium"> Speaking</h2>
             </ButtonGroup> */}
+           
+           
             <Button
-              className=" block bg-[#fb9400]  text-white hover:!border-[#fb9400] hover:!text-white"
+              className=" block bg-[#fb9400] border-[#a1def5]  text-white hover:!border-[#fb9400] hover:!text-white"
               onClick={handleConfirmNextSection}
             >
               {type !== "writing" ? "Next" : "Save and Submit"}
             </Button>
-            <Button 
-            className=" block bg-[#fb9400]  text-white hover:!border-[#fb9400] hover:!text-white"
-            onClick={showHandleSave}
+            {contextHolder}
+            <Button
+              className=" block bg-[#fb9400] border-[#a1def5]  text-white hover:!border-[#fb9400] hover:!text-white"
+              onClick={showHandleSave}
             >
               save
-              </Button>
+            </Button>
           </div>
         </div>
 

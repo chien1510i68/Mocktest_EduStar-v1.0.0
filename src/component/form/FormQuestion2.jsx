@@ -20,9 +20,11 @@ function FormQuestion2({ type, time, data }) {
   const [userChoices, setUserChoices] = useState([]);
   const [formData, setFormData] = useState({});
   const { data1, dispatch } = useContext(AppContext);
-  const [totalChoice, setTotalChoice] = useState(0);
 
   console.log("data in exam :", data);
+
+  
+const [totalChoice, setTotalChoice] = useState(0);
   const handleCheckListChoice = (section) => {
     const choicesInLocalStorage = JSON.parse(
       localStorage.getItem("responseUsers")
