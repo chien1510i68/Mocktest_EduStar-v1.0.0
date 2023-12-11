@@ -81,27 +81,27 @@ function FormQuestionDemo({ type, time, section }) {
   return (
     <div>
       <>
-        <div className="flex justify-between">
+        <div className="flex justify-between mx-2 my-5">
           <div>
             {type === "listening" ? (
               <div className="flex gap-3 items-center">
                 <FaHeadphones className="text-[#fb9400] font-bold text-2xl" />
-                <h2 className="font-bold text-[#fb9400] ">LISTENING</h2>
+                <h2 className="font-bold text-[#fb9400] sm:flex hidden">LISTENING</h2>
               </div>
             ) : type === "reading" ? (
               <div className="flex gap-3 items-center">
                 <IoBook className="text-orange-500 font-bold text-2xl" />
-                <h2 className="font-bold text-orange-500 ">READING</h2>
+                <h2 className="font-bold text-orange-500 sm:flex hidden">READING</h2>
               </div>
             ) : type === "wiriting" ? (
               <div className="flex gap-3 items-center">
                 <TfiWrite className="text-orange-500 font-bold text-2xl" />
-                <h2 className="font-bold text-orange-500 ">WRITING</h2>
+                <h2 className="font-bold text-orange-500 sm:flex hidden">WRITING</h2>
               </div>
             ) : (
               <div className="flex gap-3 items-center">
                 <PiSpeakerHighFill className="text-orange-500 font-bold text-2xl" />
-                <h2 className="font-bold text-orange-500 ">SPEAKING</h2>
+                <h2 className="font-bold text-orange-500 sm:flex hidden">SPEAKING</h2>
               </div>
             )}
           </div>
@@ -121,7 +121,7 @@ function FormQuestionDemo({ type, time, section }) {
               }}
             >
               <Button
-                className="bg-[#fb9400] text-white font-bold hover:!text-white hover:!border-[#fb9400]"
+                className="bg-[#fb9400] text-white font-bold hover:!text-white hover:!border-[#fb9400] "
                 onClick={handleSubmit}
               >
                 {" "}
@@ -168,10 +168,10 @@ function FormQuestionDemo({ type, time, section }) {
                 className="my-5"
               />
             )}
-            <Form layout="vertical">
+            <Form layout="vertical" className="mb-14">
               {section?.questions?.map((question, questionIndex) => (
                 <div key={questionIndex}>
-                  <h2 className="font-medium text-base">
+                  <h2 className="font-medium sm:mx-10 mx-5 text-base">
                     Question {questionIndex + 1} : {question.content}
                     {question?.description?.startsWith("https") && (
                       <audio muted={true} controls>

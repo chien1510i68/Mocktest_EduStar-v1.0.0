@@ -62,7 +62,7 @@ const ExamResult = () => {
                   }}
                 >
                   <Button 
-                  onClick={() => {navigate("/vstep")}}
+                  onClick={() => {navigate("/")}}
                   className="text-white border-[#fb9400] py-1 bg-[#fb9400] font-bold hover:!border-[#fb9400] hover:shadow-md hover:!text-white w-full">
                     Đóng
                   </Button>
