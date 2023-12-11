@@ -89,6 +89,25 @@ function PageDemo(props) {
     }, 500);
   };
  
+    const [selectedButton, setSelectedButton] = useState('Listening');
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  
+    useEffect(() => {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth <= 768);
+      };
+  
+      window.addEventListener('resize', handleResize);
+  
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }, []);
+  
+    const handleButtonClick = (buttonLabel) => {
+      setSelectedButton(buttonLabel);
+    };
+  
 //}
 
 
@@ -167,10 +186,16 @@ function PageDemo(props) {
   };
 
   const handleClick = (item)=> {
-    console.log("item:: ",item)
-    console.log("type:: ",type)
-    const a =   type === "listening" ? () => handleShowSection(item, "listening") : null
-    return a()
+    // console.log("item:: ",item)
+    // console.log("type:: ",type)
+    // const a = 
+    // eslint-disable-next-line default-case
+        handleShowSection(item, type);
+   
+      // type === "listening" ? () => handleShowSection(item, "listening") : null;
+      // type === "reading" ? () => handleShowSection(item, "reading") : null
+        // return a()
+      
   }
 
   useEffect(() => {
@@ -199,17 +224,17 @@ function PageDemo(props) {
           <div className="w-full py-2 bg-[#a1def5] px-3 flex gap-5 justify-center fixed bottom-0">
           {/* {(isMobile ? [selectedButton] : type).map((buttonType) => ( */}
             <ButtonGroup className="grid">
-              <div className="flex">
+              <div className="">
                 {listening &&
                   listening?.map((item, index) => (
                     <Button
-                      className={`text-xs mx-[1px] border-[#fb9400] ${
+                      className={`text-xs mx-[1px] border-[#fb9400] font-bold  ${
                         key === item.id ? "text-slate-200 bg-orange-500 hover:!border-[#fb9400] hover:!text-white" : ""
                       }`}
                       onClick={
                         ()=>{
                         handleClick(item)
-                        // handleButtonClick('listening')
+                        handleButtonClick('listening')
                         }
                       }
                     >
@@ -226,18 +251,30 @@ function PageDemo(props) {
              {/* ))} */}
 
             <ButtonGroup className="grid">
-              <div className="flex">
+              <div className={`flex ${
+                          selectedButton === 'Reading'
+                            ? 'text-black'
+                            : 'text-black'
+                        } text-white font-bold py-2 px-4 rounded mb-2 lg:mb-0 lg:rounded ${
+                          isMobile ? (selectedButton === 'Reading' ? '' : 'hidden') : ''
+                        }`}>
                 {
                   reading &&
                     reading?.map((item, index) => (
                       <Button
                         className={`text-xs mx-[1px] border-[#fb9400] ${
                           key === item.id ? "text-slate-200  bg-orange-500" : ""
-                        }`}
+                        } `}
+                        // onClick={
+                        //   type === "reading"
+                        //     ? () => handleShowSection(item, "reading")
+                        //     : null
+                        // }
                         onClick={
-                          type === "reading"
-                            ? () => handleShowSection(item, "reading")
-                            : null
+                          ()=>{
+                          handleClick(item)
+                          handleButtonClick('reading')
+                          }
                         }
                       >
                         PART {index + 1}
@@ -251,6 +288,7 @@ function PageDemo(props) {
                 reading
               </h2>
             </ButtonGroup>
+
             <ButtonGroup className="grid">
               <div className="flex">
                 {
@@ -259,7 +297,7 @@ function PageDemo(props) {
                       <Button
                         className={`text-xs mx-[1px] border-[#fb9400] ${
                           key === item.id ? "text-slate-200  bg-orange-500" : ""
-                        }`}
+                        } `}
                         onClick={
                           type === "writing"
                             ? () => handleShowSection(item, "writing")
