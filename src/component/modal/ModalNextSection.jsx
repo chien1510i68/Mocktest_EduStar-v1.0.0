@@ -23,7 +23,7 @@ function ModalNextSection({ handleChangeType, isContinue }) {
   };
   return (
     <div>
-      <Modal footer={null} open={isOpenModalNextSection}>
+      <Modal footer={null} open={isOpenModalNextSection} onCancel={handleCancel}>
         <h2 className="font-medium text-center text-xl text-orange-400">
           Move on to the next test{" "}
         </h2>

@@ -1,5 +1,5 @@
 import { Button, ConfigProvider, Modal, notification } from "antd";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AppContext } from "../AppContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { createResponseUser } from "../api/exam";
@@ -8,7 +8,9 @@ function ModalConfirmSubmit() {
   const { data, dispatch } = useContext(AppContext);
   const { isOpenModalSubmit } = data;
   const { examId } = useParams();
-  const navigate = useNavigate()
+  const [isOpenModalFailed, setIsModalFailed] = useState(false);
+  const [message, setMassage] = useState("");
+  const navigate = useNavigate();
   const handleCancel = () => {
     dispatch({ type: "closeModalSubmit" });
   };
@@ -25,28 +27,30 @@ function ModalConfirmSubmit() {
     responsewriting = responsewriting === null ? [] : responsewriting;
 
     const dataUser = {
-        responselistening : responselistening ,
-        responsereading : responsereading ,
-        email : JSON.parse(localStorage.getItem("email")),
-        responsewriting : responsewriting ,
-        exam_id: examId,
-        
-    }
+      responselistening: responselistening,
+      responsereading: responsereading,
+      email: JSON.parse(localStorage.getItem("email")),
+      responsewriting: responsewriting,
+      exam_id: examId,
+    };
     // console.log(dataUser);
-    createResponseUser(dataUser).then((res) =>{
-      if(res?.data?.success === true){
+    createResponseUser(dataUser).then((res) => {
+      // console.log(res?.data);
+      if (res?.data?.success === true) {
         // notification.success({message : "Thanh cong"})
         console.log(res?.data?.data);
-        navigate("/result" ,{state : res?.data?.data})
-        
+        navigate("/result", { state: res?.data?.data });
+      } else {
+        // console.log(res?.data?.error?.message);
+        setMassage(res?.data?.error?.message);
+        setIsModalFailed(true);
       }
       // console.log(res?.data);
-    })
-
+    });
   };
-  const handleTest = () =>{
-    localStorage.setItem("timeLeft" ,JSON.stringify(0))
-  }
+  const handleTest = () => {
+    localStorage.setItem("timeLeft", JSON.stringify(0));
+  };
   return (
     <div>
       <Modal open={isOpenModalSubmit} footer={null} maskClosable={true}>
@@ -62,17 +66,37 @@ function ModalConfirmSubmit() {
             theme={{
               token: {
                 colorPrimary: "tranparent",
-              }
+              },
             }}
           >
             {/* <Button onClick={ handleTest}>Click</Button> */}
-            <Button onClick={handleCancel} className="bg-[#fb9400] text-white hover:!text-white hover:!border-[#fb9400] hover:shadow-md">
+            <Button
+              onClick={handleCancel}
+              className="bg-[#fb9400] text-white hover:!text-white hover:!border-[#fb9400] hover:shadow-md"
+            >
               Cancel
             </Button>
-            <Button className="bg-lime-800 text-white hover:!text-white hover:!border-lime-800 hover:shadow-md" onClick={handleOk}>
+            <Button
+              className="bg-lime-800 text-white hover:!text-white hover:!border-lime-800 hover:shadow-md"
+              onClick={handleOk}
+            >
               Agree
             </Button>
           </ConfigProvider>
+        </div>
+      </Modal>
+
+      <Modal
+        open={isOpenModalFailed}
+        footer={null}
+        onCancel={() => setIsModalFailed(false)}
+      >
+        <h2 className="text-orange-700 font-medium text-lg text-center">{message}</h2>
+        <h2 className="text-center my-5">Hãy mua khóa học để được ôn tập và thi với Edustar</h2>
+
+        <div className="flex justify-end gap-5">
+          <Button className="bg-orange-500">Mua khóa học </Button>
+          <Button className="bg-">Quay lại trang chủ </Button>
         </div>
       </Modal>
     </div>

@@ -29,6 +29,7 @@ const AppHeader = () => {
         }
       });
   };
+  
   const valueJwt = Cookies.get("jwt");
   
   const iconSize = 30;
@@ -55,7 +56,7 @@ const AppHeader = () => {
             <Menu.Item key="Toeic">
               <Link to="/toeic">Thi thử TOEIC</Link>
             </Menu.Item>
-            {valueJwt !== "null" && (
+            {valueJwt !== "undefined" && (
               <Menu.Item key="Toeic">
                 <h2 onClick={handleSubmitExamByService}>Bài thi dành riêng</h2>
               </Menu.Item>

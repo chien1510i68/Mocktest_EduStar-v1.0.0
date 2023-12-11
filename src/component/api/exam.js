@@ -20,3 +20,9 @@ export const getListExamByServiceUser = (id) =>{
 export const getDetailExamById = (id) =>{
   return request.get(`client/exam/${id}`);
 }
+export const createFile = (file) => {
+  console.log("data res: ", file);
+  const formData = new FormData();
+  formData.append("file", file);
+  return request.post("/file/upload", formData);
+};

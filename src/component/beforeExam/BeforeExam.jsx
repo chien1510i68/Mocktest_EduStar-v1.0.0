@@ -13,6 +13,12 @@ const BeforeExam = () => {
     const {examId} = useParams()
     useEffect(() =>{
         localStorage.setItem("typeSection", JSON.stringify("listening")); 
+        localStorage.removeItem("timeSection")
+        localStorage.removeItem("timeLeft")
+        localStorage.removeItem("responsewriting")
+        localStorage.removeItem("responselistening")
+        localStorage.removeItem("responsereading")
+        localStorage.removeItem("typeSection")
     },[])
     return (
         <>

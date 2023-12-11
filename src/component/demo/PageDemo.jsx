@@ -59,7 +59,7 @@ function PageDemo(props) {
       setWriting(listWriting);
 
       const listSpeaking = res?.data?.sections.filter(
-        (i) => i.type === "writing"
+        (i) => i.type === "speaking"
       );
       setFirstSpeaking(listSpeaking?.length > 0 ? listSpeaking[0] : null);
       setSpeaking(listSpeaking);
@@ -83,7 +83,7 @@ function PageDemo(props) {
     setKey(data.id);
   };
   const handleConfirmNextSection = () => {
-    if (type !== "writing") {
+    if (type !== "speaking") {
       setIsContinue(true);
       dispatch({ type: "openModalNextSection" });
     } else {
@@ -106,6 +106,8 @@ function PageDemo(props) {
         dispatch({ type: "setChangeTimeSection" ,payload : true});
         setType("reading");
         break;
+
+
         case "reading":
         navigate(`/exam/${examId}/writing`)
         setSection(firstWriting);
@@ -117,12 +119,14 @@ function PageDemo(props) {
         setKey(firstWriting?.id);
         setType("writing");
         break;
+
+
         case "writing":
         navigate(`/exam/${examId}/speaking`)
-        localStorage.setItem("timeSection", JSON.stringify(15));
+        localStorage.setItem("timeSection", JSON.stringify(13));
         dispatch({ type: "setChangeTimeSection" ,payload : true});
         localStorage.setItem("typeSection", JSON.stringify("speaking"));
-
+        setKey(firstSpeaking?.id);
         setTime(10);
         setSection(firstSpeaking);
         setType("speaking"); // or set to the appropriate value
@@ -150,14 +154,14 @@ function PageDemo(props) {
 
         <div className="w-[100vw]">
           <div className="w-full py-2 bg-slate-600 z-20 flex gap-5 justify-center fixed bottom-0">
-            <ButtonGroup className="grid">
+            <ButtonGroup className={`grid ${(type === "listening") ? "" :"phone:hidden"}`}>
               <div className="flex">
                 {listening &&
                   listening?.map((item, index) => (
                     <Button
                       className={`text-xs mx-[1px] ${
                         key === item.id ? "text-slate-200  bg-orange-500" : ""
-                      }`}
+                      } ${(type === "listening") ? "" :"phone:hidden"}`}
                       onClick={
                         typeInSection === "listening"
                           ? () => handleShowSection(item, "listening")
@@ -170,7 +174,7 @@ function PageDemo(props) {
               </div>
               <h2 className="mx-auto mt-2 font-medium"> Listening</h2>
             </ButtonGroup>
-            <ButtonGroup className="grid">
+            <ButtonGroup className={`grid ${(type === "reading") ? "" :"phone:hidden"}`}>
               <div className="flex">
                 {
                   reading &&
@@ -178,7 +182,7 @@ function PageDemo(props) {
                       <Button
                         className={`text-xs mx-[1px] ${
                           key === item.id ? "text-slate-200  bg-orange-500" : ""
-                        }`}
+                        } `}
                         onClick={
                           typeInSection === "reading"
                             ? () => handleShowSection(item, "reading")
@@ -193,7 +197,8 @@ function PageDemo(props) {
               </div>
               <h2 className="mx-auto mt-2 font-medium"> Reading</h2>
             </ButtonGroup>
-            <ButtonGroup className="grid">
+            <ButtonGroup className={`grid ${(type === "writing") ? "" :"phone:hidden"}`}>
+
               <div className="flex">
                 {
                   writing &&
@@ -201,7 +206,7 @@ function PageDemo(props) {
                       <Button
                         className={`text-xs mx-[1px] ${
                           key === item.id ? "text-slate-200  bg-orange-500" : ""
-                        }`}
+                        } ${(type === "writing") ? "" :"phone:hidden"}`}
                         onClick={
                           typeInSection === "writing"
                             ? () => handleShowSection(item, "writing")
@@ -215,6 +220,30 @@ function PageDemo(props) {
                 }
               </div>
               <h2 className="mx-auto mt-2 font-medium"> Writing</h2>
+            </ButtonGroup>
+            <ButtonGroup className={`grid ${(type === "speaking") ? "" :"phone:hidden"}`}>
+
+              <div className="flex">
+                {
+                  speaking &&
+                    speaking?.map((item, index) => (
+                      <Button
+                        className={`text-xs mx-[1px] ${
+                          key === item.id ? "text-slate-200  bg-orange-500" : ""
+                        }`}
+                        onClick={
+                          typeInSection === "speaking"
+                            ? () => handleShowSection(item, "speaking")
+                            : null
+                        }
+                      >
+                        PART {index + 1}
+                      </Button>
+                    ))
+                  //   <h2>test</h2>
+                }
+              </div>
+              <h2 className="mx-auto mt-2 font-medium"> Speaking</h2>
             </ButtonGroup>
             {/* <ButtonGroup className="grid">
               <div className="flex">
@@ -239,12 +268,22 @@ function PageDemo(props) {
               </div>
               <h2 className="mx-auto mt-2 font-medium"> Speaking</h2>
             </ButtonGroup> */}
+
+            <div className="flex gap-2">
             <Button
-              className= {`block bg-[#fb9400]  text-white hover:!border-[#fb9400] hover:!text-white ${(type === "writing") ? "hidden" : ""}`}
+              className= {`block bg-[#fb9400]  text-white hover:!border-[#fb9400] hover:!text-white ${(type === "speaking") ? "hidden" : ""}`}
+              onClick={() => notification.success({message : "Saved your answers "})}
+            >
+              {type !== "speaking" ? "Save" : ""}
+            </Button>
+            <Button
+              className= {`block bg-[#fb9400]  text-white hover:!border-[#fb9400] hover:!text-white ${(type === "speaking") ? "hidden" : ""}`}
               onClick={handleConfirmNextSection}
             >
-              {type !== "writing" ? "Next" : ""}
+              {type !== "speaking" ? "Next" : ""}
             </Button>
+           
+            </div>
           </div>
         </div>
 

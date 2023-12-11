@@ -13,7 +13,7 @@ function Count2() {
   );
   const { setChangeTimeSection } = data;
   
-  console.log("setChangeTimeSection", setChangeTimeSection);
+  // console.log("setChangeTimeSection", setChangeTimeSection);
   useEffect(() => {
     const timer = setInterval(() => {
       if (timeLeft > 0) {

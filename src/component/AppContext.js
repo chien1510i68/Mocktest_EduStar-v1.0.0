@@ -8,7 +8,9 @@ const initialData = {
   firstReading: null,
   firstWriting: null,
   firstSpeaking: null,
-  setChangeTimeSection : false 
+  fileInDescription: null,
+
+  setChangeTimeSection: false,
 };
 
 const reducer = (state, action) => {
@@ -55,8 +57,14 @@ const reducer = (state, action) => {
       return { ...state, firstWriting: action.payload };
     case "saveFirstSpeaking":
       return { ...state, firstSpeaking: action.payload };
-    case "setChangeTimeSection" : 
-    return {...state , setChangeTimeSection : action.payload}
+    case "setChangeTimeSection":
+      return { ...state, setChangeTimeSection: action.payload };
+    case "fileInDescription":
+      return { ...state, fileInDescription: action.payload };
+    case "deleteFileInDescription":
+      return { ...state, fileInDescription: null };
+    case "fileDescriptionInSection":
+      return { ...state, fileDescriptionInSection: action.payload };
     default:
       return state;
   }

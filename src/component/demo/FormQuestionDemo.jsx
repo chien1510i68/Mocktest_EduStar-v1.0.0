@@ -8,6 +8,7 @@ import { IoBook } from "react-icons/io5";
 import { FaHeadphones } from "react-icons/fa";
 import { AppContext } from "../AppContext";
 import Count2 from "../Count2";
+import FormUpload from "../form/FormUpload";
 
 function FormQuestionDemo({ type, time, section }) {
   // console.log("totalChoice",totalChoice);
@@ -225,7 +226,7 @@ function FormQuestionDemo({ type, time, section }) {
                       </Checkbox.Group>
                     </Form.Item>
                   )}
-                  {question.questionType === "Essay_answers" && (
+                  {question.questionType === "Essay_answers" && section?.type === "writing" && (
                     <Form.Item
                       name={question.id}
                       label="Plase input your answer "
@@ -246,6 +247,13 @@ function FormQuestionDemo({ type, time, section }) {
                       />
                     </Form.Item>
                   )}
+
+
+                  {
+                    section && section?.type === "speaking" && (
+                      <FormUpload/>
+                    )
+                  }
                 </div>
               ))}
             </Form>
