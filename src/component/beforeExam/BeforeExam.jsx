@@ -14,6 +14,7 @@ const BeforeExam = () => {
     useEffect(() =>{
         localStorage.setItem("typeSection", JSON.stringify("listening")); 
         localStorage.removeItem("timeSection")
+        // localStorage.setItem("timeSection" ,JSON.stringify(11))
         localStorage.removeItem("timeLeft")
         localStorage.removeItem("responsewriting")
         localStorage.removeItem("responselistening")

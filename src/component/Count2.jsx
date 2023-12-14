@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import Countdown from "react-countdown";
 import { AppContext } from "./AppContext";
-import { Button } from "antd";
+import { Button, notification } from "antd";
 
 function Count2() {
   const { data, dispatch } = useContext(AppContext);
   const previousTimeLeft = localStorage.getItem("timeLeft");
   let timeSection = JSON.parse(localStorage.getItem("timeSection"));
-  const initialTime = 45 * 60
+  const initialTime = timeSection* 60
+  // notification.success({message : "2"})
   const [timeLeft, setTimeLeft] = useState(
     previousTimeLeft ? parseInt(previousTimeLeft) : initialTime
   );
@@ -36,7 +37,7 @@ function Count2() {
   useEffect(() =>{
     if(setChangeTimeSection === true){
       
-      const newTimeLeft = JSON.parse(localStorage.getItem("timeSection")) * 60; // 80 phút
+      const newTimeLeft = JSON.parse(localStorage.getItem("timeSection")) * 60; 
       setTimeLeft(newTimeLeft);
       localStorage.setItem("timeLeft", newTimeLeft);
       dispatch({type : "setChangeTimeSection" , payload : false})

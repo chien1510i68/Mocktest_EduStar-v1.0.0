@@ -39,7 +39,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-// const base_url = "https://api.edustar.com.vn/";
+// const base_url = "http://localhost:8088/";
 const base_url = "https://service.edustar.com.vn/";
 const jwtParam = new URLSearchParams(window.location.search).get("jwt");
 const userId = new URLSearchParams(window.location.search).get("id");

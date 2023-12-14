@@ -10,7 +10,7 @@ import { AppContext } from "../AppContext";
 import Count2 from "../Count2";
 import FormUpload from "../form/FormUpload";
 
-function FormQuestionDemo({ type, time, section }) {
+function FormQuestionDemo({ type, section }) {
   // console.log("totalChoice",totalChoice);
   const [userChoices, setUserChoices] = useState([]);
   const [formData, setFormData] = useState({});

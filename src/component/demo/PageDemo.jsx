@@ -22,9 +22,10 @@ function PageDemo(props) {
   const [firstSpeaking, setFirstSpeaking] = useState(null);
   const [type, setType] = useState(typeSection);
   const [isContinue, setIsContinue] = useState(false);
-  const [totalChoice, setTotalChoice] = useState(0);
-  const [listSection ,setListSection] = useState([])
-  const [time, setTime] = useState(40);
+  // const [totalChoice, setTotalChoice] = useState(0);
+  // const [listSection ,setListSection] = useState([])
+  const [timeExam  , setTimeExam] = useState("test")
+  // const [time, setTime] = useState(40);
   const { examId } = useParams();
   const{typeInSection} = useParams()
 
@@ -32,7 +33,11 @@ function PageDemo(props) {
   const handleGetData = async () => {
     const res = await getDetailExamById(examId);
     try {
-      console.log(res?.data?.sections);
+      console.log(res?.data?.timeExam);
+      setTimeExam(res?.data?.timeExam);
+      localStorage.setItem("timeSection", JSON.stringify( (res?.data?.timeExam === "minitest") ? 25 :45));
+      notification.success({message : "1"})
+
       const listListening = res?.data?.sections.filter(
         (i) => i.type === "listening"
       );
@@ -70,8 +75,12 @@ function PageDemo(props) {
   };
 
   useEffect(() => {
+    
     handleGetData();
-    localStorage.setItem("timeSection", JSON.stringify(45));
+    const time = ( timeExam === "minitest") ? 25 : 45
+    localStorage.setItem("timeSection" ,JSON.stringify(time))
+    // const time = ; 
+    // const time
     // localStorage.setItem("typeSection", JSON.stringify("listening"));
    
   }, []);
@@ -98,9 +107,9 @@ function PageDemo(props) {
       case "listening":
         navigate(`/exam/${examId}/reading`)
         setSection(firstReading);
-        setTime(45);
+       
+        localStorage.setItem("timeSection", JSON.stringify( (timeExam === "minitest") ? 30 :60));
         setKey(firstReading?.id);
-        localStorage.setItem("timeSection", JSON.stringify(60));
         localStorage.setItem("typeSection", JSON.stringify("reading"));
         
         dispatch({ type: "setChangeTimeSection" ,payload : true});
@@ -111,8 +120,9 @@ function PageDemo(props) {
         case "reading":
         navigate(`/exam/${examId}/writing`)
         setSection(firstWriting);
-        setTime(60);
-        localStorage.setItem("timeSection", JSON.stringify(60));
+      
+       
+        localStorage.setItem("timeSection", JSON.stringify( (timeExam === "minitest") ? 20 :60));
         dispatch({ type: "setChangeTimeSection" ,payload : true});
         localStorage.setItem("typeSection", JSON.stringify("writing"));
         
@@ -127,7 +137,7 @@ function PageDemo(props) {
         dispatch({ type: "setChangeTimeSection" ,payload : true});
         localStorage.setItem("typeSection", JSON.stringify("speaking"));
         setKey(firstSpeaking?.id);
-        setTime(10);
+        
         setSection(firstSpeaking);
         setType("speaking"); // or set to the appropriate value
         break;
@@ -148,7 +158,7 @@ function PageDemo(props) {
     <>
       <div className="">
         <div className="pb-[5%]">
-          <FormQuestionDemo type={type} time={time} section={section} />
+          <FormQuestionDemo type={type}  section={section} />
           {/* {handleTest} */}
         </div>
 
