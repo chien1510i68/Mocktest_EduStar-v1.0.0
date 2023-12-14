@@ -53,7 +53,7 @@ function ModalConfirmSubmit() {
   };
   return (
     <div>
-      <Modal open={isOpenModalSubmit} footer={null} maskClosable={true}>
+      <Modal open={isOpenModalSubmit} footer={null} maskClosable={true} onCancel={() => dispatch({ type: "closeModalSubmit" })}>
         <h2 className="font-medium text-base text-center text-red-800">
           Are you sure you want to submit your assignment?
         </h2>
