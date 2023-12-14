@@ -6,7 +6,7 @@ import svgEmail from "../../vector/svgEmail.svg";
 import svgFacebook from "../../vector/svgFacebook.svg";
 import svgRadioButton from "../../vector/radioButton.svg";
 import { List } from "antd";
-import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const AppFooter = () => {
   // const serviceProcided = [
@@ -18,31 +18,54 @@ const AppFooter = () => {
   // ];
   const serviceProcided = [
     {
-      url: 'https://mocktest.edustar.com.vn/',
-      label: 'Luyện thi VSTEP',
+      url: "https://edustar.com.vn/vstep",
+      label: "Luyện thi VSTEP",
     },
 
     {
-      url: 'https://mocktest.edustar.com.vn/',
-      label: 'Luyện thi APTIS',
+      url: "https://edustar.com.vn/aptis",
+      label: "Luyện thi APTIS",
     },
 
     {
-      url: 'https://mocktest.edustar.com.vn/',
-      label: 'Luyện thi TOEIC',
+      url: "https://edustar.com.vn/toeic",
+      label: "Luyện thi TOEIC",
     },
 
     {
-      url: 'https://mocktest.edustar.com.vn/',
-      label: 'Luyện thi IELTS',
+      url: "https://edustar.com.vn/ielts",
+      label: "Luyện thi IELTS",
     },
 
     {
-      url: 'https://mocktest.edustar.com.vn/',
-      label: 'Luyện thi Anh ngữ học thuật',
+      url: "https://edustar.com.vn/englishacademic",
+      label: "Luyện thi Anh ngữ học thuật",
     },
+  ];
 
-  ]
+  const companyInfo = [
+    {
+      icon: svgCall,
+      key: "Liên hệ",
+      value: "+84 0986 511 750",
+    },
+    {
+      icon: svgAddress,
+      key: "Địa chỉ",
+      value: "Công ty Anh ngữ Edustar",
+    },
+    {
+      icon: svgEmail,
+      key: "Email",
+      value: "edustar1910@gmail.com",
+    },
+    {
+      icon: svgFacebook,
+      key: "Facebook",
+      value: "Edustar",
+    },
+  ];
+
   const workCalendar = [
     "Tư vấn 24/24",
     "Thi thử miễn phí",
@@ -58,35 +81,24 @@ const AppFooter = () => {
           </a>
         </div>
         {/* end logo */}
-        <div className="mx-auto grid tablet:grid-cols-3 mobile:grid-cols-1">
+        <div className="mx-auto grid tablet:grid-cols-3 mobile:grid-cols-1 pb-5">
           <div className="col-span-1">
-            <div className="grid grid-row-4 py-5 justify-start md:justify-center">
-              <div className="row-span-1 flex gap-2">
-                <img src={svgCall} alt="" className="my-2" />
-                <p className="my-2">Liên hệ</p>
-                <p className="my-2">+84 0986 511 750</p>
-              </div>
-              <div className="row-span-1 flex gap-2">
-                <img src={svgAddress} alt="" className="my-4" />
-                <p className="my-2">Địa chỉ</p>
-                <p className="my-2 overflow-hidden inline">
-                  Công ty Anh ngữ Edustar
-                </p>
-              </div>
-              <div className="row-span-1 flex gap-2">
-                <img src={svgEmail} alt="" className="my-2" />
-                <p className="my-2">Email</p>
-                <p className="my-2">edustar1910@gmail.com</p>
-              </div>
-
-              <div className="row-span-1  flex gap-2">
-                <img src={svgFacebook} alt="" className="my-2" />
-                <p className="my-2">Facebook</p>
-                <p className="my-2">Edustar</p>
-              </div>
-            </div>
+            <List
+              dataSource={companyInfo}
+              renderItem={(item) => (
+                <List.Item className="!border-none !py-[10px]">
+                  <div className="basis-1/3 flex gap-5 sm:ml-16">
+                    <img src={item.icon} alt="" />
+                    <p className="text-[#515151] font-bold">{item.key}</p>
+                  </div>
+                  <div className="basis-2/3">
+                    <p className="font-medium">{item.value}</p>
+                  </div>
+                </List.Item>
+              )}
+            />
           </div>
-          <div className="col-span-1">
+          <div className="col-span-1 sm:mx-auto ml-0">
             <span className="font-bold text-lg text-[#f69050] border-b border-[#fb9400]">
               Dịch vụ
             </span>
@@ -97,12 +109,13 @@ const AppFooter = () => {
               renderItem={(item) => (
                 <List.Item className="!flex !justify-start !border-none !text-[#7b7b7b] !p-1 gap-4 sm:gap-2">
                   <img src={svgRadioButton} alt="" />
+                  <Link to={item.url}>{item.label}</Link>
                   {/* <button onClick={Navigate({ item.url })}>{item.label}</button> */}
                 </List.Item>
               )}
             />
           </div>
-          <div className="col-span-1">
+          <div className="col-span-1 sm:mx-auto ml-0">
             <span className="text-lg text-[#f69050] border-b border-[#fb9400] font-bold">
               Lịch làm việc
             </span>

@@ -38,7 +38,7 @@ function FormUpload(props) {
     console.log(fileInDescription);
   }
   return (
-    <div>
+    <div className="mx-3 md:mx-5 my-5">
       <ProFormUploadButton
         name="image"
         

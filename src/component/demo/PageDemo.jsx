@@ -156,7 +156,7 @@ function PageDemo(props) {
 
   return (
     <>
-      <div className="">
+      <div className="max-w-[1200px]">
         <div className="pb-[5%]">
           <FormQuestionDemo type={type}  section={section} />
           {/* {handleTest} */}
@@ -169,7 +169,7 @@ function PageDemo(props) {
                 {listening &&
                   listening?.map((item, index) => (
                     <Button
-                      className={`text-xs mx-[1px] ${
+                      className={`text-xs flex px-2 md:px-3 sm:font-bold mx-[1px] item-center ${
                         key === item.id ? "text-slate-200  bg-orange-500" : ""
                       } ${(type === "listening") ? "" :"phone:hidden"}`}
                       onClick={
@@ -178,7 +178,7 @@ function PageDemo(props) {
                           : null
                       }
                     >
-                      PART {index + 1}
+                     <p className="md:block hidden">PART</p> {index + 1}
                     </Button>
                   ))}
               </div>
@@ -190,7 +190,7 @@ function PageDemo(props) {
                   reading &&
                     reading?.map((item, index) => (
                       <Button
-                        className={`text-xs mx-[1px] ${
+                        className={`text-xs flex px-2 md:px-3 sm:font-bold mx-[1px] ${
                           key === item.id ? "text-slate-200  bg-orange-500" : ""
                         } `}
                         onClick={
@@ -199,7 +199,7 @@ function PageDemo(props) {
                             : null
                         }
                       >
-                        PART {index + 1}
+                       <p className="md:block hidden">PART</p> {index + 1}
                       </Button>
                     ))
                   //   <h2>test</h2>
@@ -214,7 +214,7 @@ function PageDemo(props) {
                   writing &&
                     writing?.map((item, index) => (
                       <Button
-                        className={`text-xs mx-[1px] ${
+                        className={`text-xs flex px-2 md:px-3 sm:font-bold mx-[1px] ${
                           key === item.id ? "text-slate-200  bg-orange-500" : ""
                         } ${(type === "writing") ? "" :"phone:hidden"}`}
                         onClick={
@@ -223,7 +223,7 @@ function PageDemo(props) {
                             : null
                         }
                       >
-                        PART {index + 1}
+                        <p className="md:block hidden">PART</p> {index + 1}
                       </Button>
                     ))
                   //   <h2>test</h2>
@@ -231,14 +231,14 @@ function PageDemo(props) {
               </div>
               <h2 className="mx-auto mt-2 font-medium"> Writing</h2>
             </ButtonGroup>
-            <ButtonGroup className={`grid ${(type === "speaking") ? "" :"phone:hidden"}`}>
+            <ButtonGroup className={`mx-auto justify-center grid ${(type === "speaking") ? "" :"phone:hidden"}`}>
 
               <div className="flex">
                 {
                   speaking &&
                     speaking?.map((item, index) => (
                       <Button
-                        className={`text-xs mx-[1px] ${
+                        className={`text-xs flex px-2 md:px-3 sm:font-bold mx-[1px] ${
                           key === item.id ? "text-slate-200  bg-orange-500" : ""
                         }`}
                         onClick={
@@ -247,7 +247,7 @@ function PageDemo(props) {
                             : null
                         }
                       >
-                        PART {index + 1}
+                       <p className="md:block hidden">PART</p> {index + 1}
                       </Button>
                     ))
                   //   <h2>test</h2>
@@ -281,13 +281,13 @@ function PageDemo(props) {
 
             <div className="flex gap-2">
             <Button
-              className= {`block bg-[#fb9400]  text-white hover:!border-[#fb9400] hover:!text-white ${(type === "speaking") ? "hidden" : ""}`}
+              className= {`block bg-[#fb9400] border-slate-600 text-white hover:!border-[#fb9400] hover:!text-white ${(type === "speaking") ? "hidden" : ""}`}
               onClick={() => notification.success({message : "Saved your answers "})}
             >
               {type !== "speaking" ? "Save" : ""}
             </Button>
             <Button
-              className= {`block bg-[#fb9400]  text-white hover:!border-[#fb9400] hover:!text-white ${(type === "speaking") ? "hidden" : ""}`}
+              className= {`block bg-[#fb9400] border-slate-600 text-white hover:!border-[#fb9400] hover:!text-white ${(type === "speaking") ? "hidden" : ""}`}
               onClick={handleConfirmNextSection}
             >
               {type !== "speaking" ? "Next" : ""}

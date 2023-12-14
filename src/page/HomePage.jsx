@@ -34,7 +34,7 @@ const HomePage = () => {
     <div>
       <AppMenu />
       <div className="my-20 mx-auto justify-center">
-        <div className="mx-auto justify-center max-w-screen-md my-6 text-center ">
+        <div className="mx-auto justify-center max-w-[1200px] my-6 text-center ">
           {/* <iframe
           className="hidden sm:block"
             width="640"
@@ -47,14 +47,14 @@ const HomePage = () => {
           ></iframe> */}
 
           <Image src={iconLogo} className="w-full md:w-30" fill alt="" />
-          <p className="px-2 max-w-screen-lg my-4 text-3xl font-bold">
+          <p className="px-2 max-w-[1200px] my-4 text-3xl font-bold">
             Địa điểm thích hợp nhất để luyện thi các chứng chỉ Tiếng Anh Quốc tế
           </p>
         </div>
 
-        <div className="grid tablet:grid-cols-2 mobile:grid-cols-span-1 gap-16 max-w-screen-lg mx-auto justify-center">
-          <div className="col-span-1 shadow-xl shadow-[#c0c0c0] p-6 rounded-2xl">
-            <img src={imgToeic} alt="" />
+        <div className="grid tablet:grid-cols-2 mobile:grid-cols-span-1 gap-16 max-w-[75%] mx-auto justify-center">
+          <div className="col-span-1 shadow-xl shadow-[#c0c0c0] p-6 rounded-2xl border mx-2">
+            <img src={imgToeic} alt="" className="mx-auto"/>
             <h2 className="text-xl font-bold py-6">
               Bài thi TOEIC là công cụ chuẩn cho phép đánh giá và so sánh được
               mặt bằng trình độ ngoại ngữ{" "}
@@ -124,8 +124,8 @@ const HomePage = () => {
               </Button>
             </ConfigProvider>
           </Drawer>
-          <div className="col-span-1 shadow-xl shadow-[#c0c0c0] p-6 rounded-2xl">
-            <img src={imgVstep} alt="" />
+          <div className="col-span-1 shadow-xl shadow-[#c0c0c0] p-6 rounded-2xl border mx-2">
+            <img src={imgVstep} alt="" className="mx-auto"/>
             <h2 className="text-xl font-bold my-6">
               Bài thi đánh giá năng lực tiếng anh theo khung năng lực Ngoại ngữ
               6 bậc của Việt Nam{" "}

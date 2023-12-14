@@ -98,7 +98,7 @@ function FormQuestion({ type, time, data }) {
 
     children: (
       <>
-        <div className="flex justify-between">
+        <div className="flex justify-between max-w-[1200px]">
           <div>
             {type === "listening" ? (
               <div className="flex gap-3 items-center">
@@ -137,7 +137,7 @@ function FormQuestion({ type, time, data }) {
               ))}
             </div> */}
             <div>
-              <h2 className="py-1 px-10 rounded-lg font-medium text-[#fff] bg-orange-300">
+              <h2 className="py-1 px-10 rounded-lg font-medium text-[#fff] bg-red-300">
                 {totalChoice }  / {section?.questions.length}
               </h2>
             </div>

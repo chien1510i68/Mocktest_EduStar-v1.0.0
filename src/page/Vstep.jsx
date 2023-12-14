@@ -1,7 +1,7 @@
 import { Image, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 // import Competition from "../component/competition/Competition";
-import Feedback from "../component/feedback/Feedback";
+import Feedback from "../component/feedback/FeedbackComponent";
 import Consultation from "../component/consultation/Consultation";
 import Footer from "../component/footer/Footer";
 import group from "../image/Group 5355.png";
@@ -239,7 +239,7 @@ function Vstep() {
                   Giáo viên tiếng Anh cấp mầm non, tiểu học, trung học cơ sở.
                 </li>
                 <li className="list-disc">
-                  Những người chuẩn bị làm đầu ra nghiên cứư sinh.
+                  Những người chuẩn bị làm đầu ra nghiên cứu sinh.
                 </li>
                 <li className="list-disc">
                   Thi chuyên viên, giảng viên cao cấp

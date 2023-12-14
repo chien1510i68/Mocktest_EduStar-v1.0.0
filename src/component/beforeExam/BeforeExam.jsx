@@ -54,7 +54,7 @@ const BeforeExam = () => {
 
                             <audio controls className="w-full rounded-3xl shadow-lg bg-white">
                                 <source
-                                    src="https://cdn.jsdelivr.net/gh/sh20raj/AudiPlay/Ark.mp3"
+                                    src="https://luyenthivstep.vn/public/audio/audioTest.mp3"
                                     type="audio/mp3" />
                             </audio>
                             {/* <script src="https://cdn.jsdelivr.net/gh/sh20raj/AudiPlay/audiplay.min.js"></script> */}
