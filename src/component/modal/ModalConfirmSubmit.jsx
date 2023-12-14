@@ -1,7 +1,7 @@
-import { Button, ConfigProvider, Modal, notification } from "antd";
+import { Button, ConfigProvider, Modal } from "antd";
 import React, { useContext, useState } from "react";
 import { AppContext } from "../AppContext";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { createResponseUser } from "../api/exam";
 
 function ModalConfirmSubmit() {
@@ -95,8 +95,8 @@ function ModalConfirmSubmit() {
         <h2 className="text-center my-5">Hãy mua khóa học để được ôn tập và thi với Edustar</h2>
 
         <div className="flex justify-end gap-5">
-          <Button onClick={() => {navigate("https://mocktest.edustar.com.vn/")}} className="bg-orange-500">Tiếp tục thi thử</Button>
-          <Button onClick={() => {navigate("https://edustar.com.vn/")}} className="bg-">Quay lại trang chủ </Button>
+          <Button onClick={() => {navigate("/")}} className="bg-orange-500 text-white hover:!text-white hover:!border-orange-500">Tiếp tục thi thử</Button>
+          <Link to={"https://edustar.com.vn/"}><Button className="hover:!border-orange-500 hover:!text-orange-500">Quay lại trang chủ </Button></Link>
         </div>
       </Modal>
     </div>

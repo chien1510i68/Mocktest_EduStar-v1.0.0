@@ -163,7 +163,7 @@ function PageDemo(props) {
         </div>
 
         <div className="w-full">
-          <div className="w-full py-2 bg-slate-600 flex gap-5 justify-center fixed bottom-0">
+          <div className="w-full py-2 bg-[#eaeaea] flex gap-5 justify-center fixed bottom-0">
             <ButtonGroup className={`grid ${(type === "listening") ? "" :"hidden xl:block"}`}>
               <div className="flex">
                 {listening &&
@@ -281,13 +281,13 @@ function PageDemo(props) {
 
             <div className="flex gap-2">
             <Button
-              className= {`block bg-[#fb9400] border-slate-600 text-white hover:!border-[#fb9400] hover:!text-white ${(type === "speaking") ? "hidden" : ""}`}
+              className= {`block bg-[#fb9400]  text-white hover:!border-[#fb9400] hover:!text-white ${(type === "speaking") ? "hidden" : ""}`}
               onClick={() => notification.success({message : "Saved your answers "})}
             >
               {type !== "speaking" ? "Save" : ""}
             </Button>
             <Button
-              className= {`block bg-[#fb9400] border-slate-600 text-white hover:!border-[#fb9400] hover:!text-white ${(type === "speaking") ? "hidden" : ""}`}
+              className= {`block bg-[#fb9400]  text-white hover:!border-[#fb9400] hover:!text-white ${(type === "speaking") ? "hidden" : ""}`}
               onClick={handleConfirmNextSection}
             >
               {type !== "speaking" ? "Next" : ""}
