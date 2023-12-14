@@ -81,7 +81,7 @@ function FormQuestionDemo({ type, time, section }) {
   return (
     <div>
       <>
-        <div className="flex justify-between mx-2 my-5">
+        <div className="flex justify-between my-5 mx-2 ">
           <div>
             {type === "listening" ? (
               <div className="flex gap-3 items-center">

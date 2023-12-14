@@ -15,7 +15,7 @@ function PageDemo(props) {
   const [reading, setReading] = useState(null);
   const [writing, setWriting] = useState(null);
   const [speaking, setSpeaking] = useState(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [section, setSection] = useState(null);
   const [firstReading, setFirstReading] = useState(null);
   const [firstWriting, setFirstWriting] = useState(null);
@@ -23,10 +23,10 @@ function PageDemo(props) {
   const [type, setType] = useState(typeSection);
   const [isContinue, setIsContinue] = useState(false);
   const [totalChoice, setTotalChoice] = useState(0);
-  const [listSection ,setListSection] = useState([])
+  const [listSection, setListSection] = useState([]);
   const [time, setTime] = useState(40);
   const { examId } = useParams();
-  const{typeInSection} = useParams()
+  const { typeInSection } = useParams();
 
   const [key, setKey] = useState(null);
   const handleGetData = async () => {
@@ -40,9 +40,9 @@ function PageDemo(props) {
       setKey(listListening?.length > 0 ? listListening[0]?.id : null);
       setListening(listListening);
 
-
-
-      const sectionList = res?.data?.sections.filter((i) => i.type === typeInSection)
+      const sectionList = res?.data?.sections.filter(
+        (i) => i.type === typeInSection
+      );
       setSection(sectionList?.length > 0 ? sectionList[0] : null);
       setKey(sectionList?.length > 0 ? sectionList[0]?.id : null);
 
@@ -63,7 +63,6 @@ function PageDemo(props) {
       );
       setFirstSpeaking(listSpeaking?.length > 0 ? listSpeaking[0] : null);
       setSpeaking(listSpeaking);
-      
     } catch (error) {
       console.log(error);
     }
@@ -73,7 +72,6 @@ function PageDemo(props) {
     handleGetData();
     localStorage.setItem("timeSection", JSON.stringify(45));
     // localStorage.setItem("typeSection", JSON.stringify("listening"));
-   
   }, []);
 
   const handleShowSection = (data, type) => {
@@ -96,35 +94,33 @@ function PageDemo(props) {
   const handleChangeType = () => {
     switch (type) {
       case "listening":
-        navigate(`/exam/${examId}/reading`)
+        navigate(`/exam/${examId}/reading`);
         setSection(firstReading);
         setTime(45);
         setKey(firstReading?.id);
         localStorage.setItem("timeSection", JSON.stringify(60));
         localStorage.setItem("typeSection", JSON.stringify("reading"));
-        
-        dispatch({ type: "setChangeTimeSection" ,payload : true});
+
+        dispatch({ type: "setChangeTimeSection", payload: true });
         setType("reading");
         break;
 
-
-        case "reading":
-        navigate(`/exam/${examId}/writing`)
+      case "reading":
+        navigate(`/exam/${examId}/writing`);
         setSection(firstWriting);
         setTime(60);
         localStorage.setItem("timeSection", JSON.stringify(60));
-        dispatch({ type: "setChangeTimeSection" ,payload : true});
+        dispatch({ type: "setChangeTimeSection", payload: true });
         localStorage.setItem("typeSection", JSON.stringify("writing"));
-        
+
         setKey(firstWriting?.id);
         setType("writing");
         break;
 
-
-        case "writing":
-        navigate(`/exam/${examId}/speaking`)
+      case "writing":
+        navigate(`/exam/${examId}/speaking`);
         localStorage.setItem("timeSection", JSON.stringify(13));
-        dispatch({ type: "setChangeTimeSection" ,payload : true});
+        dispatch({ type: "setChangeTimeSection", payload: true });
         localStorage.setItem("typeSection", JSON.stringify("speaking"));
         setKey(firstSpeaking?.id);
         setTime(10);
@@ -142,110 +138,123 @@ function PageDemo(props) {
     console.log(firstReading);
   };
 
-
-
   return (
     <>
-      <div className="max-w-[1200px]">
-        <div className="pb-[5%]">
-          <FormQuestionDemo type={type} time={time} section={section} />
-          {/* {handleTest} */}
-        </div>
+      <div className="w-full mx-auto justify-center">
+        <div className="">
+          <div className="pb-[5%]">
+            <FormQuestionDemo type={type} time={time} section={section} />
+            {/* {handleTest} */}
+          </div>
 
-        <div className="w-[100vw]">
-          <div className="w-full py-2 bg-slate-600 z-20 flex gap-5 justify-center fixed bottom-0">
-            <ButtonGroup className={`grid ${(type === "listening") ? "" :"phone:hidden"}`}>
-              <div className="flex">
-                {listening &&
-                  listening?.map((item, index) => (
-                    <Button
-                      className={`text-xs flex px-2 md:px-3 sm:font-bold mx-[1px] item-center ${
-                        key === item.id ? "text-slate-200  bg-orange-500" : ""
-                      } ${(type === "listening") ? "" :"phone:hidden"}`}
-                      onClick={
-                        typeInSection === "listening"
-                          ? () => handleShowSection(item, "listening")
-                          : null
-                      }
-                    >
-                     <p className="md:block hidden">PART</p> {index + 1}
-                    </Button>
-                  ))}
-              </div>
-              <h2 className="mx-auto mt-2 font-medium"> Listening</h2>
-            </ButtonGroup>
-            <ButtonGroup className={`grid ${(type === "reading") ? "" :"phone:hidden"}`}>
-              <div className="flex">
-                {
-                  reading &&
-                    reading?.map((item, index) => (
+          <div className="w-[100vw]">
+            <div className="w-full py-2 bg-green-600 z-20 flex gap-10 justify-center fixed bottom-0">
+              <ButtonGroup
+                className={`grid mx-5 ${type === "listening" ? "" : "desktop:block phone:hidden"}`}
+              >
+                <div className="flex">
+                  {listening &&
+                    listening?.map((item, index) => (
                       <Button
-                        className={`text-xs flex px-2 md:px-3 sm:font-bold mx-[1px] ${
+                        className={`text-xs flex px-2 md:px-3 sm:font-bold mx-[1px] item-center ${
                           key === item.id ? "text-slate-200  bg-orange-500" : ""
-                        } `}
+                        } ${type === "listening" ? "" : "desktop:flex phone:hidden"}`}
                         onClick={
-                          typeInSection === "reading"
-                            ? () => handleShowSection(item, "reading")
-                            : null
-                        }
-                      >
-                       <p className="md:block hidden">PART</p> {index + 1}
-                      </Button>
-                    ))
-                  //   <h2>test</h2>
-                }
-              </div>
-              <h2 className="mx-auto mt-2 font-medium"> Reading</h2>
-            </ButtonGroup>
-            <ButtonGroup className={`grid ${(type === "writing") ? "" :"phone:hidden"}`}>
-
-              <div className="flex">
-                {
-                  writing &&
-                    writing?.map((item, index) => (
-                      <Button
-                        className={`text-xs flex px-2 md:px-3 sm:font-bold mx-[1px] ${
-                          key === item.id ? "text-slate-200  bg-orange-500" : ""
-                        } ${(type === "writing") ? "" :"phone:hidden"}`}
-                        onClick={
-                          typeInSection === "writing"
-                            ? () => handleShowSection(item, "writing")
+                          typeInSection === "listening"
+                            ? () => handleShowSection(item, "listening")
                             : null
                         }
                       >
                         <p className="md:block hidden">PART</p> {index + 1}
                       </Button>
-                    ))
-                  //   <h2>test</h2>
-                }
-              </div>
-              <h2 className="mx-auto mt-2 font-medium"> Writing</h2>
-            </ButtonGroup>
-            <ButtonGroup className={`mx-auto justify-center grid ${(type === "speaking") ? "" :"phone:hidden"}`}>
-
-              <div className="flex">
-                {
-                  speaking &&
-                    speaking?.map((item, index) => (
-                      <Button
-                        className={`text-xs flex px-2 md:px-3 sm:font-bold mx-[1px] ${
-                          key === item.id ? "text-slate-200  bg-orange-500" : ""
-                        }`}
-                        onClick={
-                          typeInSection === "speaking"
-                            ? () => handleShowSection(item, "speaking")
-                            : null
-                        }
-                      >
-                       <p className="md:block hidden">PART</p> {index + 1}
-                      </Button>
-                    ))
-                  //   <h2>test</h2>
-                }
-              </div>
-              <h2 className="mx-auto mt-2 font-medium"> Speaking</h2>
-            </ButtonGroup>
-            {/* <ButtonGroup className="grid">
+                    ))}
+                </div>
+                <h2 className="mt-2 font-medium"> Listening</h2>
+              </ButtonGroup>
+              <ButtonGroup
+                className={`grid ${type === "reading" ? "" : "desktop:block phone:hidden"}`}
+              >
+                <div className="flex">
+                  {
+                    reading &&
+                      reading?.map((item, index) => (
+                        <Button
+                          className={`text-xs flex px-2 md:px-3 sm:font-bold mx-[1px] ${
+                            key === item.id
+                              ? "text-slate-200  bg-orange-500"
+                              : ""
+                          } `}
+                          onClick={
+                            typeInSection === "reading"
+                              ? () => handleShowSection(item, "reading")
+                              : null
+                          }
+                        >
+                          <p className="md:block hidden">PART</p> {index + 1}
+                        </Button>
+                      ))
+                    //   <h2>test</h2>
+                  }
+                </div>
+                <h2 className="mx-auto mt-2 font-medium"> Reading</h2>
+              </ButtonGroup>
+              <ButtonGroup
+                className={`grid ${type === "writing" ? "" : "desktop:block phone:hidden"}`}
+              >
+                <div className="flex">
+                  {
+                    writing &&
+                      writing?.map((item, index) => (
+                        <Button
+                          className={`text-xs flex px-2 md:px-3 sm:font-bold mx-[1px] ${
+                            key === item.id
+                              ? "text-slate-200  bg-orange-500"
+                              : ""
+                          } ${type === "writing" ? "" : "desktop:flex phone:hidden"}`}
+                          onClick={
+                            typeInSection === "writing"
+                              ? () => handleShowSection(item, "writing")
+                              : null
+                          }
+                        >
+                          <p className="md:block hidden">PART</p> {index + 1}
+                        </Button>
+                      ))
+                    //   <h2>test</h2>
+                  }
+                </div>
+                <h2 className="mx-auto mt-2 font-medium"> Writing</h2>
+              </ButtonGroup>
+              <ButtonGroup
+                className={`mx-auto justify-center grid ${
+                  type === "speaking" ? "" : "desktop:block phone:hidden"
+                }`}
+              >
+                <div className="flex">
+                  {
+                    speaking &&
+                      speaking?.map((item, index) => (
+                        <Button
+                          className={`text-xs flex px-2 md:px-3 sm:font-bold mx-[1px] ${
+                            key === item.id
+                              ? "text-slate-200  bg-orange-500"
+                              : ""
+                          }`}
+                          onClick={
+                            typeInSection === "speaking"
+                              ? () => handleShowSection(item, "speaking")
+                              : null
+                          }
+                        >
+                          <p className="md:block hidden">PART</p> {index + 1}
+                        </Button>
+                      ))
+                    //   <h2>test</h2>
+                  }
+                </div>
+                <h2 className="mx-auto mt-2 font-medium"> Speaking</h2>
+              </ButtonGroup>
+              {/* <ButtonGroup className="grid">
               <div className="flex">
                 {
                   speaking &&
@@ -269,20 +278,26 @@ function PageDemo(props) {
               <h2 className="mx-auto mt-2 font-medium"> Speaking</h2>
             </ButtonGroup> */}
 
-            <div className="flex gap-2">
-            <Button
-              className= {`block bg-[#fb9400] border-slate-600 text-white hover:!border-[#fb9400] hover:!text-white ${(type === "speaking") ? "hidden" : ""}`}
-              onClick={() => notification.success({message : "Saved your answers "})}
-            >
-              {type !== "speaking" ? "Save" : ""}
-            </Button>
-            <Button
-              className= {`block bg-[#fb9400] border-slate-600 text-white hover:!border-[#fb9400] hover:!text-white ${(type === "speaking") ? "hidden" : ""}`}
-              onClick={handleConfirmNextSection}
-            >
-              {type !== "speaking" ? "Next" : ""}
-            </Button>
-           
+              <div className="flex gap-2">
+                <Button
+                  className={`block bg-[#fb9400] border-slate-600 text-white hover:!border-[#fb9400] hover:!text-white ${
+                    type === "speaking" ? "hidden" : ""
+                  }`}
+                  onClick={() =>
+                    notification.success({ message: "Saved your answers " })
+                  }
+                >
+                  {type !== "speaking" ? "Save" : ""}
+                </Button>
+                <Button
+                  className={`block bg-[#fb9400] border-slate-600 text-white hover:!border-[#fb9400] hover:!text-white ${
+                    type === "speaking" ? "hidden" : ""
+                  }`}
+                  onClick={handleConfirmNextSection}
+                >
+                  {type !== "speaking" ? "Next" : ""}
+                </Button>
+              </div>
             </div>
           </div>
         </div>
