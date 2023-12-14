@@ -53,6 +53,7 @@ const AppHeader = () => {
             <Menu.Item key="Toeic">
               <Link to="/toeic">Thi thử TOEIC</Link>
             </Menu.Item>
+            {/* check */}
             {valueJwt !== "undefined" && (
               <Menu.Item key="Toeic">
                 <h2 onClick={handleSubmitExamByService}>Bài thi dành riêng</h2>
