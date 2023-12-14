@@ -95,7 +95,7 @@ function ModalConfirmSubmit() {
         <h2 className="text-center my-5">Hãy mua khóa học để được ôn tập và thi với Edustar</h2>
 
         <div className="flex justify-end gap-5">
-          <Button onClick={() => {navigate("")}} className="bg-orange-500">Mua khóa học </Button>
+          <Button onClick={() => {navigate("https://mocktest.edustar.com.vn/")}} className="bg-orange-500">Tiếp tục thi thử</Button>
           <Button onClick={() => {navigate("https://edustar.com.vn/")}} className="bg-">Quay lại trang chủ </Button>
         </div>
       </Modal>

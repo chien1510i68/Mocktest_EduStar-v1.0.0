@@ -56,7 +56,7 @@ const UserFeedback = () => {
     },
     {
       image: avatar7,
-      name: "Nguyen Hoài Nam",
+      name: "Nguyễn Hoài Nam",
       // caption: "Feedback caption 1",
       content:
         "Học phí ở đây rất hợp lý so với chất lượng giáo dục được cung cấp. Tôi cảm thấy đây là một đầu tư đáng giá cho sự phát triển cá nhân của mình.",
