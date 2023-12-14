@@ -35,8 +35,8 @@ function PageDemo(props) {
     try {
       console.log(res?.data?.timeExam);
       setTimeExam(res?.data?.timeExam);
-      localStorage.setItem("timeSection", JSON.stringify( (res?.data?.timeExam === "minitest") ? 25 :45));
-      notification.success({message : "1"})
+      // localStorage.setItem("timeSection", JSON.stringify( (res?.data?.timeExam === "minitest") ? 25 :45));
+      // notification.success({message : "1"})
 
       const listListening = res?.data?.sections.filter(
         (i) => i.type === "listening"

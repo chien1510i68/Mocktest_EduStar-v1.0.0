@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Countdown from "react-countdown";
 import { AppContext } from "./AppContext";
-import { Button, notification } from "antd";
 
 function Count2() {
   const { data, dispatch } = useContext(AppContext);

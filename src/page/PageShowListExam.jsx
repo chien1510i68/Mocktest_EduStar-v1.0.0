@@ -9,7 +9,8 @@ function PageShowListExam() {
     const navigate = useNavigate();
 
     const data = location.state
-    //   console.log("Danh sach cac du lieu la : ", data?.length);
+      console.log("Danh sach cac du lieu la : ", data);
+    
      
 
     return (
@@ -52,7 +53,7 @@ function PageShowListExam() {
                             render={(_, record) => (
                                 <h2
                                     // onClick={() => navigate(`/exam/${record.id}`, { state: record.timeExam })}
-                                    onClick={() => navigate(`/beforeExam/${record.id}`)}
+                                    onClick={() => navigate(`/beforeExam/${record.id}/${record.timeExam}`)}
                                     className="flex justify-center font-normal text-[#fb9400] hover:cursor-pointer"
                                 >
                                     Thi thử

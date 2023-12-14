@@ -11,9 +11,11 @@ const BeforeExam = () => {
     
     const navigate = useNavigate();
     const {examId} = useParams()
+    const {timeExam} = useParams()
     useEffect(() =>{
         localStorage.setItem("typeSection", JSON.stringify("listening")); 
-        localStorage.removeItem("timeSection")
+        
+        localStorage.setItem("timeSection" , JSON.stringify((timeExam === "minitest") ?25 : 45))
         // localStorage.setItem("timeSection" ,JSON.stringify(11))
         localStorage.removeItem("timeLeft")
         localStorage.removeItem("responsewriting")
