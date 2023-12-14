@@ -156,22 +156,22 @@ function PageDemo(props) {
 
   return (
     <>
-      <div className="max-w-[1200px]">
-        <div className="pb-[5%]">
+      <div>
+        <div className="pb-[5%] max-w-[1200px] mx-auto justify-center">
           <FormQuestionDemo type={type}  section={section} />
           {/* {handleTest} */}
         </div>
 
-        <div className="w-[100vw]">
-          <div className="w-full py-2 bg-slate-600 z-20 flex gap-5 justify-center fixed bottom-0">
-            <ButtonGroup className={`grid ${(type === "listening") ? "" :"phone:hidden"}`}>
+        <div className="w-full">
+          <div className="w-full py-2 bg-slate-600 flex gap-5 justify-center fixed bottom-0">
+            <ButtonGroup className={`grid ${(type === "listening") ? "" :"hidden xl:block"}`}>
               <div className="flex">
                 {listening &&
                   listening?.map((item, index) => (
                     <Button
                       className={`text-xs flex px-2 md:px-3 sm:font-bold mx-[1px] item-center ${
                         key === item.id ? "text-slate-200  bg-orange-500" : ""
-                      } ${(type === "listening") ? "" :"phone:hidden"}`}
+                      } ${(type === "listening") ? "flex" :"hidden xl:flex"}`}
                       onClick={
                         typeInSection === "listening"
                           ? () => handleShowSection(item, "listening")
@@ -182,9 +182,9 @@ function PageDemo(props) {
                     </Button>
                   ))}
               </div>
-              <h2 className="mx-auto mt-2 font-medium"> Listening</h2>
+              <h2 className="text-center mt-2 font-medium"> Listening</h2>
             </ButtonGroup>
-            <ButtonGroup className={`grid ${(type === "reading") ? "" :"phone:hidden"}`}>
+            <ButtonGroup className={`grid ${(type === "reading") ? "" :"hidden xl:block"}`}>
               <div className="flex">
                 {
                   reading &&
@@ -192,7 +192,7 @@ function PageDemo(props) {
                       <Button
                         className={`text-xs flex px-2 md:px-3 sm:font-bold mx-[1px] ${
                           key === item.id ? "text-slate-200  bg-orange-500" : ""
-                        } `}
+                        } ${(type === "reading") ? "flex" :"hidden xl:flex"}`}
                         onClick={
                           typeInSection === "reading"
                             ? () => handleShowSection(item, "reading")
@@ -205,9 +205,9 @@ function PageDemo(props) {
                   //   <h2>test</h2>
                 }
               </div>
-              <h2 className="mx-auto mt-2 font-medium"> Reading</h2>
+              <h2 className="text-center mt-2 font-medium"> Reading</h2>
             </ButtonGroup>
-            <ButtonGroup className={`grid ${(type === "writing") ? "" :"phone:hidden"}`}>
+            <ButtonGroup className={`grid ${(type === "writing") ? "" :"hidden xl:block"}`}>
 
               <div className="flex">
                 {
@@ -216,7 +216,7 @@ function PageDemo(props) {
                       <Button
                         className={`text-xs flex px-2 md:px-3 sm:font-bold mx-[1px] ${
                           key === item.id ? "text-slate-200  bg-orange-500" : ""
-                        } ${(type === "writing") ? "" :"phone:hidden"}`}
+                        } ${(type === "writing") ? "" :"hidden xl:flex"}`}
                         onClick={
                           typeInSection === "writing"
                             ? () => handleShowSection(item, "writing")
@@ -229,9 +229,9 @@ function PageDemo(props) {
                   //   <h2>test</h2>
                 }
               </div>
-              <h2 className="mx-auto mt-2 font-medium"> Writing</h2>
+              <h2 className="text-center mt-2 font-medium"> Writing</h2>
             </ButtonGroup>
-            <ButtonGroup className={`mx-auto justify-center grid ${(type === "speaking") ? "" :"phone:hidden"}`}>
+            <ButtonGroup className={`grid ${(type === "speaking") ? "" :"hidden xl:block"}`}>
 
               <div className="flex">
                 {
@@ -240,7 +240,7 @@ function PageDemo(props) {
                       <Button
                         className={`text-xs flex px-2 md:px-3 sm:font-bold mx-[1px] ${
                           key === item.id ? "text-slate-200  bg-orange-500" : ""
-                        }`}
+                        } ${(type === "speaking") ? "" :"hidden xl:flex"}`}
                         onClick={
                           typeInSection === "speaking"
                             ? () => handleShowSection(item, "speaking")
@@ -253,7 +253,7 @@ function PageDemo(props) {
                   //   <h2>test</h2>
                 }
               </div>
-              <h2 className="mx-auto mt-2 font-medium"> Speaking</h2>
+              <h2 className="text-center mt-2 font-medium"> Speaking</h2>
             </ButtonGroup>
             {/* <ButtonGroup className="grid">
               <div className="flex">
