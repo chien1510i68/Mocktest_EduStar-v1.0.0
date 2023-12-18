@@ -3,7 +3,6 @@ import { ConfigProvider, Form, Input } from "antd";
 const InputElement = (prop) => {
   return (
     <>
-
       <ConfigProvider
         theme={{
           token: {

@@ -46,7 +46,7 @@ const HomePage = () => {
             allowfullscreen
           ></iframe> */}
 
-          <Image src={iconLogo} className="w-full md:w-30" fill alt="" />
+          <img src={iconLogo} className="w-50 md:w-30" fill alt="" />
           <p className="px-2 max-w-[1200px] my-4 text-3xl font-bold">
             Địa điểm thích hợp nhất để luyện thi các chứng chỉ Tiếng Anh Quốc tế
           </p>

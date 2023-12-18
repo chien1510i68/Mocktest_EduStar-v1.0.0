@@ -50,8 +50,8 @@ function FormRegister(props) {
   const sendData = (data, onFinish) => {
     
 // https://api.edustar.com.vn/consulting/registration
-    // fetch("http://localhost:8000/blogs", {
-    fetch("https://api.edustar.com.vn/consulting/registration", {
+    fetch("http://localhost:8000/blogs", {
+    // fetch("https://api.edustar.com.vn/consulting/registration", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
