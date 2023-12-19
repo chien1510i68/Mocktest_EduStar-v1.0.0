@@ -307,7 +307,7 @@ const AppHeader = () => {
                      handleInputChange={handleInputChange}
                      okButtonProps={{ style: modalStyle }}
                      okText="Gửi thông tin"
-                     cancelText="H"
+                     cancelText="Hủy"
                     >
                       <p className="text-[#fb9400] text-center font-bold text-2xl">
                         Đăng ký tư vấn

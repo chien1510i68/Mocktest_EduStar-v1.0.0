@@ -1,37 +1,47 @@
-import React, { useState } from 'react';
+// src/components/Menu.js
+import React, { useState } from "react";
+import Model from "../component/modal/ModalConsulutation";
+import { Menu } from "antd";
 
-function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const Testlayout = () => {
+  const [selectedModel, setSelectedModel] = useState(null);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  }
+  const handleItemClick = (model) => {
+    setSelectedModel(model);
+  };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  }
+  const handleCloseModal = () => {
+    setSelectedModel(null);
+  };
+  const itemMenu = [
+    {
+      key: 1,
+      label: "show modal",
+    },
+
+    {
+      key: 2,
+      label: "dont have",
+    },
+  ];
 
   return (
-    <div className="App">
-      <header className="bg-gray-200 p-4">
-        <nav>
-          <ul className="flex">
-            <li><a href="#" onClick={openModal} className="text-blue-500">Menu Item 1</a></li>
-            {/* Add more menu items as needed */}
-          </ul>
-        </nav>
-      </header>
+    <div>
+      <Menu
+        mode="horizontal"
+        items={itemMenu}
+        onClick={(props) => {
+          if (props.key == 1) {
+            handleItemClick();
 
-      {isModalOpen &&
-        <div className="modal fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="modal-content bg-white p-8">
-            <span className="close text-gray-700 text-2xl cursor-pointer" onClick={closeModal}>&times;</span>
-            <p>This is the modal content.</p>
-          </div>
-        </div>
-      }
+            selectedModel && (
+              <Model model={selectedModel} onClose={handleCloseModal} />
+            );
+          }
+        }}
+      />
     </div>
   );
-}
+};
 
-export default App;
+export default Testlayout;
