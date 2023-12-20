@@ -9,8 +9,8 @@ import { useEffect } from "react";
 
 const BeforeExam = () => {
   const navigate = useNavigate();
-  const { examId } = useParams();
-  const { timeExam } = useParams();
+  const { examId ,timeExam ,typeExam} = useParams();
+  // const {  } = useParams();
   useEffect(() => {
     localStorage.setItem("typeSection", JSON.stringify("listening"));
 
@@ -87,7 +87,7 @@ const BeforeExam = () => {
           </div>
           <div className="row-span-1 col-span-1">
             <button
-              onClick={() => navigate(`/exam/${examId}/listening`)}
+              onClick={() => navigate(`/exam/${examId}/listening` ,{state : typeExam})}
               className="bg-[#fb9400] w-full p-2 text-white font-bold uppercase rounded-md shadow-md shadow-[#bebbb3] hover:bg-yellow-500"
             >
               thi thử

@@ -1,4 +1,4 @@
-import { Button, Checkbox, ConfigProvider, Form, Input, Radio } from "antd";
+import { Button, Checkbox, ConfigProvider, Form, Image, Input, Radio } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import ReactAudioPlayer from "react-audio-player";
 import Count from "../Count";
@@ -10,7 +10,7 @@ import { AppContext } from "../AppContext";
 import Count2 from "../Count2";
 import FormUpload from "../form/FormUpload";
 
-function FormQuestionDemo({ type, section }) {
+function FormQuestionDemo({ type, section , typeExam }) {
   // console.log("totalChoice",totalChoice);
   const [userChoices, setUserChoices] = useState([]);
   const [formData, setFormData] = useState({});
@@ -143,7 +143,7 @@ function FormQuestionDemo({ type, section }) {
               ></ReactAudioPlayer>
             ) : (
               <h2
-                className={`font-medium text-lg leading-relaxed overflow-auto px-[5%] ${
+                className={`font-medium text-lg leading-relaxed overflow-auto  ${
                   type === "reading" ? "h-[100vh]" : ""
                 } `}
               >
@@ -173,12 +173,22 @@ function FormQuestionDemo({ type, section }) {
                 <div key={questionIndex}>
                   <h2 className="font-medium sm:mx-10 mx-5 text-base">
                     Question {questionIndex + 1} : {question.content}
-                    {question?.description?.startsWith("https") && (
+                    {question?.description?.includes(".mp3") && (
                       <audio muted={true} controls>
                         <source src={question.description} type="audio/mp3" />
                       </audio>
                     )}
+                    
                   </h2>
+                  <div className="flex items-center justify-center">
+                  {question?.description?.includes(".png") && (
+                      // <audio muted={true} controls>
+                      //   <source src={question.description} type="audio/mp3" />
+                      // </audio>
+                     <Image src={question.description} className="mx-auto block "/>
+                    )}
+                  </div>
+                 
                   {question.questionType === "Single_answer" && (
                     <Form.Item className="mx-10" key={question.id}>
                       <Radio.Group
@@ -192,12 +202,13 @@ function FormQuestionDemo({ type, section }) {
                           )?.answerKey[0]
                         }
                       >
-                        {question?.listAnswer.map((item) => (
+                        {question?.listAnswer.map((item , index) => (
                           <Radio
                             key={item.answerKey}
                             className="col-span-1 my-2"
                             value={item.answerKey}
                           >
+                            {index === 0 ? "A. " : index === 1 ? "B. " : index === 2 ? "C. " : "D. "}
                             {item.answer}
                           </Radio>
                         ))}

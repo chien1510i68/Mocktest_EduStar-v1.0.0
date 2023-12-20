@@ -62,7 +62,7 @@ element : <HomePage/>
   },
 
   {
-    path: "/beforeExam/:examId/:timeExam",
+    path: "/beforeExam/:examId/:timeExam/:typeExam",
     element: <BeforeExam />,
   },
   

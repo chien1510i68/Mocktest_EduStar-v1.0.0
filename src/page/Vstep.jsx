@@ -19,9 +19,9 @@ function Vstep() {
     const phoneNumber = JSON.parse(localStorage.getItem("phoneNumber"));
     console.log("phoneNumber", phoneNumber);
     if (phoneNumber === null) {
-      navigate("/register", { state: "vstep_b1" });
+      navigate("/register", { state: "vstep" });
     } else {
-      const data = await handleGetExamByType("vstep_b1");
+      const data = await handleGetExamByType("vstep");
       if (data?.data?.total === 0) {
         dispatch({ type: "openModalWarning" });
       } else {
