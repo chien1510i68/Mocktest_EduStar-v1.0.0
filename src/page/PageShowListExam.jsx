@@ -53,7 +53,7 @@ function PageShowListExam() {
                             render={(_, record) => (
                                 <h2
                                     // onClick={() => navigate(`/exam/${record.id}`, { state: record.timeExam })}
-                                    onClick={() => navigate(`/beforeExam/${record.id}/${record.timeExam}`)}
+                                    onClick={() => navigate(`/beforeExam/${record.id}/${record.timeExam}/${record.type}`)}
                                     className="flex justify-center font-normal text-[#fb9400] hover:cursor-pointer"
                                 >
                                     Thi thử
