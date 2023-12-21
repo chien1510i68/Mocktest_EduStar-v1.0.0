@@ -36,7 +36,7 @@ function Vstep() {
       {/* <HeaderMenu /> */}
       {/* <h2>this is the text</h2> */}
 
-      <div className="sm:pt-20 p-5 bg-[#FFF4E5] grid tablet:grid-cols-2 mobile:grid-cols-1 gap-5 mt-16  mb-5 items-center shadow-md">
+      <div className="sm:pt-20 p-5 bg-[#FFF4E5] grid tablet:grid-cols-2 mobile:grid-cols-1 mt-10 gap-5 mb-5 items-center shadow-md">
         <div className="col-span-1 text-left tablet:ml-[10%] mobile:ml-2">
           <h2 className="text-slate-950 font-semibold text-3xl ">
             {" "}
@@ -51,27 +51,6 @@ function Vstep() {
           </p>
 
           <div className="flex justify-start gap-2">
-            {/* <button
-              className="flex bg-[#fb9400] px-2 text-white font-bold my-auto sm:px-2 sm:py-1 sm:mr-2 border-2 border-[#fb9400] rounded-md shadow-md shadow-[#bfb7ac] hover:bg-yellow-500 hover:border-yellow-500"
-              onClick={handleNavigate}
-            >
-              Thi thử miễn phí{" "}
-              <svg
-                className="my-auto mx-2 hidden sm:block"
-                width="7"
-                height="11"
-                viewBox="0 0 7 11"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M1 0.847063V1.75991C1 1.82198 1.02612 1.8804 1.06896 1.91692L5.16088 5.37477L1.06896 8.83262C1.02612 8.86914 1 8.92756 1 8.98963V9.90248C1 9.98159 1.07732 10.0278 1.13271 9.98159L6.21207 5.69C6.39598 5.53421 6.39598 5.21533 6.21207 5.06075L1.13271 0.769167C1.07732 0.721699 1 0.76795 1 0.847063Z"
-                  fill="white"
-                  stroke="white"
-                  stroke-width="1.25"
-                />
-              </svg>
-            </button> */}
             <Button
               className="bg-[#fb9400] flex border-[#fff4e5] text-white font-bold hover:!bg-[#fb9400] hover:!text-white hover:!border-[#fb9400]"
               onClick={handleNavigate}
@@ -118,13 +97,13 @@ function Vstep() {
           </div>
         </div>
         <div className="col-span-1">
-          <img src={ImageBanner} />
+          <img src={ImageBanner} alt=""/>
         </div>
       </div>
 
       <div className="max-w-[1200px] mx-auto justify-center px-3">
         <div className="mobile:my-5 grid tablet:grid-cols-2 mobile:grid-cols-1 gap-10 justify-center py-10">
-          <div className="col-span-1 text-left tablet:ml-[10%] mobile:ml-2">
+          <div className="col-span-1 text-left tablet:ml-[10%] mobile:ml-5 px-5">
             <p className="font-bold text-xl my-3">Lợi ích khi thi thử VSTEP</p>
             <p className="my-3">
               Thi thở VSTEP chính là bước quan trọng giúp bạn kiểm tra trình độ
@@ -161,13 +140,13 @@ function Vstep() {
             </ul>
           </div>
           <div className="col-span-1 mx-auto ">
-            <Image src={group} />
+            <img src={group} alt=""/>
           </div>
         </div>
 
         <div className="mobile:my-5 grid tablet:grid-cols-2 mobile:grid-cols-1 gap-10 justify-center px-5 py-10">
           <div className="col-span-1">
-            <Image src={luuY} />
+            <img src={luuY} alt=""/>
           </div>
           <div className="col-span-1 text-left tablet:ml-[10%] mobile:ml-2">
             <p className="text-xl font-bold my-3">

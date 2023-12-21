@@ -3,24 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import account from "../../vector/account_circle.svg";
 import React, { useEffect, useState } from "react";
 import { MenuOutlined } from "@ant-design/icons";
-import ModalConsulutation from "../modal/ModalConsulutation";
 import {
   Menu,
   notification,
   Button,
-  Modal,
   Drawer,
-  ConfigProvider,
-  theme,
-  Form,
-  message,
 } from "antd";
 import Cookies from "js-cookie";
 import { Col, Row } from "antd";
 import { getListExamByServiceUser } from "../api/exam";
 
-import InputComponent from "../inputComponent/InputComponent";
-import { render } from "react-dom";
 
 const AppHeader = () => {
   const navigate = useNavigate();
@@ -167,15 +159,8 @@ const AppHeader = () => {
       label: <Link to={"https://edustar.com.vn/new"}>tin tức</Link>,
     },
 
-    {
-      key: 14,
-      label: "đăng ký tư vấn",
-    },
   ];
 
-  const showModalConsulutation = () => {
-    alert();
-  };
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
@@ -206,53 +191,7 @@ const AppHeader = () => {
     </div>
   );
 
-  const [modalVisible, setModalVisible] = useState(false);
-  const [formData, setFormData] = useState({
-    field1: '',
-    field2: '',
-    field3: '',
-    field4: '',
-  });
-  const handleMenuClick = () => {
-    setModalVisible(true);
-  };
 
-  const handleModalCancel = () => {
-    setModalVisible(false);
-  };
-
-  const handleModalOk = () => {
-    fetch('http://localhost:8000/blogs', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Server response:', data);
-        message.success('Data submitted successfully');
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        message.error('Failed to submit data');
-      });
-
-    setModalVisible(false);
-  };
-
-  const handleInputChange = (field, value) => {
-    setFormData({
-      ...formData,
-      [field]: value,
-    });
-  };
-
-  const modalStyle = {
-    background: '#fb9400', // Màu nền
-    color: '#ffff', // Màu chữ
-  };
   // const iconSize = 30;
   return (
     <div className="w-full top-0 fixed bg-white z-10 shadow-lg">
@@ -288,32 +227,11 @@ const AppHeader = () => {
                       style={{
                         display: isSmallScreen ? "block" : "none",
                       }}
-                      defaultSelectedKeys={["1"]}
-                      defaultOpenKeys={["sub1"]}
+                      defaultSelectedKeys={["2"]}
                       mode="inline"
                       items={listMenuItem}
-                      onClick={(props) => {
-                        if (props.key == 14) {
-                          handleMenuClick();
-                        }
-                      }}
                     />
 
-                    <Modal
-                     visible={modalVisible}
-                     onCancel={handleModalCancel}
-                     onOk={handleModalOk}
-                     formData={formData}
-                     handleInputChange={handleInputChange}
-                     okButtonProps={{ style: modalStyle }}
-                     okText="Gửi thông tin"
-                     cancelText="Hủy"
-                    >
-                      <p className="text-[#fb9400] text-center font-bold text-2xl">
-                        Đăng ký tư vấn
-                      </p>
-                      {/* <ModalConsulutation /> */}
-                    </Modal>
                   </Drawer>
                 </>
               </Col>
@@ -341,12 +259,6 @@ const AppHeader = () => {
                       />
                     }
                   >
-                    <Menu.Item key="Vstep">
-                      <Link>Đăng ký</Link>
-                    </Menu.Item>
-                    <Menu.Item key="Toeic">
-                      <Link>Đăng nhập</Link>
-                    </Menu.Item>
                     {valueJwt !== "undefined" && valueJwt !== "null" && (
                       <Menu.Item>
                         <h2 onClick={handleSubmitExamByService}>
@@ -371,26 +283,11 @@ const AppHeader = () => {
                 <Menu
                   mode={isSmallScreen ? "" : "horizontal"}
                   style={{ display: isSmallScreen ? "none" : "block" }}
-                  onClick={(props) => {
-                    if (props.key == 14) {
-                      handleMenuClick();
-                    }
-                  }}
+                  defaultSelectedKeys={["2"]}
                   className="text-[#515151] border-none mx-auto text-center uppercase font-bold hover:!border-[#fb9400]"
                   items={listMenuItem}
                 />
-                <Modal
-                     visible={modalVisible}
-                     onCancel={handleModalCancel}
-                     onOk={handleModalOk}
-                     formData={formData}
-                     handleInputChange={handleInputChange}
-                    >
-                  <p className="text-[#fb9400] text-center font-bold text-2xl">
-                    Đăng ký tư vấn
-                  </p>
-                  <ModalConsulutation />
-                </Modal>
+                
               </Col>
               <Col xs={8} sm={8} md={8} lg={2} xl={2}>
                 <Menu
@@ -409,12 +306,6 @@ const AppHeader = () => {
                       />
                     }
                   >
-                    <Menu.Item key="Vstep">
-                      <Link>Đăng ký</Link>
-                    </Menu.Item>
-                    <Menu.Item key="Toeic">
-                      <Link>Đăng nhập</Link>
-                    </Menu.Item>
                     {valueJwt !== "undefined" && valueJwt !== "null" && (
                       <Menu.Item>
                         <h2 onClick={handleSubmitExamByService}>
