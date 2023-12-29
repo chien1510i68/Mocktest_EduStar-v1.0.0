@@ -168,7 +168,7 @@ function Toeic() {
           <div className="grid tablet:grid-cols-4 mobile:grid-cols-1 gap-5 justify-around py-2">
             <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 sm:h-full duration-500 hover:shadow-[#808080]">
               <div className="w-full bg-no-repeat bg-center toeic-img">
-                <Image
+                <img
                   src={part1}
                   className="mx-auto justify-center object-cover"
                   alt=""
@@ -184,7 +184,7 @@ function Toeic() {
             </div>
             <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 duration-500 hover:shadow-[#808080]">
               <div className="w-full bg-no-repeat bg-center toeic-img">
-                <Image src={part2} fill alt="" priority />
+                <img src={part2} fill alt="" priority />
               </div>
               <p className="font-bold">Path 2</p>
               <p className="font-bold">Hỏi-Đáp</p>
@@ -195,7 +195,7 @@ function Toeic() {
             </div>
             <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 duration-500 hover:shadow-[#808080]">
               <div className="w-full bg-no-repeat bg-center toeic-img">
-                <Image src={part3} fill alt="" priority />
+                <img src={part3} fill alt="" priority />
               </div>
               <p className="font-bold">Path 3</p>
               <p className="font-bold">Đoạn hội thoại</p>
@@ -207,7 +207,7 @@ function Toeic() {
             </div>
             <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 duration-500 hover:shadow-[#808080]">
               <div className="w-full bg-no-repeat bg-center toeic-img">
-                <Image src={part4} fill alt="" priority />
+                <img src={part4} fill alt="" priority />
               </div>
               <p className="font-bold">Path 4</p>
               <p className="font-bold">Bài nói ngắn</p>
@@ -222,7 +222,7 @@ function Toeic() {
           <div className="grid tablet:grid-cols-4 mobile:grid-cols-1 gap-5 justify-around py-2">
             <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 sm:h-full duration-500 hover:shadow-[#808080]">
               <div className="w-full bg-no-repeat bg-center toeic-img">
-                <Image src={part5} fill alt="" priority />
+                <img src={part5} fill alt="" priority />
               </div>
               <p className="font-bold">Path 5</p>
               <p className="font-bold">Hoàn thành câu</p>
@@ -232,7 +232,7 @@ function Toeic() {
             </div>
             <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 duration-500 hover:shadow-[#808080]">
               <div className="w-full bg-no-repeat bg-center toeic-img">
-                <Image src={part6} fill alt="" priority />
+                <img src={part6} fill alt="" priority />
               </div>
               <p className="font-bold">Path 6</p>
               <p className="font-bold">Hoàn thành đoạn văn</p>
@@ -243,7 +243,7 @@ function Toeic() {
             </div>
             <div className="shadow-lg border-solid border rounded-md border-[#fb9400] p-3 col-span-1 duration-500 hover:shadow-[#808080]">
               <div className="w-full bg-no-repeat bg-center toeic-img">
-                <Image src={part7} fill alt="" priority />
+                <img src={part7} fill alt="" priority />
               </div>
               <p className="font-bold">Path 7</p>
               <p className="font-bold">Đọc hiểu</p>
@@ -493,7 +493,7 @@ function Toeic() {
                 </ul>
               </div>
               <div className="col-span-1">
-                <Image src={luuYThi} />
+                <img src={luuYThi} alt=""/>
               </div>
             </div>
           </div>
