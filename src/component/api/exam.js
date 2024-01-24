@@ -24,5 +24,5 @@ export const createFile = (file) => {
   console.log("data res: ", file);
   const formData = new FormData();
   formData.append("file", file);
-  return request.post("/file/upload", formData);
+  return request.post("client/results/file/upload", formData);
 };

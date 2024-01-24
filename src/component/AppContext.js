@@ -9,6 +9,7 @@ const initialData = {
   firstWriting: null,
   firstSpeaking: null,
   fileInDescription: null,
+  // totalChoices : 0 ,
 
   setChangeTimeSection: false,
 };
@@ -65,6 +66,8 @@ const reducer = (state, action) => {
       return { ...state, fileInDescription: null };
     case "fileDescriptionInSection":
       return { ...state, fileDescriptionInSection: action.payload };
+      // case "setTotalChoices" : 
+      // return {...state , totalChoices : action.payload}
     default:
       return state;
   }

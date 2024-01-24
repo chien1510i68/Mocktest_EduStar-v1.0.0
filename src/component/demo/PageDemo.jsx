@@ -175,6 +175,7 @@ function PageDemo(props) {
                 {listening &&
                   listening?.map((item, index) => (
                     <Button
+                    key={index}
                       className={`text-xs flex px-2 md:px-3 sm:font-bold mx-[1px] item-center ${
                         key === item.id ? "text-slate-200  bg-orange-500" : ""
                       } ${type === "listening" ? "flex" : "hidden xl:flex"}`}
@@ -197,6 +198,7 @@ function PageDemo(props) {
                 {
                   reading &&
                     reading?.map((item, index) => (
+
                       <Button
                         className={`text-xs flex px-2 md:px-3 sm:font-bold mx-[1px] ${
                           key === item.id ? "text-slate-200  bg-orange-500" : ""
@@ -206,6 +208,7 @@ function PageDemo(props) {
                             ? () => handleShowSection(item, "reading")
                             : null
                         }
+                        key={index}
                       >
                         <p className="md:block hidden">PART</p> {index + 1}
                       </Button>
@@ -232,6 +235,7 @@ function PageDemo(props) {
                             ? () => handleShowSection(item, "writing")
                             : null
                         }
+                        key={index}
                       >
                         <p className="md:block hidden">PART</p> {index + 1}
                       </Button>
@@ -257,6 +261,7 @@ function PageDemo(props) {
                     typeExam !== "TOEIC" &&
                     speaking?.map((item, index) => (
                       <Button
+                      key={index}
                         className={`text-xs flex px-2 md:px-3 sm:font-bold mx-[1px] ${
                           key === item.id ? "text-slate-200  bg-orange-500" : ""
                         } ${type === "speaking" ? "" : "hidden xl:flex"}`}
@@ -281,29 +286,7 @@ function PageDemo(props) {
                 Speaking
               </h2>
             </ButtonGroup>
-            {/* <ButtonGroup className="grid">
-              <div className="flex">
-                {
-                  speaking &&
-                    speaking?.map((item, index) => (
-                      <Button
-                        className={`text-xs mx-[1px] ${
-                          key === item.id ? "text-slate-200  bg-orange-500" : ""
-                        }`}
-                        onClick={
-                          type === "writing"
-                            ? () => handleShowSection(item, "speaking")
-                            : null
-                        }
-                      >
-                        PART {index + 1}
-                      </Button>
-                    ))
-                  //   <h2>test</h2>
-                }
-              </div>
-              <h2 className="mx-auto mt-2 font-medium"> Speaking</h2>
-            </ButtonGroup> */}
+          
 
             <div className="flex gap-2">
               <Button
@@ -322,14 +305,14 @@ function PageDemo(props) {
               </Button>
               <Button
                 className={`block bg-[#fb9400] border-slate-600 text-white hover:!border-[#fb9400] hover:!text-white ${
-                  (type !== "speaking" && type === "VSTEP") ||
+                  (type === "speaking" && type === "VSTEP") ||
                   (type === "reading" && typeExam === "TOEIC")
                     ? "hidden"
                     : ""
                 }`}
                 onClick={handleConfirmNextSection}
               >
-                {type !== "speaking" ? "Next" : ""}
+                {type !== "speaking" ? "Next" : "Submit"}
               </Button>
             </div>
           </div>

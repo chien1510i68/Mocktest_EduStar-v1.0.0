@@ -13,6 +13,7 @@ const BeforeExam = () => {
   // const {  } = useParams();
   useEffect(() => {
     localStorage.setItem("typeSection", JSON.stringify("listening"));
+    localStorage.setItem("responseUsers", JSON.stringify([]));
 
     localStorage.setItem(
       "timeSection",

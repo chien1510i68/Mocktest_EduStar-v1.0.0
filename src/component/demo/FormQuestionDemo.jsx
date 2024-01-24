@@ -1,4 +1,13 @@
-import { Button, Checkbox, ConfigProvider, Form, Image, Input, Radio } from "antd";
+import {
+  Button,
+  Checkbox,
+  ConfigProvider,
+  Form,
+  Image,
+  Input,
+  Radio,
+  notification,
+} from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import ReactAudioPlayer from "react-audio-player";
 import Count from "../Count";
@@ -9,74 +18,48 @@ import { FaHeadphones } from "react-icons/fa";
 import { AppContext } from "../AppContext";
 import Count2 from "../Count2";
 import FormUpload from "../form/FormUpload";
+import ShowQuestion from "./ShowQuestion";
+import { handleCheckListChoice } from "./handleLogicQuestion";
 
-function FormQuestionDemo({ type, section , typeExam }) {
+function FormQuestionDemo({ type, section, typeExam }) {
   // console.log("totalChoice",totalChoice);
-  const [userChoices, setUserChoices] = useState([]);
-  const [formData, setFormData] = useState({});
-  const { data1, dispatch } = useContext(AppContext);
+  // const [userChoices, setUserChoices] = useState([]);
+  // const [formData, setFormData] = useState({});
+  const { data, dispatch } = useContext(AppContext);
   const [totalChoice, setTotalChoice] = useState(1);
+ const handleSetTotalChoice = (value) =>{
+  setTotalChoice(value)
+ }
+  
+ 
 
-  const handleCheckListChoice = (section) => {
-    const localData = JSON.parse(localStorage.getItem("responseUsers"));
-    const listQues = section?.questions;
-    const commonElements = localData?.filter((itemA) =>
-      listQues?.some((itemB) => itemB.id === itemA.questionId)
-    );
-    const numberOfCommonElements = commonElements?.length;
-    console.log(numberOfCommonElements); // Kết quả: 2
-    return numberOfCommonElements; // Trả về giá trị để sử dụng ở nơi khác
-  };
+  // const handleOptionChange = (questionId, answerKey, text) => {
+  //   const newUserChoices = [
+  //     ...userChoices.filter((choice) => choice.questionId !== questionId),
+  //     { questionId, answerKey: [answerKey], value: text },
+  //   ];
+  //   setUserChoices(newUserChoices);
 
-  const handleOptionChange = (questionId, answerKey, text) => {
-    const newUserChoices = [
-      ...userChoices.filter((choice) => choice.questionId !== questionId),
-      { questionId, answerKey: [answerKey], value: text },
-    ];
-    setUserChoices(newUserChoices);
+  //   const updatedTotalChoice = handleCheckListChoice(section);
+  //   if (!isNaN(updatedTotalChoice)) {
+  //     setTotalChoice(updatedTotalChoice);
+  //     console.log(updatedTotalChoice);
+  //   }
 
-    const updatedTotalChoice = handleCheckListChoice(section);
-    if (!isNaN(updatedTotalChoice)) {
-      setTotalChoice(updatedTotalChoice);
-      console.log(updatedTotalChoice);
-    }
+  //   localStorage.setItem("responseUsers", JSON.stringify(newUserChoices));
+  // };
 
-    localStorage.setItem("responseUsers", JSON.stringify(newUserChoices));
-  };
-
-  const handleOptionChangeMultiChoice = (questionId, checkedValues, text) => {
-    const newUserChoices = [
-      ...userChoices?.filter((choice) => choice.questionId !== questionId),
-      { questionId, answerKey: checkedValues, value: null },
-    ];
-    setUserChoices(newUserChoices);
-    localStorage.setItem("responseUsers", JSON.stringify(newUserChoices));
-  };
-  const handleQuestionEssay = (questionId, value) => {
-    // console.log(questionId, value);
-    const newUserChoices = [
-      ...userChoices?.filter((choice) => choice.questionId !== questionId),
-      { questionId, value: value },
-    ];
-    setUserChoices(newUserChoices);
-
-    localStorage.setItem("responseUsers", JSON.stringify(newUserChoices));
-  };
+  // useEffect(() =>{
+  
+  // },[])
+  
   const handleSubmit = () => {
     dispatch({ type: "openModalSubmit" });
   };
   useEffect(() => {
-    if (isNaN(totalChoice)) {
-      setTotalChoice(0);
-      console.log(0);
-    } else {
-      // Chỉ gọi setTotalChoice khi người dùng thực hiện hành động
-      const choice = handleCheckListChoice(section);
-      console.log(choice);
-      setTotalChoice(choice);
-    }
-    // console.log("Render ...");
-  }, [section, userChoices]); // Thêm userChoices vào dependency để cập nhật khi userChoices thay đổi
+    // notification.success({message : handleCheckListChoice(section)})
+    setTotalChoice(handleCheckListChoice(section))
+  }, [section, JSON.parse(localStorage.getItem("responseUsers"))]); // Thêm userChoices vào dependency để cập nhật khi userChoices thay đổi
 
   return (
     <div>
@@ -86,26 +69,34 @@ function FormQuestionDemo({ type, section , typeExam }) {
             {type === "listening" ? (
               <div className="flex gap-3 items-center">
                 <FaHeadphones className="text-[#fb9400] font-bold text-2xl" />
-                <h2 className="font-bold text-[#fb9400] sm:flex hidden">LISTENING</h2>
+                <h2 className="font-bold text-[#fb9400] sm:flex hidden">
+                  LISTENING
+                </h2>
               </div>
             ) : type === "reading" ? (
               <div className="flex gap-3 items-center">
                 <IoBook className="text-orange-500 font-bold text-2xl" />
-                <h2 className="font-bold text-orange-500 sm:flex hidden">READING</h2>
+                <h2 className="font-bold text-orange-500 sm:flex hidden">
+                  READING
+                </h2>
               </div>
-            ) : type === "wiriting" ? (
+            ) : type === "writing" ? (
               <div className="flex gap-3 items-center">
                 <TfiWrite className="text-orange-500 font-bold text-2xl" />
-                <h2 className="font-bold text-orange-500 sm:flex hidden">WRITING</h2>
+                <h2 className="font-bold text-orange-500 sm:flex hidden">
+                  WRITING
+                </h2>
               </div>
             ) : (
               <div className="flex gap-3 items-center">
                 <PiSpeakerHighFill className="text-orange-500 font-bold text-2xl" />
-                <h2 className="font-bold text-orange-500 sm:flex hidden">SPEAKING</h2>
+                <h2 className="font-bold text-orange-500 sm:flex hidden">
+                  SPEAKING
+                </h2>
               </div>
             )}
           </div>
-          <Count2/>
+          <Count2 />
 
           <div className="flex items-center gap-5">
             <div>
@@ -170,102 +161,19 @@ function FormQuestionDemo({ type, section , typeExam }) {
             )}
             <Form layout="vertical" className="mb-14">
               {section?.questions?.map((question, questionIndex) => (
-                <div key={questionIndex}>
-                  <h2 className="font-medium sm:mx-10 mx-5 text-base">
-                    Question {questionIndex + 1} : {question.content}
-                    {question?.description?.includes(".mp3") && (
-                      <audio muted={true} controls>
-                        <source src={question.description} type="audio/mp3" />
-                      </audio>
-                    )}
-                    
-                  </h2>
-                  <div className="flex items-center justify-center">
-                  {question?.description?.includes(".png") && (
-                      // <audio muted={true} controls>
-                      //   <source src={question.description} type="audio/mp3" />
-                      // </audio>
-                     <Image src={question.description} className="mx-auto block "/>
-                    )}
-                  </div>
-                 
-                  {question.questionType === "Single_answer" && (
-                    <Form.Item className="mx-10" key={question.id}>
-                      <Radio.Group
-                        className="grid phone:grid-cols-1 tablet:grid-cols-2 laptop:gap-x-40"
-                        onChange={(e) =>
-                          handleOptionChange(question.id, e.target.value, null)
-                        }
-                        value={
-                          userChoices.find(
-                            (choice) => choice.questionId === question.id
-                          )?.answerKey[0]
-                        }
-                      >
-                        {question?.listAnswer.map((item , index) => (
-                          <Radio
-                            key={item.answerKey}
-                            className="col-span-1 my-2"
-                            value={item.answerKey}
-                          >
-                            {index === 0 ? "A. " : index === 1 ? "B. " : index === 2 ? "C. " : "D. "}
-                            {item.answer}
-                          </Radio>
-                        ))}
-                      </Radio.Group>
-                    </Form.Item>
-                  )}
-                  {question.questionType === "Multi_answer" && (
-                    <Form.Item className="mx-10" key={question.id}>
-                      <Checkbox.Group
-                        onChange={(checkedValues) => {
-                          handleOptionChangeMultiChoice(
-                            question.id,
-                            checkedValues,
-                            null
-                          );
-                        }}
-                      >
-                        {question?.listAnswer.map((item) => (
-                          <Checkbox
-                            className="col-span-1 my-2"
-                            value={item.answerKey}
-                          >
-                            {item.answer}
-                          </Checkbox>
-                        ))}
-                      </Checkbox.Group>
-                    </Form.Item>
-                  )}
-                  {question.questionType === "Essay_answers" && section?.type === "writing" && (
-                    <Form.Item
-                      name={question.id}
-                      label="Plase input your answer "
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please input your answer",
-                        },
-                      ]}
-                    >
-                      <Input.TextArea
-                        showCount
-                        maxLength={200}
-                        rows={5}
-                        onChange={(e) =>
-                          handleQuestionEssay(question.id, e.target.value)
-                        }
-                      />
-                    </Form.Item>
-                  )}
+               
+                <ShowQuestion
+                  question={question}
+                  questionIndex={questionIndex}
+                  handleSetTotalChoice={(value)=>handleSetTotalChoice(value)}
+                  key={question?.id}
 
-
-                  {
-                    section && section?.type === "speaking" && (
-                      <FormUpload/>
-                    )
-                  }
-                </div>
+                  // handleOptionChange={handleOptionChange}
+                  // userChoices={userChoices}
+                  // handleOptionChangeMultiChoice={handleOptionChangeMultiChoice}
+                  section={section}
+                  // handleQuestionEssay={handleQuestionEssay}
+                />
               ))}
             </Form>
           </div>
