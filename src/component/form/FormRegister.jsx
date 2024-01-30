@@ -1,66 +1,54 @@
 import { Button, Form, notification } from "antd";
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AppContext } from "../AppContext";
-import { getExamByType } from "../api/exam";
-import InputComponent from "../inputComponent/InputComponent"
+import { getExamByType, saveInforUser } from "../api/exam";
+import InputComponent from "../inputComponent/InputComponent";
 
 function FormRegister(props) {
   const navigate = useNavigate();
   const { data, dispatch } = useContext(AppContext);
   const { isOpenModalConfirm } = data;
+  const location = useLocation()
+  const typeExam  = location.state
   const validateMessages = {
-    // eslint-disable-next-line no-template-curly-in-string
-    // required: "${label} is required!",
+   
     required: "Trường thông tin bắt buộc!",
     types: {
       email: "Dữ liệu đã nhập không phải Email!",
-      // eslint-disable-next-line no-template-curly-in-string
       number: "Dữ liệu đã nhập không phải số!",
     },
   };
   const onFinish = (values) => {
-    // dispatch({type : "openModalConfirm"})
-    console.log(values, isOpenModalConfirm);
-    localStorage.setItem("email", JSON.stringify(values.email));
-    localStorage.setItem("phoneNumber", JSON.stringify(values.phoneNumber));
-    localStorage.setItem("username", JSON.stringify(values.username));
-    notification.success({ message: "Your account has been saved" });
-    // navigate("/exam/26f94768-5b8e-414b-b966-59f37fdf1a16");
-    // navigate("/exam/all", );
-    sendData(values, (error, responseData) => {
-      if (error) {
-        console.error("Lỗi khi gửi dữ liệu:", error);
-      } else {
-        console.log(
-          "Dữ liệu đã được gửi thành công. Phản hồi từ máy chủ:",
-          responseData
-        );
-      }
-    });
-    getExamByType("vstep_b1", true).then((res) => {
-      // console.log(res?.data?.body);
-      if (res?.data?.body?.success === true) {
-        console.log(res?.data?.body?.data?.items);
-        navigate("/exam/all", { state: res?.data?.body?.data?.items });
-      }
-    });
-  };
-
-  const sendData = (data, onFinish) => {
-    
-// https://api.edustar.com.vn/consulting/registration
-    fetch("http://localhost:8000/blogs", {
-    // fetch("https://api.edustar.com.vn/consulting/registration", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((responseData) => onFinish(null, responseData))
-      .catch((error) => onFinish(error.message || "Có lỗi khi gửi dữ liệu"));
+    const inforUser = {
+      name: values.username,
+      email: values.email,
+      phone: values.phoneNumber,
+      contentAdvice: "Tài khoản đăng ký thi thử",
+      status: "WAITING_FOR_ADVICE",
+    };
+    saveInforUser(inforUser)
+      .then((res) => {
+        console.log(res?.data?.success);
+        if (res?.data?.success === true) {
+          notification.success({ message: "Đăng ký tài khoản thành công " });
+          getExamByType(typeExam, true).then((res) => {
+            // console.log(res?.data?.body);
+            if (res?.data?.body?.success === true) {
+              console.log(res?.data?.body?.data?.items);
+              navigate("/exam/all", { state: res?.data?.body?.data?.items });
+            }
+          });
+        } else {
+          console.log(res?.data?.error?.errorDetailList);
+          for (const errorDetail of res?.data?.error?.errorDetailList) {
+            notification.error({ message: errorDetail?.message });
+          }
+        }
+      })
+      .catch((err) => {
+        notification.error({ message: "Có lỗi khi tạo tài khoản" });
+      });
   };
 
   return (

@@ -26,3 +26,8 @@ export const createFile = (file) => {
   formData.append("file", file);
   return request.post("client/results/file/upload", formData);
 };
+
+
+export const saveInforUser = (data) =>{
+  return request.post('consulting/registration' , data)
+}
