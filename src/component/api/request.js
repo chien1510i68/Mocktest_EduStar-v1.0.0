@@ -38,9 +38,11 @@
 
 import axios from "axios";
 import Cookies from "js-cookie";
+import {base_url} from "./URL"
 
-// const base_url = "http://localhost:8088/";
-const base_url = "https://service.edustar.com.vn/";
+
+// const base_url = "http://10.10.59.101:8080/EduStarService/";
+// const base_url = "https://service.edustar.com.vn/";
 const jwtParam = new URLSearchParams(window.location.search).get("jwt");
 const userId = new URLSearchParams(window.location.search).get("id");
 Cookies.set("jwt" , jwtParam)

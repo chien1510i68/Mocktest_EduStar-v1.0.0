@@ -12,6 +12,7 @@ import {
 import Cookies from "js-cookie";
 import { Col, Row } from "antd";
 import { getListExamByServiceUser } from "../api/exam";
+import {url_FE} from "../api/URL"
 
 
 const AppHeader = () => {
@@ -41,7 +42,7 @@ const AppHeader = () => {
   const listMenuItem = [
     {
       key: 1,
-      label: <Link to={"https://edustar.com.vn/"}>trang chủ</Link>,
+      label: <Link to={`${url_FE}`}>trang chủ</Link>,
     },
 
     {
@@ -50,7 +51,7 @@ const AppHeader = () => {
         {
           key: 2,
           label: (
-            <Link to={"https://mocktest.edustar.com.vn/toeic"}>
+            <Link to={"/toeic"}>
               Thi thử TOEIC
             </Link>
           ),
@@ -59,7 +60,7 @@ const AppHeader = () => {
         {
           key: 3,
           label: (
-            <Link to={"https://mocktest.edustar.com.vn/vstep"}>
+            <Link to={"/vstep"}>
               Thi thử VSTEP
             </Link>
           ),
@@ -76,7 +77,7 @@ const AppHeader = () => {
             {
               key: 4,
               label: (
-                <Link to={"https://edustar.com.vn/vstep/luyen-thi-b1"}>
+                <Link to={`${url_FE}/vstep/luyen-thi-b1`}>
                   Luyện thi VSTEP B1
                 </Link>
               ),
@@ -84,7 +85,7 @@ const AppHeader = () => {
             {
               key: 5,
               label: (
-                <Link to={"https://edustar.com.vn/vstep/luyen-thi-b2"}>
+                <Link to={`${url_FE}/vstep/luyen-thi-b2`}>
                   Luyện thi VSTEP B2
                 </Link>
               ),
@@ -95,14 +96,14 @@ const AppHeader = () => {
         {
           key: 6,
           label: (
-            <Link to={"https://edustar.com.vn/toeic"}>Luyện thi TOEIC</Link>
+            <Link to={`${url_FE}/toeic`}>Luyện thi TOEIC</Link>
           ),
         },
 
         {
           key: 7,
           label: (
-            <Link to={"https://edustar.com.vn/ielts"}>Luyện thi IELTS</Link>
+            <Link to={`${url_FE}/ielts`}>Luyện thi IELTS</Link>
           ),
         },
 
@@ -112,7 +113,7 @@ const AppHeader = () => {
             {
               key: 8,
               label: (
-                <Link to={"https://edustar.com.vn/aptis/luyen-thi-b1"}>
+                <Link to={`${url_FE}/aptis/luyen-thi-b1`}>
                   Luyện thi APTIS B1
                 </Link>
               ),
@@ -121,7 +122,7 @@ const AppHeader = () => {
             {
               key: 9,
               label: (
-                <Link to={"https://edustar.com.vn/aptis/luyen-thi-b2"}>
+                <Link to={`${url_FE}/aptis/luyen-thi-b2`}>
                   Luyện thi APTIS B2
                 </Link>
               ),
@@ -132,7 +133,7 @@ const AppHeader = () => {
         {
           key: 10,
           label: (
-            <Link to={"https://edustar.com.vn/englishacademic"}>
+            <Link to={`${url_FE}/englishacademic`}>
               Anh ngữ học thuật
             </Link>
           ),
@@ -143,20 +144,20 @@ const AppHeader = () => {
     {
       key: 11,
       label: (
-        <Link to={"https://edustar.com.vn/test-schedule"}>lịch thi vstep</Link>
+        <Link to={`${url_FE}/test-schedule`}>lịch thi vstep</Link>
       ),
     },
 
     {
       key: 12,
       label: (
-        <Link to={"https://edustar.com.vn/study-schedule"}>lịch ôn tập</Link>
+        <Link to={`${url_FE}/study-schedule`}>lịch ôn tập</Link>
       ),
     },
 
     {
       key: 13,
-      label: <Link to={"https://edustar.com.vn/new"}>tin tức</Link>,
+      label: <Link to={`${url_FE}/new`}>tin tức</Link>,
     },
 
   ];
