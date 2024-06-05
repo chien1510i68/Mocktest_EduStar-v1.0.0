@@ -1,4 +1,4 @@
-import { Button, ConfigProvider } from "antd";
+import { Button, ConfigProvider, Modal, Spin } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AppContext } from "../component/AppContext";
@@ -13,6 +13,7 @@ function MocktestPage(props) {
   const { examId } = useParams();
   const [data1, setData1] = useState([]);
   const { data, dispatch } = useContext(AppContext);
+  const [loading, setLoading] = useState(false);
   const { isOpenModalNextSection } = data;
   const [isContinue, setIsContinue] = useState(false);
   const handleTimeSection = () => {
@@ -28,12 +29,14 @@ function MocktestPage(props) {
   };
 
   const handleGetData = () => {
+    setLoading(true);
     // getSectionByExamIdAndType({ id: examId, type: type }).then((res) => {
     getSectionByExamIdAndType({
       id: examId,
       type: type,
     }).then((res) => {
-      console.log(res?.data?.data?.items);
+      // console.log(res?.data?.data?.items);
+      setLoading(false);
       setData1(res?.data?.data?.items);
     });
   };
@@ -51,11 +54,11 @@ function MocktestPage(props) {
     if (type !== "writing") {
       setIsContinue(true);
       dispatch({ type: "openModalNextSection" });
-    }else{
+    } else {
       const answerUser = JSON.parse(localStorage.getItem("responseUsers"));
       localStorage.setItem(`responsewriting`, JSON.stringify(answerUser));
       localStorage.removeItem("responseUsers");
-      dispatch({type : "openModalSubmit"})
+      dispatch({ type: "openModalSubmit" });
     }
   };
 
@@ -66,33 +69,37 @@ function MocktestPage(props) {
   }, [type]);
   return (
     <>
-    <div className=" mx-auto">
-      <FormQuestion type={type} time={time} data={data1} />
-      {data1 && (
-        <ConfigProvider
-        theme={{
-          token: {
-            colorPrimary: "tranparent",
-          }
-        }}
-        >
-          <Button
-          className="ml-auto block bg-[#fb9400] my-5 text-white hover:!border-[#fb9400] hover:!text-white"
-          onClick={handleConfirmNextSection}
+      <div className=" mx-auto">
+        <FormQuestion type={type} time={time} data={data1} />
+        {data1 && (
+          <ConfigProvider
+            theme={{
+              token: {
+                colorPrimary: "tranparent",
+              },
+            }}
           >
-            {
-            ( type !== "writing" ) ? "Next": "Save and Submit"
-            }
-          </Button>
-        </ConfigProvider>
-        
-      )}
-      <ModalNextSection
-        handleChangeType={handleChangeType}
-        isContinue={isContinue}
-      />
-      <ModalConfirmSubmit />
-    </div>
+            <Button
+              className="ml-auto block bg-[#fb9400] my-5 text-white hover:!border-[#fb9400] hover:!text-white"
+              onClick={handleConfirmNextSection}
+            >
+              {type !== "writing" ? "Next" : "Save and Submit"}
+            </Button>
+          </ConfigProvider>
+        )}
+        <ModalNextSection
+          handleChangeType={handleChangeType}
+          isContinue={isContinue}
+        />
+        <ModalConfirmSubmit />
+      </div>
+
+      <Modal open={loading} closeIcon={false} footer={null}>
+        <div className="text-center py-7">
+          <Spin />
+          <h2 className="mt-5"> Loading data ...</h2>
+        </div>
+      </Modal>
     </>
   );
 }
